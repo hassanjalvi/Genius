@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Login</title>
     <!-- Bootstrap CSS -->
-   
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
-   
-    
+
+
     <div class="py-5 mt-10">
         <div class="container">
             <div class="row justify-content-center">
@@ -28,7 +28,13 @@
                                 <p>{{ session()->get('error') }}</p>
                             </div>
                             @endif
-                            <form action="" method="post">
+                            @if (session()->has('success'))
+                            <div class="alert alert-success">
+                                <p>{{ session()->get('success') }}</p>
+                            </div>
+                            @endif
+
+                            <form action="{{ route('login') }}" method="post">
                                 @csrf
                                 <div class="form-group mb-3">
                                     <label for="email">email</label>
@@ -39,8 +45,8 @@
                                     </span>
                                     @endif
                                 </div>
-                              
-                        
+
+
                                 <div class="form-group mb-3">
                                     <label for="password">Password</label>
                                     <input type="password" name="password" class="form-control">
@@ -53,9 +59,9 @@
                                 <div class="form-group mb-3">
                                     <button type="submit" name="login_btn" class="btn btn-primary w-100">Login Now</button>
                                 </div>
-                                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{{route('register.form')}}" 
+                                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{{route('register.form')}}"
                                     class="link-primary">Register</a></p>
-                    
+
                             </form>
                         </div>
                     </div>
@@ -64,7 +70,7 @@
         </div>
     </div>
 
- 
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-cjMd6EtUpRVnJoHyX+51ptbV65+5tX+NF9I3zqW3A0u6v/u0apZ/6p6H5L7KwMgB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+c6MAdNpH1flVWTpLk+bPQ7KgV8rW34ZZfYjZG3PAgR2Xp+qq0N6GnHD7o4eGa" crossorigin="anonymous"></script>

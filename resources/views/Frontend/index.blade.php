@@ -99,7 +99,22 @@
 								</ul>
 							</div>
 							<div class="log-in float-right">
-								<a  data-toggle="modal" data-target="#myModal" href="#">log in</a>
+								{{-- <a  data-toggle="modal" data-target="#myModal" href="#">log in</a> --}}
+                                @if (Auth::check())
+                                {{-- Logged In: Show "Log out" link --}}
+                                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Log out
+                                </a>
+
+                                {{-- Logout Form (POST request) --}}
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                    @method('POST')
+                                </form>
+                            @else
+                                {{-- Not Logged In: Show "Log in" link --}}
+                                <a href="{{ route('login.form') }}">Log in</a>
+                            @endif
 								<!-- The Modal -->
 								<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
 									<div class="modal-dialog">
@@ -138,8 +153,8 @@
 														<input class="pass" name="name" type="password" placeholder="Your password*">
 													</div>
 													<div class="nws-button text-center white text-capitalize">
-														<button type="submit" value="Submit">LOg in Now</button> 
-													</div> 
+														<button type="submit" value="Submit">LOg in Now</button>
+													</div>
 												</form>
 												<div class="log-in-footer text-center">
 													<p>* Denotes mandatory field.</p>
@@ -260,7 +275,7 @@
  								<form action="#" method="post">
  									<input class="course" name="course" type="text" placeholder="Type what do you want to learn today?">
  									<div class="nws-button text-center  gradient-bg text-capitalize">
- 										<button type="submit" value="Submit">Search Course</button> 
+ 										<button type="submit" value="Submit">Search Course</button>
  									</div>
  								</form>
  							</div>
@@ -332,7 +347,7 @@
  		</section>
 	<!-- End of slider section
 		============================================= -->
-		
+
 
 
 	<!-- Start of sponsor section
@@ -678,8 +693,8 @@
 										</div>
 										<textarea placeholder="Message."></textarea>
 										<div class="nws-button text-uppercase text-center white text-capitalize">
-											<button type="submit" value="Submit">SUBMIT REQUEST </button> 
-										</div> 
+											<button type="submit" value="Submit">SUBMIT REQUEST </button>
+										</div>
 									</form>
 								</div>
 							</div>
@@ -738,7 +753,7 @@
 					<form action="#" method="post">
 						<input class="course" name="course" type="text" placeholder="Type what do you want to learn today?">
 						<div class="nws-button text-center  gradient-bg text-capitalize">
-							<button type="submit" value="Submit">Search Course</button> 
+							<button type="submit" value="Submit">Search Course</button>
 						</div>
 					</form>
 				</div>
@@ -1438,7 +1453,7 @@
 					</div>
 				</div>
 
-				
+
 			</div>
 		</section>
 	<!-- End of best course
@@ -1767,7 +1782,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="category-slide-content">
 						<div class="category-icon-title text-center">
 							<div class="category-icon">
@@ -1843,7 +1858,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="category-slide-content">
 						<div class="category-icon-title text-center">
 							<div class="category-icon">
@@ -2172,7 +2187,7 @@
 									</div>
 									<textarea  placeholder="Message."></textarea>
 									<div class="nws-button text-center  gradient-bg text-capitalize">
-										<button type="submit" value="Submit">SEND MESSAGE NOW <i class="fas fa-caret-right"></i></button> 
+										<button type="submit" value="Submit">SEND MESSAGE NOW <i class="fas fa-caret-right"></i></button>
 									</div>
 								</form>
 							</div>
@@ -2195,7 +2210,7 @@
 							<form action="#" method="post">
 								<input class="course" name="course" type="email" placeholder="Email Address.">
 								<div class="nws-button text-center  gradient-bg text-uppercase">
-									<button type="submit" value="Submit">Subscribe now</button> 
+									<button type="submit" value="Submit">Subscribe now</button>
 								</div>
 							</form>
 						</div>
@@ -2256,6 +2271,6 @@
 
 		<script src="{{asset('assets/js/script.js')}}"></script>
 	</body>
-	
+
 
 </html>
