@@ -61,4 +61,12 @@ class UserController extends Controller
     {
         //
     }
+    public function showRegister()
+    {
+        return view('Frontend.register');
+    }
+    public function showLogin()
+    {
+        return view('Frontend.login');
+    }
 }
