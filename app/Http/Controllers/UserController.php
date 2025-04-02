@@ -11,7 +11,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('Frontend.index');
     }
 
     /**
@@ -68,5 +68,9 @@ class UserController extends Controller
     public function showLogin()
     {
         return view('Frontend.login');
+    }
+    public function showAbout()
+    {
+        return view('Frontend.about');
     }
 }

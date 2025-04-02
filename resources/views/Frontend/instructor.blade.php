@@ -4,31 +4,32 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Teacher Details Page</title>
+	<title>Teacher Page</title>
 
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="assets/css/owl.carousel.css">
-	<link rel="stylesheet" href="assets/css/fontawesome-all.css">
-	<link rel="stylesheet" href="assets/css/flaticon.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/meanmenu.css">
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/video.min.css">
-	<link rel="stylesheet" href="assets/css/lightbox.css">
-	<link rel="stylesheet" href="assets/css/progess.css">
-	<link rel="stylesheet" href="assets/css/style.css">
-	<link rel="stylesheet" href="assets/css/responsive.css">
+	<link rel="stylesheet" href="{{asset('assets/css/owl.carousel.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/fontawesome-all.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/flaticon.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/meanmenu.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/video.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/animate.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/lightbox.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/progess.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
 
-	<link rel="stylesheet"  href="assets/css/colors/switch.css">
-	<link href="assets/css/colors/color-2.css" rel="alternate stylesheet" type="text/css" title="color-2">
-	<link href="assets/css/colors/color-3.css" rel="alternate stylesheet" type="text/css" title="color-3">
-	<link href="assets/css/colors/color-4.css" rel="alternate stylesheet" type="text/css" title="color-4">
-	<link href="assets/css/colors/color-5.css" rel="alternate stylesheet" type="text/css" title="color-5">
-	<link href="assets/css/colors/color-6.css" rel="alternate stylesheet" type="text/css" title="color-6">
-	<link href="assets/css/colors/color-7.css" rel="alternate stylesheet" type="text/css" title="color-7">
-	<link href="assets/css/colors/color-8.css" rel="alternate stylesheet" type="text/css" title="color-8">
-	<link href="assets/css/colors/color-9.css" rel="alternate stylesheet" type="text/css" title="color-9">
+	<link rel="stylesheet"  href="{{asset('assets/css/colors/switch.css')}}">
+	<link href="{{asset('assets/css/colors/color-2.css')}}" rel="alternate stylesheet" type="text/css" title="color-2">
+	<link href="{{asset('assets/css/colors/color-3.css')}}" rel="alternate stylesheet" type="text/css" title="color-3">
+	<link href="{{asset('assets/css/colors/color-4.css')}}" rel="alternate stylesheet" type="text/css" title="color-4">
+	<link href="{{asset('assets/css/colors/color-5.css')}}" rel="alternate stylesheet" type="text/css" title="color-5">
+	<link href="{{asset('assets/css/colors/color-6.css')}}" rel="alternate stylesheet" type="text/css" title="color-6">
+	<link href="{{asset('assets/css/colors/color-7.css')}}" rel="alternate stylesheet" type="text/css" title="color-7">
+	<link href="{{asset('assets/css/colors/color-8.css')}}" rel="alternate stylesheet" type="text/css" title="color-8">
+	<link href="{{asset('assets/css/colors/color-9.css')}}" rel="alternate stylesheet" type="text/css" title="color-9">
 
 </head>
 
@@ -36,7 +37,7 @@
 
 	<div id="preloader"></div>
 
-			<div id="switch-color" class="color-switcher">
+	<div id="switch-color" class="color-switcher">
 		<div class="open"><i class="fas fa-cog fa-spin"></i></div>
 		<h4>COLOR OPTION</h4>
 		<ul>
@@ -217,6 +218,7 @@
 				</div>
 			</div>
 		</header>
+
  	<!-- Start of Header section
  		============================================= --> 
 
@@ -233,474 +235,362 @@
 					<div class="page-breadcrumb-item ul-li">
 						<ul class="breadcrumb text-uppercase black">
 							<li class="breadcrumb-item"><a href="#">Home</a></li>
-							<li class="breadcrumb-item active">Teachers Details</li>
+							<li class="breadcrumb-item active">Teachers</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</section>
 	<!-- End of breadcrumb section
-		============================================= -->	
+		============================================= -->
 
 
-	<!-- Start of teacher details area
-		============================================= -->	
-		<section id="teacher-details" class="teacher-details-area">
+
+	<!-- Start of teacher section
+		============================================= -->
+		<section id="teacher-page" class="teacher-page-section">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-9">
-						<div class="teacher-details-content mb45">
+						<div class="teachers-archive">
 							<div class="row">
-								<div class="col-md-6">
-									<div class="teacher-details-img">
-										<img src="assets/img/teacher/td-1.jpg" alt="">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="teacher-details-text">
-										<div class="section-title-2  headline text-left">
-											<h2>Michele <span>Lusiana Fernandes.</span></h2>
-											<div class="teacher-deg">
-												Specialities: <span>Mobile Apps.</span> 
+								<div class="col-md-4 col-sm-6">
+									<div class="teacher-pic-content">
+										<div class="teacher-img-content relative-position">
+											<img src="assets/img/teacher/mt-1.jpg" alt="">
+											<div class="teacher-hover-item">
+												<div class="teacher-social-name ul-li-block">
+													<ul>
+														<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+														<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+														<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+													</ul>
+												</div>
+												<div class="teacher-text">
+													Lorem ipsum dolor  consectuer adipiscing elit, nonummy nibh euismod tincidunt.
+												</div>
+											</div>
+											<div class="teacher-next text-center">
+												<a href="#"><i class="text-gradiant fas fa-arrow-right"></i></a>
 											</div>
 										</div>
-										<div class="teacher-desc-social ul-li">
-											<ul>
-												<li>
-													<a href="#">
-														<div class="info-social">
-															<i class="fab fa-facebook-f"></i>
-														</div>
-														<span class="info-text">Facebook</span>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<div class="info-social">
-															<i class="fab fa-twitter"></i>
-														</div>
-														<span class="info-text">Twitter</span>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<div class="info-social">
-															<i class="fab fa-behance"></i>
-														</div>
-														<span class="info-text">Behance</span>
-
-													</a>
-												</li>
-												<li>
-													<a href="#">
-														<div class="info-social">
-															<i class="fab fa-google-plus-g"></i>
-														</div>
-														<span class="info-text">Google + </span>
-														
-													</a>
-												</li>
-											</ul>
+										<div class="teacher-name-designation">
+											<span class="teacher-name">Daniel Alvares</span>
+											<span class="teacher-designation">Mobile Apps</span>
 										</div>
+									</div>
+								</div>
 
-										<div class="teacher-address">
-											<div class="address-details ul-li-block">
-												<ul>
-													<li>
-														<div class="addrs-icon">
-															<i class="fas fa-map-marker-alt"></i>
-														</div>
-														<div class="add-info">
-															<span><b>Address: </b>210, Firs Avenue, Texas Hill, US</span>
-														</div>
-													</li>
-													<li>
-														<div class="addrs-icon">
-															<i class="fas fa-phone"></i>
-														</div>
-														<div class="add-info">
-															<span><b>Telp: </b>100 9889-2000</span>
-														</div>
-													</li>
-													<li>
-														<div class="addrs-icon">
-															<i class="fas fa-envelope"></i>
-														</div>
-														<div class="add-info">
-															<span><b>E-mail: </b>genius@lusianafernandes.com</span>
-														</div>
-													</li>
-												</ul>
+								<div class="col-md-4 col-sm-6">
+									<div class="teacher-pic-content">
+										<div class="teacher-img-content relative-position">
+											<img src="assets/img/teacher/mt-2.jpg" alt="">
+											<div class="teacher-hover-item">
+												<div class="teacher-social-name ul-li-block">
+													<ul>
+														<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+														<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+														<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+													</ul>
+												</div>
+												<div class="teacher-text">
+													Lorem ipsum dolor  consectuer adipiscing elit, nonummy nibh euismod tincidunt.
+												</div>
+											</div>
+											<div class="teacher-next text-center">
+												<a href="#"><i class="text-gradiant fas fa-arrow-right"></i></a>
 											</div>
 										</div>
+										<div class="teacher-name-designation">
+											<span class="teacher-name">Daniel Alvares</span>
+											<span class="teacher-designation">Mobile Apps</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4 col-sm-6">
+									<div class="teacher-pic-content">
+										<div class="teacher-img-content relative-position">
+											<img src="assets/img/teacher/mt-3.jpg" alt="">
+											<div class="teacher-hover-item">
+												<div class="teacher-social-name ul-li-block">
+													<ul>
+														<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+														<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+														<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+													</ul>
+												</div>
+												<div class="teacher-text">
+													Lorem ipsum dolor  consectuer adipiscing elit, nonummy nibh euismod tincidunt.
+												</div>
+											</div>
+											<div class="teacher-next text-center">
+												<a href="#"><i class="text-gradiant fas fa-arrow-right"></i></a>
+											</div>
+										</div>
+										<div class="teacher-name-designation">
+											<span class="teacher-name">Daniel Alvares</span>
+											<span class="teacher-designation">Mobile Apps</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4 col-sm-6">
+									<div class="teacher-pic-content">
+										<div class="teacher-img-content relative-position">
+											<img src="assets/img/teacher/mt-4.jpg" alt="">
+											<div class="teacher-hover-item">
+												<div class="teacher-social-name ul-li-block">
+													<ul>
+														<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+														<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+														<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+													</ul>
+												</div>
+												<div class="teacher-text">
+													Lorem ipsum dolor  consectuer adipiscing elit, nonummy nibh euismod tincidunt.
+												</div>
+											</div>
+											<div class="teacher-next text-center">
+												<a href="#"><i class="text-gradiant fas fa-arrow-right"></i></a>
+											</div>
+										</div>
+										<div class="teacher-name-designation">
+											<span class="teacher-name">Daniel Alvares</span>
+											<span class="teacher-designation">Mobile Apps</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4 col-sm-6">
+									<div class="teacher-pic-content">
+										<div class="teacher-img-content relative-position">
+											<img src="assets/img/teacher/mt-5.jpg" alt="">
+											<div class="teacher-hover-item">
+												<div class="teacher-social-name ul-li-block">
+													<ul>
+														<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+														<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+														<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+													</ul>
+												</div>
+												<div class="teacher-text">
+													Lorem ipsum dolor  consectuer adipiscing elit, nonummy nibh euismod tincidunt.
+												</div>
+											</div>
+											<div class="teacher-next text-center">
+												<a href="#"><i class="text-gradiant fas fa-arrow-right"></i></a>
+											</div>
+										</div>
+										<div class="teacher-name-designation">
+											<span class="teacher-name">Daniel Alvares</span>
+											<span class="teacher-designation">Mobile Apps</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4 col-sm-6">
+									<div class="teacher-pic-content">
+										<div class="teacher-img-content relative-position">
+											<img src="assets/img/teacher/mt-6.jpg" alt="">
+											<div class="teacher-hover-item">
+												<div class="teacher-social-name ul-li-block">
+													<ul>
+														<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+														<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+														<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+													</ul>
+												</div>
+												<div class="teacher-text">
+													Lorem ipsum dolor  consectuer adipiscing elit, nonummy nibh euismod tincidunt.
+												</div>
+											</div>
+											<div class="teacher-next text-center">
+												<a href="#"><i class="text-gradiant fas fa-arrow-right"></i></a>
+											</div>
+										</div>
+										<div class="teacher-name-designation">
+											<span class="teacher-name">Daniel Alvares</span>
+											<span class="teacher-designation">Mobile Apps</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4 col-sm-6">
+									<div class="teacher-pic-content">
+										<div class="teacher-img-content relative-position">
+											<img src="assets/img/teacher/mt-1.jpg" alt="">
+											<div class="teacher-hover-item">
+												<div class="teacher-social-name ul-li-block">
+													<ul>
+														<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+														<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+														<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+													</ul>
+												</div>
+												<div class="teacher-text">
+													Lorem ipsum dolor  consectuer adipiscing elit, nonummy nibh euismod tincidunt.
+												</div>
+											</div>
+											<div class="teacher-next text-center">
+												<a href="#"><i class="text-gradiant fas fa-arrow-right"></i></a>
+											</div>
+										</div>
+										<div class="teacher-name-designation">
+											<span class="teacher-name">Daniel Alvares</span>
+											<span class="teacher-designation">Mobile Apps</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4 col-sm-6">
+									<div class="teacher-pic-content">
+										<div class="teacher-img-content relative-position">
+											<img src="assets/img/teacher/mt-2.jpg" alt="">
+											<div class="teacher-hover-item">
+												<div class="teacher-social-name ul-li-block">
+													<ul>
+														<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+														<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+														<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+													</ul>
+												</div>
+												<div class="teacher-text">
+													Lorem ipsum dolor  consectuer adipiscing elit, nonummy nibh euismod tincidunt.
+												</div>
+											</div>
+											<div class="teacher-next text-center">
+												<a href="#"><i class="text-gradiant fas fa-arrow-right"></i></a>
+											</div>
+										</div>
+										<div class="teacher-name-designation">
+											<span class="teacher-name">Daniel Alvares</span>
+											<span class="teacher-designation">Mobile Apps</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4 col-sm-6">
+									<div class="teacher-pic-content">
+										<div class="teacher-img-content relative-position">
+											<img src="assets/img/teacher/mt-3.jpg" alt="">
+											<div class="teacher-hover-item">
+												<div class="teacher-social-name ul-li-block">
+													<ul>
+														<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+														<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+														<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+													</ul>
+												</div>
+												<div class="teacher-text">
+													Lorem ipsum dolor  consectuer adipiscing elit, nonummy nibh euismod tincidunt.
+												</div>
+											</div>
+											<div class="teacher-next text-center">
+												<a href="#"><i class="text-gradiant fas fa-arrow-right"></i></a>
+											</div>
+										</div>
+										<div class="teacher-name-designation">
+											<span class="teacher-name">Daniel Alvares</span>
+											<span class="teacher-designation">Mobile Apps</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4 col-sm-6">
+									<div class="teacher-pic-content">
+										<div class="teacher-img-content relative-position">
+											<img src="assets/img/teacher/mt-4.jpg" alt="">
+											<div class="teacher-hover-item">
+												<div class="teacher-social-name ul-li-block">
+													<ul>
+														<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+														<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+														<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+													</ul>
+												</div>
+												<div class="teacher-text">
+													Lorem ipsum dolor  consectuer adipiscing elit, nonummy nibh euismod tincidunt.
+												</div>
+											</div>
+											<div class="teacher-next text-center">
+												<a href="#"><i class="text-gradiant fas fa-arrow-right"></i></a>
+											</div>
+										</div>
+										<div class="teacher-name-designation">
+											<span class="teacher-name">Daniel Alvares</span>
+											<span class="teacher-designation">Mobile Apps</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4 col-sm-6">
+									<div class="teacher-pic-content">
+										<div class="teacher-img-content relative-position">
+											<img src="assets/img/teacher/mt-5.jpg" alt="">
+											<div class="teacher-hover-item">
+												<div class="teacher-social-name ul-li-block">
+													<ul>
+														<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+														<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+														<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+													</ul>
+												</div>
+												<div class="teacher-text">
+													Lorem ipsum dolor  consectuer adipiscing elit, nonummy nibh euismod tincidunt.
+												</div>
+											</div>
+											<div class="teacher-next text-center">
+												<a href="#"><i class="text-gradiant fas fa-arrow-right"></i></a>
+											</div>
+										</div>
+										<div class="teacher-name-designation">
+											<span class="teacher-name">Daniel Alvares</span>
+											<span class="teacher-designation">Mobile Apps</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4 col-sm-6">
+									<div class="teacher-pic-content">
+										<div class="teacher-img-content relative-position">
+											<img src="assets/img/teacher/mt-6.jpg" alt="">
+											<div class="teacher-hover-item">
+												<div class="teacher-social-name ul-li-block">
+													<ul>
+														<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+														<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+														<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+													</ul>
+												</div>
+												<div class="teacher-text">
+													Lorem ipsum dolor  consectuer adipiscing elit, nonummy nibh euismod tincidunt.
+												</div>
+											</div>
+											<div class="teacher-next text-center">
+												<a href="#"><i class="text-gradiant fas fa-arrow-right"></i></a>
+											</div>
+										</div>
+										<div class="teacher-name-designation">
+											<span class="teacher-name">Daniel Alvares</span>
+											<span class="teacher-designation">Mobile Apps</span>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-
-						<div class="about-teacher mb45">
-							<div class="section-title-2  headline text-left">
-								<h2>About <span>Teacher.</span></h2>
-							</div>
-							<p>
-								Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-							</p>
-						</div>
-
-						<div class="about-teacher mb45 teacher-specialist">
-							<div class="section-title-2  headline text-left">
-								<h2>Teacher <span>Specialities.</span></h2>
-							</div>
-
-							<div class="category-slide text-center">
-								<div class="category-icon-title text-center">
-									<div class="category-icon">
-										<i class="text-gradiant flaticon-technology"></i>
-									</div>
-									<div class="category-title">
-										<h4>Responsive Website</h4>
-									</div>
-								</div>
-
-								<div class="category-icon-title text-center">
-									<div class="category-icon">
-										<i class="text-gradiant flaticon-app-store"></i>
-									</div>
-									<div class="category-title">
-										<h4>IOS Applications</h4>
-									</div>
-								</div>
-
-								<div class="category-icon-title text-center">
-									<div class="category-icon">
-										<i class="text-gradiant flaticon-artist-tools"></i>
-									</div>
-									<div class="category-title">
-										<h4>Graphic Design</h4>
-									</div>
-								</div>
-
-								<div class="category-icon-title text-center">
-									<div class="category-icon">
-										<i class="text-gradiant flaticon-business"></i>
-									</div>
-									<div class="category-title">
-										<h4>Marketing</h4>
-									</div>
-								</div>
-
-								<div class="category-icon-title text-center">
-									<div class="category-icon">
-										<i class="text-gradiant flaticon-dna"></i>
-									</div>
-									<div class="category-title">
-										<h4>Science</h4>
-									</div>
-								</div>
-
-								<div class="category-icon-title text-center">
-									<div class="category-icon">
-										<i class="text-gradiant flaticon-cogwheel"></i>
-									</div>
-									<div class="category-title">
-										<h4>Enginering</h4>
-									</div>
-								</div>
-
-								<div class="category-icon-title text-center">
-									<div class="category-icon">
-										<i class="text-gradiant flaticon-technology-1"></i>
-									</div>
-									<div class="category-title">
-										<h4>Photography</h4>
-									</div>
-								</div>
-
-								<div class="category-icon-title text-center">
-									<div class="category-icon">
-										<i class="text-gradiant flaticon-technology-2"></i>
-									</div>
-									<div class="category-title">
-										<h4>Mobile Application</h4>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="about-teacher about-faq faq-secound-home-version">
-							<div class="section-title-2  headline text-left">
-								<h2>Frequently  <span>Ask & Questions.</span></h2>
+							<div class="couse-pagination text-center ul-li">
+								<ul>
+									<li class="pg-text"><a href="#">PREV</a></li>
+									<li><a href="#">01</a></li>
+									<li><a href="#">02</a></li>
+									<li class="active"><a href="#">03</a></li>
+									<li><a href="#">04</a></li>
+									<li><a href="#">...</a></li>
+									<li><a href="#">15</a></li>
+									<li class="pg-text"><a href="#">NEXT</a></li>
+								</ul>
 							</div>
 							
-							<div class="faq-tab mb35">
-								<div class="faq-tab-ques  ul-li">
-									<div class="tab-button  mb30">
-										<ul class="product-tab">
-											<li class="active" rel="tab1">GENERAL </li>
-											<li rel="tab2"> COURSES </li>
-											<li rel="tab3"> TEACHERS </li>
-											<li rel="tab4">  EVENTS  </li>
-											<li rel="tab5">  OTHERS  </li>
-										</ul>
-									</div>
-									<!-- /tab-head -->
-
-									<!-- tab content -->
-									<div class="tab-container">
-
-										<!-- 1st tab -->
-										<div id="tab1" class="tab-content-1 pt35">
-											<div id="accordion3" class="panel-group">
-												<div class="panel">
-													<div class="panel-title" id="headingOne">
-														<h3 class="mb-0">
-															<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-																How to Register or Make An Account in Genius?
-															</button>
-														</h3>
-													</div>
-													<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion3">
-														<div class="panel-body">
-															Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
-														</div>
-													</div>
-												</div>
-												<div class="panel">
-													<div class="panel-title" id="headingTwo">
-														<h3 class="mb-0">
-															<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-																What is Genius Courses?
-															</button>
-														</h3>
-													</div>
-													<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion3">
-														<div class="panel-body">
-															Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
-														</div>
-													</div>
-												</div>
-												<div class="panel">
-													<div class="panel-title" id="headingThree">
-														<h3 class="mb-0">
-															<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-																What Lorem Ipsum Dolor Sit Amet Consectuerer?
-															</button>
-														</h3>
-													</div>
-													<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion3">
-														<div class="panel-body">
-															Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
-														</div>
-													</div>
-												</div>
-												<div class="panel">
-													<div class="panel-title" id="headingFoure">
-														<h3 class="mb-0">
-															<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFoure" aria-expanded="false" aria-controls="collapseFoure">
-																Adipiscing Diamet Nonnumy Nibh Euismod?
-															</button>
-														</h3>
-													</div>
-													<div id="collapseFoure" class="collapse" data-parent="#accordion3">
-														<div class="panel-body">
-															Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
-														</div>
-													</div>
-												</div>
-											</div>
-											<!-- end of #accordion -->
-
-										</div>
-										<!-- #tab1 -->
-
-										<div id="tab2" class="tab-content-1 pt35">
-											<div id="accordion" class="panel-group">
-												<div class="panel">
-													<div class="panel-title" id="headingSix">
-														<h3 class="mb-0">
-															<button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-																How to Register or Make An Account in Genius?
-															</button>
-														</h3>
-													</div>
-													<div id="collapseSix" class="collapse show" aria-labelledby="headingSix" data-parent="#accordion">
-														<div class="panel-body">
-															Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
-														</div>
-													</div>
-												</div>
-												<div class="panel">
-													<div class="panel-title" id="headingSeven">
-														<h3 class="mb-0">
-															<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-																What is Genius Courses?
-															</button>
-														</h3>
-													</div>
-													<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
-														<div class="panel-body">
-															Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
-														</div>
-													</div>
-												</div>
-												<div class="panel">
-													<div class="panel-title" id="headingEight">
-														<h3 class="mb-0">
-															<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-																What Lorem Ipsum Dolor Sit Amet Consectuerer?
-															</button>
-														</h3>
-													</div>
-													<div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
-														<div class="panel-body">
-															Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
-														</div>
-													</div>
-												</div>
-												<div class="panel">
-													<div class="panel-title" id="headingNine">
-														<h3 class="mb-0">
-															<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-																Adipiscing Diamet Nonnumy Nibh Euismod?
-															</button>
-														</h3>
-													</div>
-													<div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion">
-														<div class="panel-body">
-															Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
-														</div>
-													</div>
-												</div>
-											</div>
-											<!-- end of #accordion -->
-										</div>
-										<!-- #tab2 -->
-
-										<div id="tab3" class="tab-content-1 pt35">
-											<div class="row">
-												<div class="col-md-6">
-													<div class="ques-ans mb45 headline">
-														<h3> What is Genius Courses?</h3>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
-													</div>
-
-													<div class="ques-ans mb45 headline">
-														<h3> What Lorem Ipsum Dolor Sit Amet Consectuerer?</h3>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
-													</div>
-												</div>
-
-												<div class="col-md-6">
-													<div class="ques-ans mb45 headline">
-														<h3> How to Register or Make An Account in Genius?</h3>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
-													</div>
-
-													<div class="ques-ans mb45 headline">
-														<h3> Adipiscing Diamet Nonnumy Nibh Euismod?</h3>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- #tab3 -->
-
-										<div id="tab4" class="tab-content-1 pt35">
-											<div class="row">
-												<div class="col-md-6">
-													<div class="ques-ans mb45 headline">
-														<h3> What is Genius Courses?</h3>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
-													</div>
-
-													<div class="ques-ans mb45 headline">
-														<h3> What Lorem Ipsum Dolor Sit Amet Consectuerer?</h3>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
-													</div>
-												</div>
-
-												<div class="col-md-6">
-													<div class="ques-ans mb45 headline">
-														<h3> How to Register or Make An Account in Genius?</h3>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
-													</div>
-
-													<div class="ques-ans mb45 headline">
-														<h3> Adipiscing Diamet Nonnumy Nibh Euismod?</h3>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- #tab3 -->
-
-										<div id="tab5" class="tab-content-1 pt35">
-											<div class="row">
-												<div class="col-md-6">
-													<div class="ques-ans mb45 headline">
-														<h3> What is Genius Courses?</h3>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
-													</div>
-
-													<div class="ques-ans mb45 headline">
-														<h3> What Lorem Ipsum Dolor Sit Amet Consectuerer?</h3>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
-													</div>
-												</div>
-
-												<div class="col-md-6">
-													<div class="ques-ans mb45 headline">
-														<h3> How to Register or Make An Account in Genius?</h3>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
-													</div>
-
-													<div class="ques-ans mb45 headline">
-														<h3> Adipiscing Diamet Nonnumy Nibh Euismod?</h3>
-														<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- #tab3 -->
-									</div>
-								</div>
-							</div>
-
-							<div class="about-btn">
-								<div class="genius-btn gradient-bg text-center text-uppercase ul-li-block bold-font">
-									<a href="#">Make Question <i class="fas fa-caret-right"></i></a>
-								</div>
-								<div class="genius-btn gradient-bg text-center text-uppercase ul-li-block bold-font">
-									<a href="#">contact us <i class="fas fa-caret-right"></i></a>
-								</div>
-							</div>
-						</div>
-
-						<div class="about-teacher teacher-contact">
-							<div class="section-title-2  headline text-left">
-								<h2>Have a Question? Send a <span>Message.</span></h2>
-							</div>
-
-							<div class="teacher-faq-form">
-								<form  method="POST" action="https://jthemes.net/no-form"  data-lead="Residential">
-									<div class="row">
-										<div class="col-md-6">
-											<label for="name">Your Name</label>
-											<input type="text" name="name" id="name" required="required">
-										</div>
-										<div class="col-md-6">
-											<label for="phone">Email Address</label>
-											<input type="tel" name="phone" id="phone" required="required">
-										</div>
-									</div>
-									<label for="comments">Message</label>
-									<textarea name="comments" id="comments" rows="2" cols="20" required="required"></textarea>
-									<div class="nws-button text-center  gradient-bg text-uppercase">
-										<button type="submit" value="Submit">Send Message now</button> 
-									</div>
-								</form>
-							</div>
 						</div>
 					</div>
 
@@ -786,13 +676,10 @@
 				</div>
 			</div>
 		</section>
-	<!-- End  of teacher details area
-		============================================= -->	
+	<!-- End of teacher section
+		============================================= -->
 
-
-
-
-
+		
 
 	<!-- Start of best product section
 		============================================= -->
@@ -1102,23 +989,23 @@
 
 
 		<!-- For Js Library -->
-		<script src="assets/js/jquery-2.1.4.min.js"></script>
-		<script src="assets/js/bootstrap.min.js"></script>
-		<script src="assets/js/popper.min.js"></script>
-		<script src="assets/js/owl.carousel.min.js"></script>
-		<script src="assets/js/jarallax.js"></script>
-		<script src="assets/js/jquery.magnific-popup.min.js"></script>
-		<script src="assets/js/lightbox.js"></script>
-		<script src="assets/js/jquery.meanmenu.js"></script>
-		<script src="assets/js/scrollreveal.min.js"></script>
-		<script src="assets/js/jquery.counterup.min.js"></script>
-		<script src="assets/js/waypoints.min.js"></script>
-		<script src="assets/js/jquery-ui.js"></script>
-		<script src="assets/js/gmap3.min.js"></script>
-		<script src="assets/js/switch.js"></script>
+		<script src="{{asset('assets/js/jquery-2.1.4.min.js')}}"></script>
+		<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+		<script src="{{asset('assets/js/popper.min.js')}}"></script>
+		<script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+		<script src="{{asset('assets/js/jarallax.js')}}"></script>
+		<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
+		<script src="{{asset('assets/js/lightbox.js')}}"></script>
+		<script src="{{asset('assets/js/jquery.meanmenu.js')}}"></script>
+		<script src="{{asset('assets/js/scrollreveal.min.js')}}"></script>
+		<script src="{{asset('assets/js/jquery.counterup.min.js')}}"></script>
+		<script src="{{asset('assets/js/waypoints.min.js')}}"></script>
+		<script src="{{asset('assets/js/jquery-ui.js')}}"></script>
+		<script src="{{asset('assets/js/gmap3.min.js')}}"></script>
+		<script src="{{asset('assets/js/switch.js')}}"></script>
 		<script src="http://maps.google.com/maps/api/js?key=AIzaSyC61_QVqt9LAhwFdlQmsNwi5aUJy9B2SyA"></script>
 
-    	<script src="assets/js/script.js"></script>
+		<script src="{{asset('assets/js/script.js')}}"></script>
 	</body>
 	
 

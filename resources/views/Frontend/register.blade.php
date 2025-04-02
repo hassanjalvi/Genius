@@ -39,7 +39,7 @@
                                     <input type="text" id="fullName"class="form-control" placeholder="Full Name"
                                         name="name">
                                     @if ($errors->has('name'))
-                                        <span class="text-danger">
+                                        <span class="text-primary">
                                             {{ $errors->first('name') }}
                                         </span>
                                     @endif
@@ -49,7 +49,7 @@
                                     <input type="email" id="email" class="form-control" placeholder="Email"
                                         name="email">
                                     @if ($errors->has('email'))
-                                    <span class="text-danger">
+                                    <span class="text-primary">
                                         {{ $errors->first('email') }}
                                     </span>
                                     @endif
@@ -59,7 +59,7 @@
                                     <input type="password" id="typePasswordX" class="form-control"
                                         placeholder="Password" name="password">
                                     @if ($errors->has('password'))
-                                        <span class="text-danger">
+                                        <span class="text-primary">
                                             {{ $errors->first('password') }}
                                         </span>
                                     @endif
@@ -69,15 +69,15 @@
                                     <input type="password" id="confirmPassword" class="form-control"
                                         placeholder="Confirm Password" name="password_confirmation">
                                     @if ($errors->has('password_confirmation'))
-                                        <span class="text-danger">
+                                        <span class="text-primary">
                                             {{ $errors->first('password_confirmation') }}
                                         </span>
                                     @endif
                                 </div>
-                                <button type="submit" class="btn btn-danger">Register</button>
+                                <button type="submit" class="btn btn-primary">Register</button>
                             </form>
                             <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a href="{{route('login.form')}}" 
-                                class="link-danger">Login</a></p>
+                                class="link-primary">Login</a></p>
                         </div>
                     </div>
                 </div>

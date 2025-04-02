@@ -24,7 +24,7 @@
                         </div>
                         <div class="card-body">
                             @if (session()->has('error'))
-                            <div class="alert alert-danger">
+                            <div class="alert alert-primary">
                                 <p>{{ session()->get('error') }}</p>
                             </div>
                             @endif
@@ -34,7 +34,7 @@
                                     <label for="email">email</label>
                                     <input type="email" name="email" class="form-control">
                                     @if ($errors->has('email'))
-                                    <span class="text-danger">
+                                    <span class="text-primary">
                                         {{ $errors->first('email') }}
                                     </span>
                                     @endif
@@ -45,16 +45,16 @@
                                     <label for="password">Password</label>
                                     <input type="password" name="password" class="form-control">
                                     @if ($errors->has('password'))
-                                    <span class="text-danger">
+                                    <span class="text-primary">
                                         {{ $errors->first('password') }}
                                     </span>
                                     @endif
                                 </div>
                                 <div class="form-group mb-3">
-                                    <button type="submit" name="login_btn" class="btn btn-danger w-100">Login Now</button>
+                                    <button type="submit" name="login_btn" class="btn btn-primary w-100">Login Now</button>
                                 </div>
                                 <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{{route('register.form')}}" 
-                                    class="link-danger">Register</a></p>
+                                    class="link-primary">Register</a></p>
                     
                             </form>
                         </div>

@@ -61,4 +61,9 @@ class PaymentController extends Controller
     {
         //
     }
+    public function showCheckout()
+    {
+        return view('Frontend.check-out');
+    }
+    
 }

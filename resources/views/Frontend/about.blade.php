@@ -7,29 +7,27 @@
 	<title>About Page</title>
 
 	<!-- Mobile Specific Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{{asset('assets/css/owl.carousel.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/fontawesome-all.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/flaticon.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/meanmenu.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/video.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/animate.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/lightbox.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/progess.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+	<link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
 
-	<link rel="stylesheet" href="assets/css/owl.carousel.css">
-	<link rel="stylesheet" href="assets/css/fontawesome-all.css">
-	<link rel="stylesheet" href="assets/css/flaticon.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/meanmenu.css">
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/video.min.css">
-	<link rel="stylesheet" href="assets/css/lightbox.css">
-	<link rel="stylesheet" href="assets/css/progess.css">
-	<link rel="stylesheet" href="assets/css/style.css">
-	<link rel="stylesheet" href="assets/css/responsive.css">
-
-
-	<link rel="stylesheet"  href="assets/css/colors/switch.css">
-	<link href="assets/css/colors/color-2.css" rel="alternate stylesheet" type="text/css" title="color-2">
-	<link href="assets/css/colors/color-3.css" rel="alternate stylesheet" type="text/css" title="color-3">
-	<link href="assets/css/colors/color-4.css" rel="alternate stylesheet" type="text/css" title="color-4">
-	<link href="assets/css/colors/color-5.css" rel="alternate stylesheet" type="text/css" title="color-5">
-	<link href="assets/css/colors/color-6.css" rel="alternate stylesheet" type="text/css" title="color-6">
-	<link href="assets/css/colors/color-7.css" rel="alternate stylesheet" type="text/css" title="color-7">
-	<link href="assets/css/colors/color-8.css" rel="alternate stylesheet" type="text/css" title="color-8">
-	<link href="assets/css/colors/color-9.css" rel="alternate stylesheet" type="text/css" title="color-9">
+	<link rel="stylesheet"  href="{{asset('assets/css/colors/switch.css')}}">
+	<link href="{{asset('assets/css/colors/color-2.css')}}" rel="alternate stylesheet" type="text/css" title="color-2">
+	<link href="{{asset('assets/css/colors/color-3.css')}}" rel="alternate stylesheet" type="text/css" title="color-3">
+	<link href="{{asset('assets/css/colors/color-4.css')}}" rel="alternate stylesheet" type="text/css" title="color-4">
+	<link href="{{asset('assets/css/colors/color-5.css')}}" rel="alternate stylesheet" type="text/css" title="color-5">
+	<link href="{{asset('assets/css/colors/color-6.css')}}" rel="alternate stylesheet" type="text/css" title="color-6">
+	<link href="{{asset('assets/css/colors/color-7.css')}}" rel="alternate stylesheet" type="text/css" title="color-7">
+	<link href="{{asset('assets/css/colors/color-8.css')}}" rel="alternate stylesheet" type="text/css" title="color-8">
+	<link href="{{asset('assets/css/colors/color-9.css')}}" rel="alternate stylesheet" type="text/css" title="color-9">
 
 </head>
 
@@ -849,23 +847,23 @@
 
 
 		<!-- For Js Library -->
-		<script src="assets/js/jquery-2.1.4.min.js"></script>
-		<script src="assets/js/bootstrap.min.js"></script>
-		<script src="assets/js/popper.min.js"></script>
-		<script src="assets/js/owl.carousel.min.js"></script>
-		<script src="assets/js/jarallax.js"></script>
-		<script src="assets/js/jquery.magnific-popup.min.js"></script>
-		<script src="assets/js/lightbox.js"></script>
-		<script src="assets/js/jquery.meanmenu.js"></script>
-		<script src="assets/js/scrollreveal.min.js"></script>
-		<script src="assets/js/jquery.counterup.min.js"></script>
-		<script src="assets/js/waypoints.min.js"></script>
-		<script src="assets/js/jquery-ui.js"></script>
-		<script src="assets/js/gmap3.min.js"></script>
-		<script src="assets/js/switch.js"></script>
+		<script src="{{asset('assets/js/jquery-2.1.4.min.js')}}"></script>
+		<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+		<script src="{{asset('assets/js/popper.min.js')}}"></script>
+		<script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+		<script src="{{asset('assets/js/jarallax.js')}}"></script>
+		<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
+		<script src="{{asset('assets/js/lightbox.js')}}"></script>
+		<script src="{{asset('assets/js/jquery.meanmenu.js')}}"></script>
+		<script src="{{asset('assets/js/scrollreveal.min.js')}}"></script>
+		<script src="{{asset('assets/js/jquery.counterup.min.js')}}"></script>
+		<script src="{{asset('assets/js/waypoints.min.js')}}"></script>
+		<script src="{{asset('assets/js/jquery-ui.js')}}"></script>
+		<script src="{{asset('assets/js/gmap3.min.js')}}"></script>
+		<script src="{{asset('assets/js/switch.js')}}"></script>
 		<script src="http://maps.google.com/maps/api/js?key=AIzaSyC61_QVqt9LAhwFdlQmsNwi5aUJy9B2SyA"></script>
 
-    	<script src="assets/js/script.js"></script>
+		<script src="{{asset('assets/js/script.js')}}"></script>
 	</body>
 	
 
