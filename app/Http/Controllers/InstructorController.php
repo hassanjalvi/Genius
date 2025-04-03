@@ -9,6 +9,14 @@ class InstructorController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function addInstructors()
+    {
+        return view('Admin.addinstructors');
+    }
+    public function manageInstructors()
+    {
+        return view('Admin.manageinstructors');
+    }
     public function index()
     {
         //

@@ -9,9 +9,14 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function manageStudents()
+    {
+        return view('Admin.managestudents');
+    }
+    
     public function index()
     {
-        //
+        
     }
 
     /**

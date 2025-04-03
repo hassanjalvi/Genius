@@ -111,4 +111,8 @@ class UserController extends Controller
     {
         return view('Frontend.about');
     }
+    public function showAdmin()
+    {
+        return view('Admin.dashboard');
+    }
 }

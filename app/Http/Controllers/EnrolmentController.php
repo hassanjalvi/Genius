@@ -9,9 +9,13 @@ class EnrolmentController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function manageEnrollments()
+    {
+       return view('Admin.manageenrollments');
+    }
     public function index()
     {
-        //
+       
     }
 
     /**

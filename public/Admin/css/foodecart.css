@@ -1,0 +1,163 @@
+
+    /* Resetting default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic styling for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+.admin-panel {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.admin-panel h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Admin panel form */
+.admin-form {
+    background-color: #fff;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form input fields and labels */
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Submit button */
+button[type="submit"] {
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button[type="submit"]:hover {
+    background-color: #ff7f00; /* Darker shade for hover */
+}
+
+/* Admin panel footer */
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.header {
+    background-color: #007bff; /* Theme color */
+    color: #fff;
+    padding: 20px 0;
+}
+
+.header .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header .logo {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header .logo span {
+    font-weight: normal;
+}
+
+.header .navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.header .icons {
+    display: none;
+}
+
+.header .icons .fa-bars,
+.header .icons .fa-user {
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.header .profile {
+    display: flex;
+    align-items: center;
+}
+
+.header .profile .btn {
+    background-color: #fff;
+    color: #007bff; /* Theme color */
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.header .profile .flex-btn {
+    margin-right: 10px;
+}
+
+.header .profile .option-btn {
+    background-color: #007bff; /* Theme color */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.header .profile .delete-btn {
+    background-color: #007bff; /* Theme color */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+

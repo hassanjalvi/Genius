@@ -1,0 +1,40 @@
+
+/* Additional CSS to ensure equal height for all cards */
+body {
+    background-color: #f8f9fa; /* Light gray background */
+    font-family: Arial, sans-serif; /* Change font to Arial */
+    color: #333; /* Dark text color */
+   
+}
+
+.card {
+    height: 100%;
+   /* Setting the background color to the theme color */
+    color: #007bff; /* Setting text color to white for better contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Add slight lift on hover */
+}
+
+/* Adjusting card title and text color */
+.card-title,
+.card-text {
+    color: #007bff;
+}
+
+/* Adjusting button color */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease;
+}
+
+/* Adjusting button text color */
+.btn-primary:hover {
+    color: white;
+    background-color: #007bff; /* Darker shade on hover */
+}

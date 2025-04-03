@@ -9,6 +9,18 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function addCourses()
+    {
+        return view('Admin.addcourses');
+    }
+    public function manageCourses()
+    {
+        return view('Admin.managecourses');
+    }
+    public function setupFees()
+    {
+        return view('Admin.setupfees');
+    }
     public function index()
     {
         //

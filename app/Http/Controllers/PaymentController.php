@@ -9,6 +9,10 @@ class PaymentController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function managePayments()
+    {
+        return view('Admin.managepayments');
+    }
     public function index()
     {
         //
