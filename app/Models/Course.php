@@ -9,7 +9,7 @@ class Course extends Model
     protected $fillable = [
         'name',
         'description',
-       'syllabus',
-       'instructor_id'
+        'syllabus',
+        'instructor_id'
     ];
 }

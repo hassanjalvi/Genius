@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('instructor_id')->constrained('instructors')->cascadeOnDelete();
             $table->string('grade', 10)->nullable();
             $table->text('feedback')->nullable();
-            $table->timestamp('graded_at')->useCurrent();
             $table->timestamps();
+           
         });
     }
 

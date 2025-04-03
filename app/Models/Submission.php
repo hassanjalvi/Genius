@@ -10,6 +10,5 @@ class Submission extends Model
        'assignment_id',
        'student_id',
        'file_url',
-       'submitted_at'
     ];
 }
