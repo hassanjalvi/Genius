@@ -181,6 +181,13 @@
 										<li><a href="about.html">About Us</a></li>
 										<li><a href="shop.html">shop</a></li>
 										<li><a href="contact.html">Contact Us</a></li>
+                                        @if (Auth::check() && Auth::user()->role === 'user')
+                                       <li><a href="{{ route('student.dashboard') }}">Student Dashboard</a></li>
+                                        @endif
+                                        @if (Auth::check() && Auth::user()->role === 'parent')
+                                       <li><a href="{{ route('parent.dashboard') }}">Parent Dashboard</a></li>
+                                        @endif
+
 										<li class="menu-item-has-children ul-li-block">
 											<a href="#!">Pages</a>
 											<ul class="sub-menu">

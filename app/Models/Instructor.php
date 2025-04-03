@@ -10,4 +10,9 @@ class Instructor extends Model
         'user_id',
         'expertise'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

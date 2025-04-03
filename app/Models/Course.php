@@ -10,6 +10,13 @@ class Course extends Model
         'name',
         'description',
         'syllabus',
-        'instructor_id'
+        'instructor_id',
+        'status',
+
     ];
+
+    public function instructor()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

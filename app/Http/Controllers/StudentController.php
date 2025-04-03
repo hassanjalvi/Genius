@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -11,12 +12,37 @@ class StudentController extends Controller
      */
     public function manageStudents()
     {
-        return view('Admin.managestudents');
+        $students = User::where('role', 'user')->get();
+        return view('Admin.managestudents', compact('students'));
     }
-    
+
+    public function studentDelete($id)
+    {
+
+        $student = User::findOrFail($id); // Find user by ID
+        $student->delete(); // Delete user
+
+        return redirect()->back()->with('success', 'User deleted successfully!');
+
+    }
+    public function studentUpdate(Request $request, $id)
+    {
+
+        $students = User::where('id', $id)->first();
+
+        $students->update([
+            'name' => $request->name ?? $students->name,
+            'email' => $request->email ?? $students->email,
+            'status' => $request->status ?? $students->status,
+        ]);
+
+        return redirect()->back()->with('success', 'User deleted successfully!');
+
+    }
+
     public function index()
     {
-        
+
     }
 
     /**

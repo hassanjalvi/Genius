@@ -33,3 +33,19 @@ Route::get('/courses/manage', [CourseController::class, 'manageCourses'])->name(
 Route::get('/enrolments/manage', [EnrolmentController::class, 'manageEnrollments'])->name('enrolments.manage');
 Route::get('/payments/manage', [PaymentController::class, 'managePayments'])->name('payments.manage');
 Route::get('/setup/fees', [CourseController::class, 'setupFees'])->name('setup.fees');
+
+
+Route::delete('/student/delete/{id}', [StudentController::class, 'studentDelete'])->name('student.delete');
+Route::put('/student/update/{id}', [StudentController::class, 'studentUpdate'])->name('student.update');
+
+Route::post('/instructor/create', [InstructorController::class, 'createInstructors'])->name('instructor.create');
+Route::delete('/instructor/delete/{id}', [InstructorController::class, 'deleteInstructor'])->name('instructor.delete');
+Route::put('/instructor/update/{id}', [InstructorController::class, 'updateInstructor'])->name('instructor.update');
+
+Route::post('/course/create', [CourseController::class, 'createcourse'])->name('course.create');
+Route::delete('/course/delete/{id}', [CourseController::class, 'deletecourse'])->name('course.delete');
+Route::put('/course/update/{id}', [CourseController::class, 'updatecourse'])->name('course.update');
+
+// use student.dashboard and parent.dashboard oter wise it will give error due to its used in index.js
+Route::get('/admin/dashboard/dummy', [UserController::class, 'showAdmin'])->name('student.dashboard');
+Route::get('/admin/dashboard/dummy/parent', [UserController::class, 'showAdmin'])->name('parent.dashboard');

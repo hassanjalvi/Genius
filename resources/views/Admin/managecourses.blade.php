@@ -8,7 +8,7 @@
     <section id="manage-courses" style="margin-left: 100px">
         <div class="container">
             <h2>Manage Courses</h2>
-            <button class="btn btn-success" href="{{route('courses.add')}}" >Add New Course</button>
+          <a href="{{route('courses.add')}}">  <button class="btn btn-success"  >Add New Course</button></a>
             <br>
             <br>
             <div id="add-form" class="edit-form" style="display: none;">
@@ -27,13 +27,13 @@
                         <textarea class="form-control" name="course_syllabus" required></textarea>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Assign Instructor:</label>
-                        <select class="form-control" name="instructor_id" required>
-                            <option value="">Select Instructor</option>
-                            <!-- Dynamically fetch instructors here -->
+                        <label class="form-label">Assign coutructor:</label>
+                        <select class="form-control" name="coutructor_id" required>
+                            <option value="">Select coutructor</option>
+                            <!-- Dynamically fetch coutructors here -->
                             <option value="1">John Doe</option>
                             <option value="2">Jane Smith</option>
-                            <!-- Add more options based on available instructors -->
+                            <!-- Add more options based on available coutructors -->
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Add Course</button>
@@ -47,58 +47,85 @@
                             <th>Course Name</th>
                             <th>Description</th>
                             <th>Syllabus</th>
-                            <th>Instructor</th>
+                            <th>coutructor</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Example course entry; Dynamically populate this table from the database -->
+                        @foreach ($course as $cou )
+
+
                         <tr>
-                            <td>Introduction to Programming</td>
-                            <td>A basic course on programming concepts</td>
-                            <td>Basic programming concepts, data structures, and algorithms</td>
-                            <td>John Doe</td>
-                            <td>Active</td>
+                            <td>{{$cou->name ?? ""}}</td>
+                            <td>{{$cou->description ?? ""}}</td>
+                            <td>{{$cou->syllabus ?? ""}}</td>
+                            <td>{{$cou->instructor->name ?? ""}}</td>
+                            <td>{{$cou->status ===1 ? "Active" : "Inactive"}}</td>
                             <td>
-                                <button class="btn btn-primary edit-btn" onclick="toggleEditForm(1)"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-danger delete-btn" onclick="deleteCourse(1)"><i class="fas fa-trash"></i></button>
+                                <button onclick="toggleEditForm({{ $cou->id }})" class="btn btn-primary edit-btn" ><i class="fas fa-edit"></i></button>
+
+                                <div style="display: inline-block;">
+
+                                    <form action="{{ route('course.delete', $cou->id) }}"  method="POST" onsubmit="return confirm('Are you sure you want to delete this coutructor?');">
+                                        @csrf
+                                        @method('DELETE')
+                                <button class="btn btn-danger delete-btn" ><i class="fas fa-trash"></i></button>
+                                    </form>
+                            </div>
+
                             </td>
                         </tr>
 
-                        <tr id="edit-form-1" class="edit-form" style="display: none;">
+                        <tr id="edit-form-{{ $cou->id }}" class="edit-form" style="display: none;">
                             <td colspan="6">
-                                <form action="{{url('/updatecourse')}}" method="POST">
+                                <form action="{{ route('course.update', $cou->id) }}" method="POST">
                                     @csrf
+                                    @method('PUT')
                                     <input type="hidden" name="course_id" value="1">
                                     <div class="mb-3">
                                         <label class="form-label">Course Name:</label>
-                                        <input type="text" class="form-control" name="course_name" value="Introduction to Programming" required>
+                                        <input type="text" class="form-control" name="course_name" value="{{ $cou->name }}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Course Description:</label>
-                                        <textarea class="form-control" name="course_description" required>A basic course on programming concepts</textarea>
+                                        <textarea class="form-control" name="course_description" value="{{ $cou->name }}" required>{{ $cou->description ?? "" }}</textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Course Syllabus:</label>
-                                        <textarea class="form-control" name="course_syllabus" required>Basic programming concepts, data structures, and algorithms</textarea>
+                                        <textarea class="form-control" name="course_syllabus" value="{{ $cou->syllabus }}" required>{{ $cou->syllabus ?? "" }}</textarea>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Assign Instructor:</label>
-                                        <select class="form-control" name="instructor_id" required>
-                                            <option value="1" selected>John Doe</option>
-                                            <option value="2">Jane Smith</option>
+                                        <label class="form-label">Assign coutructor:</label>
+                                        <select class="form-control" name="coutructor_id" required>
+                                            <option value="1" selected>{{ $cou->instructor->name ?? "" }}</option>
+
+                                            @foreach ($instructor as $ins)
+
+
+                                            <option value="{{ $ins->id  }}">{{ $ins->name ?? "" }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Status:</label>
+                                        <select name="status" class="form-control">
+                                            <option value="1" {{ $cou->status == 1 ? 'selected' : '' }}>Active</option>
+                                            <option value="0" {{ $cou->status == 0 ? 'selected' : '' }}>Inactive</option>
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Update Course</button>
                                 </form>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
 
-            
+
         </div>
     </section>
 </main>
@@ -108,7 +135,7 @@
         var editForm = document.getElementById('edit-form-' + courseId);
         editForm.style.display = (editForm.style.display === 'none' || editForm.style.display === '') ? 'table-row' : 'none';
     }
-    
+
     function toggleAddForm() {
         var addForm = document.getElementById('add-form');
         addForm.style.display = (addForm.style.display === 'none' || addForm.style.display === '') ? 'block' : 'none';

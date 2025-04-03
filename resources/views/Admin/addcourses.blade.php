@@ -25,15 +25,15 @@
             </button>
         </div>
         @endif
-        
-        <form class="admin-form" action="{{url('/addcourse')}}" method="post">
+
+        <form class="admin-form" action="{{route('course.create')}}" method="post">
             @csrf
             <label for="course-name">Course Name:</label>
             <input type="text" id="course-name" placeholder="Enter Course Name" name="course_name" required>
             @if ($errors->has('course_name'))
             <span class="text-danger">{{ $errors->first('course_name') }}</span>
             @endif
-            
+
             <label for="course-description">Course Description:</label>
             <textarea id="course-description" placeholder="Enter Course Description" name="course_description" required></textarea>
             @if ($errors->has('course_description'))
@@ -45,15 +45,19 @@
             @if ($errors->has('course_syllabus'))
             <span class="text-danger">{{ $errors->first('course_syllabus') }}</span>
             @endif
-            
+
             <label for="assign-instructor">Assign Instructor:</label>
+
             <select id="assign-instructor" name="instructor_id" required>
                 <option value="">Select Instructor</option>
                 <!-- Dynamically fetch instructors here -->
-                <option value="1">John Doe</option>
-                <option value="2">Jane Smith</option>
+                @foreach ($instructor as $ins )
+                <option value="{{$ins->id}}">{{$ins->name}}</option>
+                @endforeach
+
                 <!-- Add more options as per the instructor data -->
             </select>
+
             @if ($errors->has('instructor_id'))
             <span class="text-danger">{{ $errors->first('instructor_id') }}</span>
             @endif
@@ -61,7 +65,7 @@
             <br>
             <button type="submit" name="BtnSubmit">Submit</button>
         </form>
-        
+
         <!-- Manage Courses Button -->
         <section class="manage-courses-button">
             <a href="{{route('courses.manage')}}" class="btn">Manage Courses</a>

@@ -25,27 +25,27 @@
             </button>
         </div>
         @endif
-        
-        <form class="admin-form" action="{{url('/addinstructor')}}" method="post">
+
+        <form class="admin-form" action="{{route('instructor.create')}}" method="post">
             @csrf
             <label for="name">Name:</label>
             <input type="text" id="name" placeholder="Enter Instructor Name" name="name" required>
             @if ($errors->has('name'))
             <span class="text-danger">{{ $errors->first('name') }}</span>
             @endif
-            
+
             <label for="email">Email:</label>
             <input type="text" id="email" placeholder="Enter Email" name="email" required>
             @if ($errors->has('email'))
             <span class="text-danger">{{ $errors->first('email') }}</span>
             @endif
-            
+
             <label for="password">Password:</label>
             <input type="text" id="password" placeholder="Enter Password" name="password" required>
             @if ($errors->has('password'))
             <span class="text-danger">{{ $errors->first('password') }}</span>
             @endif
-            
+
             <label for="expertise">Expertise:</label>
             <input type="text" id="expertise" placeholder="Enter Expertise" name="expertise" required>
             @if ($errors->has('expertise'))
@@ -55,7 +55,7 @@
             <br>
             <button type="submit" name="BtnSubmit">Submit</button>
         </form>
-        
+
         <!-- Manage Instructors Button -->
         <section class="manage-instructors-button">
             <a href="{{route('instructors.manage')}}" class="btn">Manage Instructors</a>
