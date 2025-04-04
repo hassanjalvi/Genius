@@ -44,6 +44,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Student Name</th>
                             <th>Course</th>
                             <th>Payment Date</th>
@@ -55,6 +56,7 @@
                     <tbody>
                         <!-- Example payment entry; Populate this with real data dynamically -->
                         <tr>
+                            <td>1</td>
                             <td>John Doe</td>
                             <td>Course 1</td>
                             <td>2025-04-01</td>

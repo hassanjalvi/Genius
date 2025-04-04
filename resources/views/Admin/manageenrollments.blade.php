@@ -8,37 +8,12 @@
     <section id="manage-enrollments" style="margin-left: 100px">
         <div class="container">
             <h2>Manage Enrollments</h2>
-
-            <!-- Add Enrollment Form -->
-            <div id="add-form" class="edit-form" style="display: none;">
-                <form>
-                    <div class="mb-3">
-                        <label class="form-label">Student Name:</label>
-                        <select class="form-control" required>
-                            <option value="">Select Student</option>
-                            <!-- Add dynamic list of students here -->
-                            <option>John Doe</option>
-                            <option>Jane Smith</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Course:</label>
-                        <select class="form-control" required>
-                            <option value="">Select Course</option>
-                            <!-- Add dynamic list of courses here -->
-                            <option>Course 1</option>
-                            <option>Course 2</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Enroll</button>
-                </form>
-            </div>
-
             <!-- Enrollments List -->
             <div class="enrollments-list">
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Student Name</th>
                             <th>Email</th>
                             <th>Enrolled Courses</th>
@@ -47,6 +22,7 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td>1</td>
                             <td>John Doe</td>
                             <td>john@example.com</td>
                             <td>

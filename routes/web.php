@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EnrolmentController;
 use App\Http\Controllers\InstructorController;
@@ -46,6 +46,15 @@ Route::post('/course/create', [CourseController::class, 'createcourse'])->name('
 Route::delete('/course/delete/{id}', [CourseController::class, 'deletecourse'])->name('course.delete');
 Route::put('/course/update/{id}', [CourseController::class, 'updatecourse'])->name('course.update');
 
-// use student.dashboard and parent.dashboard oter wise it will give error due to its used in index.js
+// use student.dashboard and parent.dashboard instructor.dashboard oter wise it will give error due to its used in index.js
 Route::get('/admin/dashboard/dummy', [UserController::class, 'showAdmin'])->name('student.dashboard');
 Route::get('/admin/dashboard/dummy/parent', [UserController::class, 'showAdmin'])->name('parent.dashboard');
+#instructorside
+Route::get('/instructor/dashboard', [InstructorController::class, 'showInstructor'])->name('instructor.dashboard');
+Route::get('/instructor/mycourses', [CourseController::class, 'myCourses'])->name('instructor.mycourses');
+Route::get('/instructor/mycourses/content', [CourseController::class, 'myCoursesContent'])->name('instructor.mycourses.content');
+Route::get('/mycourses/videos/add', [CourseController::class, 'addVideo'])->name('mycourses.videos.add');
+Route::get('/mycourses/videos/manage', [CourseController::class, 'manageVideo'])->name('mycourses.videos.manage');
+Route::get('/mycourses/assignments/add', [AssignmentController::class, 'addAssignment'])->name('mycourses.assignment.add');
+Route::get('/mycourses/assignments/manage', [AssignmentController::class, 'manageAssignment'])->name('mycourses.assignment.manage');
+Route::get('/student/progress', [StudentController::class, 'studentProgress'])->name('student.progress');

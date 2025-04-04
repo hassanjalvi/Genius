@@ -83,5 +83,20 @@ class CourseController extends Controller
         return redirect()->back()->with('success', 'Instructor updated successfully!');
 
     }
-
+    public function myCourses()
+    {
+        return view('Instructor.mycourses');
+    }
+    public function myCoursesContent()
+    {
+        return view('Instructor.mycoursecontent');
+    }
+    public function addVideo()
+    {
+        return view('Instructor.addvideos');
+    }
+    public function manageVideo()
+    {
+        return view('Instructor.managevideos');
+    }
 }

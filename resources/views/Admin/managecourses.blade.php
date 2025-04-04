@@ -11,43 +11,16 @@
           <a href="{{route('courses.add')}}">  <button class="btn btn-success"  >Add New Course</button></a>
             <br>
             <br>
-            <div id="add-form" class="edit-form" style="display: none;">
-                <form action="{{url('/addcourse')}}" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label class="form-label">Course Name:</label>
-                        <input type="text" class="form-control" name="course_name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Course Description:</label>
-                        <textarea class="form-control" name="course_description" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Course Syllabus:</label>
-                        <textarea class="form-control" name="course_syllabus" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Assign coutructor:</label>
-                        <select class="form-control" name="coutructor_id" required>
-                            <option value="">Select coutructor</option>
-                            <!-- Dynamically fetch coutructors here -->
-                            <option value="1">John Doe</option>
-                            <option value="2">Jane Smith</option>
-                            <!-- Add more options based on available coutructors -->
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Course</button>
-                </form>
-            </div>
-
+    
             <div class="courses-list">
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Course Name</th>
                             <th>Description</th>
                             <th>Syllabus</th>
-                            <th>coutructor</th>
+                            <th>Instructor</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -58,6 +31,7 @@
 
 
                         <tr>
+                            <td>{{$cou->id ?? ""}}</td>
                             <td>{{$cou->name ?? ""}}</td>
                             <td>{{$cou->description ?? ""}}</td>
                             <td>{{$cou->syllabus ?? ""}}</td>

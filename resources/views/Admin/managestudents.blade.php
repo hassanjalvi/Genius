@@ -9,31 +9,12 @@
         <div class="container">
             <h2>Manage Students</h2>
 
-            <div id="add-form" class="edit-form" style="display: none;">
-                <form>
-                    <div class="mb-3">
-                        <label class="form-label">Name:</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email:</label>
-                        <input type="email" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Status:</label>
-                        <select class="form-control">
-                            <option>Active</option>
-                            <option>Inactive</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add</button>
-                </form>
-            </div>
-
+           
             <div class="students-list">
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Status</th>
@@ -44,6 +25,7 @@
 
                         @foreach ($students as $stu)
                         <tr>
+                            <td>{{$stu->id ?? ""}}</td>
                             <td>{{$stu->name ?? ""}}</td>
                             <td>{{$stu->email ?? ""}}</td>
                             <td style='cursor: pointer;'>{{$stu->status ==1 ? 'Active' : 'Inactive'}}</td>

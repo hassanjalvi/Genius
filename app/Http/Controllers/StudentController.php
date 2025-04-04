@@ -39,6 +39,10 @@ class StudentController extends Controller
         return redirect()->back()->with('success', 'User deleted successfully!');
 
     }
+    public function studentProgress()
+    {
+        return view('Instructor.studentprogress');
+    }
 
     public function index()
     {
