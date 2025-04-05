@@ -83,5 +83,11 @@ class InstructorController extends Controller
         return redirect()->back()->with('success', 'Instructor updated successfully!');
 
     }
+    public function showInstructor()
+    {
+        return view('Instructor.dashboard');
+    }
+
+
 
 }

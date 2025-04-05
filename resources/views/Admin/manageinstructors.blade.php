@@ -11,39 +11,12 @@
           <a href="{{route('instructors.add')}}">  <button class="btn btn-success" >Add New Instructors</button></a>
             <br>
             <br>
-            <div id="add-form" class="edit-form" style="display: none;">
-                <form>
-                    <div class="mb-3">
-                        <label class="form-label">Name:</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email:</label>
-                        <input type="email" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Password:</label>
-                        <input type="password" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Expertise:</label>
-                        <input type="text" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Status:</label>
-                        <select class="form-control">
-                            <option>Active</option>
-                            <option>Inactive</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Instructor</button>
-                </form>
-            </div>
-
+            
             <div class="instructors-list">
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Expertise</th>
@@ -55,6 +28,7 @@
 
                         @foreach ($instructor as $ins )
                         <tr>
+                            <td>{{$ins->id ?? ""}}</td>
                             <td>{{$ins->name ?? ""}}</td>
                             <td>{{$ins->email ?? ""}}</td>
                             <td>{{$ins->instructor->expertise ?? ""}}</td>

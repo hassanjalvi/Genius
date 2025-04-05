@@ -9,6 +9,14 @@ class AssignmentController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function manageAssignment()
+    {
+        return view('Instructor.manageAssignments');
+    }
+    public function addAssignment()
+    {
+        return view('Instructor.addasginments');
+    }
     public function index()
     {
         //

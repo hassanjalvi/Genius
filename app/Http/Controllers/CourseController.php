@@ -85,6 +85,7 @@ class CourseController extends Controller
         return redirect()->back()->with('success', 'Instructor updated successfully!');
 
     }
+<<<<<<< HEAD
 
 
     public function createSetupFeeForCourse(Request $request)
@@ -119,4 +120,22 @@ class CourseController extends Controller
     }
 
 
+=======
+    public function myCourses()
+    {
+        return view('Instructor.mycourses');
+    }
+    public function myCoursesContent()
+    {
+        return view('Instructor.mycoursecontent');
+    }
+    public function addVideo()
+    {
+        return view('Instructor.addvideos');
+    }
+    public function manageVideo()
+    {
+        return view('Instructor.managevideos');
+    }
+>>>>>>> 4db9eb7aeafdae0750170fed19eac9cdb721378e
 }
