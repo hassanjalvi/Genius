@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function enrolmnets()
     {
-        return $this->hasMany(Enrolment::class);
+        return $this->hasMany(Enrolment::class, 'student_id');
     }
 
     /**

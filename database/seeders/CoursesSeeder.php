@@ -43,7 +43,7 @@ class CoursesSeeder extends Seeder
             'name' => 'Bob Student',
             'email' => 'student@example.com',
             'password' => Hash::make('password'),
-            'role' => 'student',
+            'role' => 'user',
         ]);
 
         // Create Student

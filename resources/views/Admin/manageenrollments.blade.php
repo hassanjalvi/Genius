@@ -26,49 +26,62 @@
 
 
                         <tr>
-<<<<<<< HEAD
-                            <td>{{$enroll->user->name}}</td>
-=======
-                            <td>1</td>
-                            <td>John Doe</td>
->>>>>>> 4db9eb7aeafdae0750170fed19eac9cdb721378e
-                            <td>john@example.com</td>
-                            <td>
+                            <td>{{$enroll->user->id ?? ""}}</td>
+                            <td>{{$enroll->user->name ?? ""}}</td>
+                            <td>{{$enroll->user->email ?? ""}}</td>
+                            <td>{{$enroll->course->name ?? ""}}</td>
+
+                            {{-- <td>
                                 <ul>
                                     <li>Course 1</li>
                                     <li>Course 2</li>
                                 </ul>
-                            </td>
+                            </td> --}}
                             <td>
-                                <button class="btn btn-primary edit-btn" onclick="toggleEditForm(1)"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-primary edit-btn" onclick="toggleEditForm({{ $enroll->id }})"><i class="fas fa-edit"></i></button>
+
+                                <div style="display: inline-block;">
+
+                                    <form action="{{ route('enrollment.delete', $enroll->id) }}"  method="POST" onsubmit="return confirm('Are you sure you want to delete this coutructor?');">
+                                        @csrf
+                                        @method('DELETE')
                                 <button class="btn btn-warning"><i class="fas fa-user-slash"></i></button>
+                            </form>
+                        </div>
                             </td>
                         </tr>
-                        @endforeach
 
 
-                        <tr id="edit-form-1" class="edit-form" style="display: none;">
+
+                        <tr id="edit-form-{{ $enroll->id }}" class="edit-form" style="display: none;">
                             <td colspan="4">
-                                <form>
+                                <form action="{{ route('enrollment.update', $enroll->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
                                     <div class="mb-3">
                                         <label class="form-label">Student Name:</label>
-                                        <input type="text" class="form-control" value="John Doe" required>
+                                        <input type="text" class="form-control" name="user_name" value="{{$enroll->user->name ?? ""}}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Email:</label>
-                                        <input type="email" class="form-control" value="john@example.com" required>
+                                        <input type="email" class="form-control" name="user_email" value="{{$enroll->user->email ?? ""}}" required>
                                     </div>
-                                    <div class="mb-3">
+                                    {{-- <div class="mb-3">
                                         <label class="form-label">Enrolled Courses:</label>
                                         <select class="form-control" multiple>
                                             <option selected>Course 1</option>
                                             <option>Course 2</option>
                                         </select>
+                                    </div> --}}
+                                    <div class="mb-3">
+                                        <label class="form-label">Enrolled Courses</label>
+                                        <input type="text" class="form-control" name="courses" value="{{$enroll->course->id ?? ""}}" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Update Enrollment</button>
                                 </form>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -12,10 +12,42 @@ class EnrolmentController extends Controller
      */
     public function manageEnrollments()
     {
-        $enrollmnet = Enrolment::with('user')->get();
-        dd($enrollmnet);
+        $enrollmnet = Enrolment::with(['user', 'course'])->get();
+        // dd($enrollmnet);
         return view('Admin.manageenrollments', compact('enrollmnet'));
     }
+
+    public function deleteEnrollmant($id)
+    {
+
+        $course = Enrolment::findOrFail($id);
+        $course->delete();
+
+        return redirect()->back()->with('success', 'Enrollment deleted successfully!');
+
+    }
+    public function updateEnrollmant(Request $request, $id)
+    {
+
+        $enrollment = Enrolment::where('id', $id)->with(['user', 'course'])
+            ->first();
+
+        dd($request->all(), $enrollment);
+
+        $enrollment->update([
+            'user_name' => $request->user_name ?? $enrollment->name,
+            'user_email' => $request->user_email ?? $enrollment->description,
+            'courses' => $request->courses ?? $enrollment->course_syllabus,
+        ]);
+
+
+
+
+        return redirect()->back()->with('success', 'Instructor updated successfully!');
+
+    }
+
+
     public function index()
     {
 
