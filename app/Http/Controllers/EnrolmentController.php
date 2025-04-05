@@ -13,6 +13,7 @@ class EnrolmentController extends Controller
     public function manageEnrollments()
     {
         $enrollmnet = Enrolment::with('user')->get();
+        dd($enrollmnet);
         return view('Admin.manageenrollments', compact('enrollmnet'));
     }
     public function index()
