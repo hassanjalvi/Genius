@@ -29,4 +29,9 @@ class Course extends Model
     {
         return $this->belongsTo(Enrolment::class, 'course_id');
     }
+
+    public function paymnet()
+    {
+        return $this->hasMany(Payment::class, 'course_id');
+    }
 }

@@ -51,6 +51,9 @@ Route::put('/course/update/{id}', [CourseController::class, 'updatecourse'])->na
 Route::delete('/enrollment/delete/{id}', [EnrolmentController::class, 'deleteEnrollmant'])->name('enrollment.delete');
 Route::put('/enrollment/update/{id}', [EnrolmentController::class, 'updateEnrollmant'])->name('enrollment.update');
 
+Route::delete('/payment/delete/{id}', [PaymentController::class, 'deletePayment'])->name('payment.delete');
+Route::put('/payment/update/{id}', [PaymentController::class, 'updatePayment'])->name('payment.update');
+
 // use student.dashboard and parent.dashboard instructor.dashboard oter wise it will give error due to its used in index.js
 Route::get('/admin/dashboard/dummy', [UserController::class, 'showAdmin'])->name('student.dashboard');
 Route::get('/admin/dashboard/dummy/parent', [UserController::class, 'showAdmin'])->name('parent.dashboard');
