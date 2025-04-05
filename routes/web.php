@@ -34,6 +34,8 @@ Route::get('/enrolments/manage', [EnrolmentController::class, 'manageEnrollments
 Route::get('/payments/manage', [PaymentController::class, 'managePayments'])->name('payments.manage');
 Route::get('/setup/fees', [CourseController::class, 'setupFees'])->name('setup.fees');
 
+Route::post('course/setup/fees/create', [CourseController::class, 'createSetupFeeForCourse'])->name('setup.fees.create');
+
 
 Route::delete('/student/delete/{id}', [StudentController::class, 'studentDelete'])->name('student.delete');
 Route::put('/student/update/{id}', [StudentController::class, 'studentUpdate'])->name('student.update');

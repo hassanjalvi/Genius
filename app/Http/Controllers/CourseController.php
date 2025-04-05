@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\CourseFee;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -25,21 +26,22 @@ class CourseController extends Controller
     }
     public function setupFees()
     {
-        return view('Admin.setupfees');
+        $courses = Course::where('status', 1)->get();
+        return view('Admin.setupfees', compact('courses'));
     }
 
 
     public function createcourse(Request $request)
     {
-        $validatedData = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'course_name' => 'required|string|max:255',
             'course_description' => 'required|string|max:255',
             'course_syllabus' => 'required|string|max:255',
             'instructor_id' => 'required',
         ]);
 
-        if ($validatedData->fails()) {
-            return back()->withErrors($validatedData)->withInput();
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
         }
 
 
@@ -51,8 +53,8 @@ class CourseController extends Controller
         ]);
 
 
+        return redirect()->route('setup.fees')->with('success', 'Course added successfully. Please set up the fee for this course.');
 
-        return redirect()->route('courses.manage')->with('success', 'Instructor added successfully');
 
     }
 
@@ -83,5 +85,38 @@ class CourseController extends Controller
         return redirect()->back()->with('success', 'Instructor updated successfully!');
 
     }
+
+
+    public function createSetupFeeForCourse(Request $request)
+    {
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'course_id' => 'required|integer',
+            'price' => 'required|integer',
+            'payment_plan' => 'required|string|max:50',
+            'discount' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+
+        $user = CourseFee::create([
+            'course_id' => $request->course_id,
+            'course_duration' => $request->course_duration,
+            'price' => $request->price,
+            'discount' => $request->discount,
+            'payment_plan' => $request->payment_plan,
+
+
+        ]);
+
+
+        return redirect()->route('setup.fees')->with('success', 'Course Fee Added Successfully');
+
+
+    }
+
 
 }

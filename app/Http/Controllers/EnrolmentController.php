@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enrolment;
 use Illuminate\Http\Request;
 
 class EnrolmentController extends Controller
@@ -11,11 +12,12 @@ class EnrolmentController extends Controller
      */
     public function manageEnrollments()
     {
-       return view('Admin.manageenrollments');
+        $enrollmnet = Enrolment::with('user')->get();
+        return view('Admin.manageenrollments', compact('enrollmnet'));
     }
     public function index()
     {
-       
+
     }
 
     /**

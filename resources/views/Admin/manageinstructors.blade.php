@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Expertise:</label>
-                                        <input type="text" class="form-control" name="expertise" value="{{ $ins->expertise }}" required>
+                                        <input type="text" class="form-control" name="expertise" value="{{ $ins->instructor->expertise }}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Status:</label>

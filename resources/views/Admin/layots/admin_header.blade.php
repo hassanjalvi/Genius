@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
@@ -21,9 +24,22 @@
     <a href="{{ route('enrolments.manage') }}">Enrollments</a>
     <a href="{{ route('payments.manage') }}">Payments</a>
     <a href="{{ route('setup.fees') }}">Setup Fee</a>
-    
-  
-    <a href="{{ url('/logout') }}" onclick="return confirm('Are you sure you want to logout?');" class="logout-btn">Logout</a>
+
+
+
+    @if(Auth::check())
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+
+    <a href="#" class="logout-btn"
+       onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) document.getElementById('logout-form').submit();">
+        Logout
+    </a>
+@else
+    <a href="{{ route('login') }}" class="login-btn">Login</a>
+@endif
+
 </div>
 
 <div class="main open" id="main">
@@ -61,6 +77,13 @@
             'transition': 'margin-left 0.3s ease',
             'margin-left': sidebar.hasClass('open') ? '250px' : '0' // Set the initial state based on the presence of the 'open' class
         });
+    });
+</script>
+<script>
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            window.location.reload();
+        }
     });
 </script>
 

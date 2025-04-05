@@ -11,4 +11,9 @@ class Enrolment extends Model
         'course_id',
         'status'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

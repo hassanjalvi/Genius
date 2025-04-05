@@ -38,6 +38,11 @@ class User extends Authenticatable
         return $this->hasMany(Course::class);
     }
 
+    public function enrolmnets()
+    {
+        return $this->hasMany(Enrolment::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

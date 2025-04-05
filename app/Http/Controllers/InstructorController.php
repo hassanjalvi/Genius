@@ -19,7 +19,7 @@ class InstructorController extends Controller
     }
     public function manageInstructors()
     {
-        $instructor = User::where('role', 'instructor')->get();
+        $instructor = User::where('role', 'instructor')->with('instructor')->get();
         return view('Admin.manageinstructors', compact('instructor'));
     }
 

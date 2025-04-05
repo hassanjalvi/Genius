@@ -46,8 +46,12 @@
                         </tr>
                     </thead>
                     <tbody>
+
+                        @foreach ($enrollmnet as $enroll )
+
+
                         <tr>
-                            <td>John Doe</td>
+                            <td>{{$enroll->user->name}}</td>
                             <td>john@example.com</td>
                             <td>
                                 <ul>
@@ -60,6 +64,9 @@
                                 <button class="btn btn-warning"><i class="fas fa-user-slash"></i></button>
                             </td>
                         </tr>
+                        @endforeach
+
+
                         <tr id="edit-form-1" class="edit-form" style="display: none;">
                             <td colspan="4">
                                 <form>

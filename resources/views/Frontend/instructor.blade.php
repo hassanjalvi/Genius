@@ -1,4 +1,4 @@
-<!doctype html>
+a<!doctype html>
 <html lang="en">
 
 
@@ -138,8 +138,8 @@
 														<input class="pass" name="name" type="password" placeholder="Your password*">
 													</div>
 													<div class="nws-button text-center white text-capitalize">
-														<button type="submit" value="Submit">LOg in Now</button> 
-													</div> 
+														<button type="submit" value="Submit">LOg in Now</button>
+													</div>
 												</form>
 												<div class="log-in-footer text-center">
 													<p>* Denotes mandatory field.</p>
@@ -220,7 +220,7 @@
 		</header>
 
  	<!-- Start of Header section
- 		============================================= --> 
+ 		============================================= -->
 
 
 	<!-- Start of breadcrumb section
@@ -590,7 +590,7 @@
 									<li class="pg-text"><a href="#">NEXT</a></li>
 								</ul>
 							</div>
-							
+
 						</div>
 					</div>
 
@@ -679,7 +679,7 @@
 	<!-- End of teacher section
 		============================================= -->
 
-		
+
 
 	<!-- Start of best product section
 		============================================= -->
@@ -926,12 +926,12 @@
 	 											</div>
 
 	 										</li>
-	 									</ul> 	
+	 									</ul>
 	 								</div>
 	 							</div>
 	 						</div>
 	 					</div>
-	 				</div> 
+	 				</div>
 	 				<!-- /footer-widget-content -->
 	 				<div class="footer-social-subscribe mb65">
 	 					<div class="row">
@@ -953,7 +953,7 @@
 	 									<form action="#" method="post">
 	 										<input class="course" name="course" type="email" placeholder="Email Address.">
 	 										<div class="nws-button text-center  gradient-bg text-uppercase">
-	 											<button type="submit" value="Submit">Subscribe now</button> 
+	 											<button type="submit" value="Submit">Subscribe now</button>
 	 										</div>
 	 									</form>
 	 								</div>
@@ -1007,6 +1007,6 @@
 
 		<script src="{{asset('assets/js/script.js')}}"></script>
 	</body>
-	
+
 
 </html>
