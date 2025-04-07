@@ -39,7 +39,7 @@
                 <span class="text-danger">{{ $errors->first('course_id') }}</span>
             @endif
 
-            <label for="price">Course Duration (USD):</label>
+            <label for="price">Course Duration </label>
             <input type="text" id="price" placeholder="Enter Course Duration" name="course_duration" required
                    style="width: 100%; padding: 10px; font-size: 16px;">
             @if ($errors->has('price'))

@@ -22,7 +22,9 @@
                             <th>Syllabus</th>
                             <th>Instructor</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th style="width: 100px;">Action</th>
+
+
                         </tr>
                     </thead>
                     <tbody>
@@ -40,14 +42,18 @@
                             <td>
                                 <button onclick="toggleEditForm({{ $cou->id }})" class="btn btn-primary edit-btn" ><i class="fas fa-edit"></i></button>
 
-                                <div style="display: inline-block;">
-
-                                    <form action="{{ route('course.delete', $cou->id) }}"  method="POST" onsubmit="return confirm('Are you sure you want to delete this coutructor?');">
+                                <div style="display: inline;">
+                                    <form action="{{ route('course.delete', $cou->id) }}" method="POST" 
+                                          style="display: inline;" 
+                                          onsubmit="return confirm('Are you sure you want to delete this course?');">
                                         @csrf
                                         @method('DELETE')
-                                <button class="btn btn-danger delete-btn" ><i class="fas fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger delete-btn">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                     </form>
-                            </div>
+                                </div>
+                                
 
                             </td>
                         </tr>

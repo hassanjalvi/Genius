@@ -46,6 +46,10 @@ class EnrolmentController extends Controller
         return redirect()->back()->with('success', 'Instructor updated successfully!');
 
     }
+    public function manageCourseEnrollments()
+    {
+        return view('Instructor.manageenrollments');
+    }
 
 
     public function index()

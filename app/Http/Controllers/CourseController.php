@@ -127,12 +127,9 @@ class CourseController extends Controller
     {
         return view('Instructor.mycoursecontent');
     }
-    public function addVideo()
+   
+    public function addQuizes()
     {
-        return view('Instructor.addvideos');
-    }
-    public function manageVideo()
-    {
-        return view('Instructor.managevideos');
+        return view('Instructor.addquizes');
     }
 }

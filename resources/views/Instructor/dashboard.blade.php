@@ -21,7 +21,7 @@
 
         <!-- 🔧 Quick Stats Section -->
         <div class="row mt-5">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card text-white bg-primary mb-3 text-center">
                     <div class="card-body">
                         <h5 class="card-title" style="color: white">Total Courses</h5>
@@ -30,16 +30,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="card text-white bg-success mb-3 text-center">
-                    <div class="card-body">
-                        <h5 class="card-title" style="color: white">Enrolled Students</h5>
-                        <h3>0</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card text-white bg-warning mb-3 text-center">
                     <div class="card-body">
                         <h5 class="card-title" style="color: white">Communication Center</h5>
@@ -50,7 +41,6 @@
         </div>
     </div>
 </center>
-
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

@@ -49,6 +49,33 @@
             </div>
             
         </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: white">Total Enrolments</h5>
+                        <h3>0</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3 text-center">
+                    <div class="card-body">
+                        <br>
+                        
+                        <h5 class="card-title" style="color: white">Progress Tracking</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-warning mb-3 text-center">
+                    <div class="card-body">
+                        <br>
+                        <h5 class="card-title" style="color: white">GradeBook</h5>
+                       
+                    </div>
+                </div>
+            </div>
     </div>
 </center>
 
