@@ -9,7 +9,7 @@
     <section id="manage-assignments" style="margin-left: 100px">
         <div class="container">
             <h2>Manage Assignments</h2>
-            <button class="btn btn-success" onclick="toggleAddForm()">Add New Assignment</button>
+            <button class="btn btn-success"  href="{{route('mycourses.assignment.add')}}">Add New Assignment</button>
             <br><br>
 
             <div class="assignments-list">

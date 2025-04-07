@@ -4,16 +4,27 @@
 
 @section('main-container')
 <link rel="stylesheet" href="{{asset('Admin/css/management.css')}}">
+<style>
+    #manage-courses .container {
+    max-width: 80%;
+    overflow-x: auto;
+}
+
+#manage-courses table {
+    min-width: 800px; /* Or more, based on content */
+    width: 100%;
+}
+</style>
 <main>
-    <section id="manage-courses" style="margin-left: 100px">
-        <div class="container">
+    <section id="manage-courses" style="margin-left: 200px ;" >
+        <div class="container" style="">
             <h2>Manage Courses</h2>
           <a href="{{route('courses.add')}}">  <button class="btn btn-success"  >Add New Course</button></a>
             <br>
             <br>
 
             <div class="courses-list">
-                <table class="table table-striped">
+                <table class="table table-striped" >
                     <thead>
                         <tr>
                             <th>#</th>
@@ -26,7 +37,7 @@
                             <th>Course Discout</th>
                             <th>Paymnet Plan</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th style="width: 500px;">Action</th>
                         </tr>
                     </thead>
                     <tbody>

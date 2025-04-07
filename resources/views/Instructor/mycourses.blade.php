@@ -14,44 +14,51 @@
     <link rel="stylesheet" href="{{ asset('../Admin/css/dashbord.css') }}">
 </head>
 <body>
-<center style="margin-left: 250px;">
-    <div class="container">
-        <h2 class="text-center mt-4">My Courses</h2>
-        <hr>
-
-        <!-- 🔧 Quick Stats Section -->
-        <div class="row mt-5">
-            <div class="col-md-4">
-                <div class="card text-white bg-primary mb-3 text-center">
-                    <div class="card-body">
-                        <br>
-                        <h3>computer</h3>
-                    </div>
+    <center style="margin-left: 250px;">
+        <div class="container">
+            <h2 class="text-center mt-4">My Courses</h2>
+            <hr>
+    
+            <!-- 🔧 Quick Stats Section -->
+            <div class="row mt-5">
+    
+                <div class="col-md-4">
+                    <a href="{{ route('instructor.mycourses.content') }}" style="text-decoration: none;">
+                        <div class="card text-white bg-primary mb-3 text-center">
+                            <div class="card-body">
+                                <br>
+                                <h3>Computer</h3>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card text-white bg-success mb-3 text-center">
-                    <div class="card-body">
-                       <br>
-                        <h3>Math</h3>
-                    </div>
+    
+                <div class="col-md-4">
+                    <a href="{{ route('instructor.mycourses.content') }}" style="text-decoration: none;">
+                        <div class="card text-white bg-success mb-3 text-center">
+                            <div class="card-body">
+                                <br>
+                                <h3>Math</h3>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card text-white bg-warning mb-3 text-center">
-                    <div class="card-body">
-                        <br>
-                        <h3>Science</h3>
-                    </div>
+    
+                <div class="col-md-4">
+                    <a href="{{ route('instructor.mycourses.content') }}" style="text-decoration: none;">
+                        <div class="card text-white bg-warning mb-3 text-center">
+                            <div class="card-body">
+                                <br>
+                                <h3>Science</h3>
+                            </div>
+                        </div>
+                    </a>
                 </div>
+    
             </div>
-            
         </div>
-    </div>
-</center>
-
+    </center>
+    
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

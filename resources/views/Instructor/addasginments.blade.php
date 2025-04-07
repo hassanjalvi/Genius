@@ -48,7 +48,7 @@
         </form>
 
         <section class="manage-instructors-button">
-            <a href="#" class="btn">Manage Assignments</a>
+            <a href="{{route('mycourses.assignment.manage')}}" class="btn">Manage Assignments</a>
         </section>
 
     </section>

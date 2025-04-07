@@ -14,13 +14,12 @@
 
 <div class="sidebar open" id="sidebar">
     <div class="sidebar-heading">Instructor Dashboard</div>
-    <a href="{{ route('admin.dashboard') }}" class="active">Dashboard</a>
-    <a href="{{ route('students.manage') }}">Students</a>
-    <a href="{{ route('instructors.manage') }}">Instructors</a>
-    <a href="{{ route('courses.manage') }}">Courses</a>
-    <a href="{{ route('enrolments.manage') }}">Enrollments</a>
-    <a href="{{ route('payments.manage') }}">Payments</a>
-    <a href="{{ route('setup.fees') }}">Setup Fee</a>
+    <a href="{{ route('instructor.dashboard') }}" class="active">Dashboard</a>
+    <a href="{{ route('instructor.mycourses') }}">My Courses</a>
+    <a href="{{ route('mycourses.videos.manage') }}">Videos</a>
+    <a href="{{ route('mycourses.assignment.manage') }}">Assignments</a>
+    <a href="{{ route('mycourses.quiz.manage') }}">Quizes</a>
+    <a href="{{ route('mycourses.enrolments.manage') }}">Enrollments</a>
     
   
     <a href="{{ url('/logout') }}" onclick="return confirm('Are you sure you want to logout?');" class="logout-btn">Logout</a>
