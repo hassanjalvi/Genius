@@ -34,4 +34,9 @@ class Course extends Model
     {
         return $this->hasMany(Payment::class, 'course_id');
     }
+
+    public function courseFee()
+    {
+        return $this->hasOne(CourseFee::class);
+    }
 }

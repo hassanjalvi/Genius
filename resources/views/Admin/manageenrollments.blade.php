@@ -38,7 +38,7 @@
                                 </ul>
                             </td> --}}
                             <td>
-                                <button class="btn btn-primary edit-btn" onclick="toggleEditForm({{ $enroll->id }})"><i class="fas fa-edit"></i></button>
+                                {{-- <button class="btn btn-primary edit-btn" onclick="toggleEditForm({{ $enroll->id }})"><i class="fas fa-edit"></i></button> --}}
 
                                 <div style="display: inline-block;">
 

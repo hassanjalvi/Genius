@@ -11,7 +11,7 @@
           <a href="{{route('courses.add')}}">  <button class="btn btn-success"  >Add New Course</button></a>
             <br>
             <br>
-    
+
             <div class="courses-list">
                 <table class="table table-striped">
                     <thead>
@@ -21,6 +21,10 @@
                             <th>Description</th>
                             <th>Syllabus</th>
                             <th>Instructor</th>
+                            <th>Course Duration</th>
+                            <th>Course Fee</th>
+                            <th>Course Discout</th>
+                            <th>Paymnet Plan</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -36,6 +40,14 @@
                             <td>{{$cou->description ?? ""}}</td>
                             <td>{{$cou->syllabus ?? ""}}</td>
                             <td>{{$cou->instructor->name ?? ""}}</td>
+                            <td>{{$cou->courseFee->course_duration ?? "---"}}</td>
+                            <td>{{$cou->courseFee->price ?? "---"}}</td>
+                            <td>{{$cou->courseFee->discount ?? "---"}}</td>
+                            <td>{{$cou->courseFee->payment_plan ?? "---"}}</td>
+
+
+
+
                             <td>{{$cou->status ===1 ? "Active" : "Inactive"}}</td>
                             <td>
                                 <button onclick="toggleEditForm({{ $cou->id }})" class="btn btn-primary edit-btn" ><i class="fas fa-edit"></i></button>
@@ -90,6 +102,36 @@
                                             <option value="0" {{ $cou->status == 0 ? 'selected' : '' }}>Inactive</option>
                                         </select>
                                     </div>
+
+
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Course Fee</label>
+                                        <input type="text" class="form-control" name="course_fee" value="{{ $cou->courseFee->price }}" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Course Discout</label>
+                                        <input type="text" class="form-control" name="course_discount" value="{{ $cou->courseFee->discount }}" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Course Duration</label>
+                                        <input type="text" class="form-control" name="course_duration" value="{{ $cou->courseFee->course_duration }}" required>
+                                    </div>
+
+                                    <label for="payment_plan">Payment Plan:</label>
+<select id="payment_plan" name="payment_plan" required style="width: 100%; padding: 10px; font-size: 16px;">
+    <option value="one-time" {{ $cou->courseFee->payment_plan === 'one-time' ? 'selected' : '' }}>One-Time Payment</option>
+    <option value="monthly" {{ $cou->courseFee->payment_plan === 'monthly' ? 'selected' : '' }}>Monthly Installments</option>
+    <option value="quarterly" {{ $cou->courseFee->payment_plan === 'quarterly' ? 'selected' : '' }}>Quarterly Installments</option>
+</select>
+
+
+
+
+
+
                                     <button type="submit" class="btn btn-primary">Update Course</button>
                                 </form>
                             </td>

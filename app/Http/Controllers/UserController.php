@@ -82,6 +82,9 @@ class UserController extends Controller
             if ($user->role === 'parent') {
                 return redirect()->route('parent.dashboard')->with('success', 'Successfully login');
             }
+            if ($user->role === 'instructor') {
+                return redirect()->route('instructor.dashboard')->with('success', 'Successfully login');
+            }
 
             return redirect()->route('login.form')->with('error', 'Invalid credentials.')->withInput();
         }

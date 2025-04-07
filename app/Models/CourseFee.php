@@ -13,4 +13,9 @@ class CourseFee extends Model
         'discount',
         'payment_plan',
     ];
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

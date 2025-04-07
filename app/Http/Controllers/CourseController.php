@@ -20,7 +20,7 @@ class CourseController extends Controller
     }
     public function manageCourses()
     {
-        $course = Course::with('instructor')->get();
+        $course = Course::with('instructor', 'courseFee')->get();
         $instructor = User::where('role', 'instructor')->get();
         return view('Admin.managecourses', compact('course', 'instructor'));
     }
@@ -69,7 +69,7 @@ class CourseController extends Controller
     }
     public function updatecourse(Request $request, $id)
     {
-        $course = Course::where('id', $id)->first();
+        $course = Course::with('courseFee')->where('id', $id)->first();
 
         $course->update([
             'name' => $request->course_name ?? $course->name,
@@ -78,6 +78,15 @@ class CourseController extends Controller
             'status' => $request->status ?? $course->status,
             'instructor_id' => $request->coutructor_id ?? $course->instructor_id,
         ]);
+
+        if ($course->courseFee) {
+            $course->courseFee->update([
+                'price' => $request->course_fee ?? $course->courseFee->price,
+                'discount' => $request->course_discount ?? $course->courseFee->discount,
+                'course_duration' => $request->course_duration ?? $course->courseFee->course_duration,
+                'payment_plan' => $request->payment_plan ?? $course->courseFee->payment_plan,
+            ]);
+        }
 
 
 

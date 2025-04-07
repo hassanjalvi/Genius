@@ -187,6 +187,9 @@
                                         @if (Auth::check() && Auth::user()->role === 'parent')
                                        <li><a href="{{ route('parent.dashboard') }}">Parent Dashboard</a></li>
                                         @endif
+                                        @if (Auth::check() && Auth::user()->role === 'instructor')
+                                       <li><a href="{{ route('instructor.dashboard') }}">Instructor Dashboard</a></li>
+                                        @endif
 
 										<li class="menu-item-has-children ul-li-block">
 											<a href="#!">Pages</a>
