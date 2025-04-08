@@ -39,4 +39,9 @@ class Course extends Model
     {
         return $this->hasOne(CourseFee::class);
     }
+
+    public function assignment()
+    {
+        return $this->hasMany(Assignment::class);
+    }
 }

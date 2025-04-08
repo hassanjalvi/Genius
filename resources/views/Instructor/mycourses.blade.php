@@ -18,10 +18,14 @@
         <div class="container">
             <h2 class="text-center mt-4">My Courses</h2>
             <hr>
-    
+
             <!-- 🔧 Quick Stats Section -->
             <div class="row mt-5">
-    
+
+
+                @foreach ($courses as $cour)
+
+
                 <div class="col-md-4">
                     <a href="{{ route('instructor.mycourses.content') }}" style="text-decoration: none;">
                         <div class="card text-white bg-primary mb-3 text-center">
@@ -32,8 +36,10 @@
                         </div>
                     </a>
                 </div>
-    
-                <div class="col-md-4">
+
+                @endforeach
+
+                {{-- <div class="col-md-4">
                     <a href="{{ route('instructor.mycourses.content') }}" style="text-decoration: none;">
                         <div class="card text-white bg-success mb-3 text-center">
                             <div class="card-body">
@@ -43,7 +49,7 @@
                         </div>
                     </a>
                 </div>
-    
+
                 <div class="col-md-4">
                     <a href="{{ route('instructor.mycourses.content') }}" style="text-decoration: none;">
                         <div class="card text-white bg-warning mb-3 text-center">
@@ -53,12 +59,12 @@
                             </div>
                         </div>
                     </a>
-                </div>
-    
+                </div> --}}
+
             </div>
         </div>
     </center>
-    
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

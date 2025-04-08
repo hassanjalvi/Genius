@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\CourseFee;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class CourseController extends Controller
@@ -121,12 +122,14 @@ class CourseController extends Controller
 
     public function myCourses()
     {
-        return view('Instructor.mycourses');
+        $courses = Course::where('instructor_id', Auth::id())->get();
+
+        return view('Instructor.mycourses', compact('courses'));
     }
     public function myCoursesContent()
     {
         return view('Instructor.mycoursecontent');
     }
- 
-   
+
+
 }

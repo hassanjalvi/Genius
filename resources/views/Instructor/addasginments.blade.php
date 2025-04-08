@@ -20,14 +20,16 @@
         <!-- Add Assignment Section -->
         <h2>Add Course Assignment</h2>
 
-        <form class="admin-form" action="" method="POST" enctype="multipart/form-data">
+        <form class="admin-form" action="{{ route('mycourses.assignment.create') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <label for="course_id">Select Course:</label>
             <select name="course_id" id="course_id" class="form-control" required>
-                <option value="">-- Select Course --</option>
-                <option value="course1">Course 1</option>
-                
+                @foreach ($courses as $cour)
+                <option value={{ $cour->id }}>{{ $cour->name }}</option>
+                @endforeach
+                {{-- <option value="course1">Course 1</option> --}}
+
             </select>
             @error('course_id') <span class="text-danger">{{ $message }}</span> @enderror
 

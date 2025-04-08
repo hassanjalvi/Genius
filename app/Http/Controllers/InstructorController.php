@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Instructor;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class InstructorController extends Controller
@@ -85,7 +87,8 @@ class InstructorController extends Controller
     }
     public function showInstructor()
     {
-        return view('Instructor.dashboard');
+        $courses = Course::where('instructor_id', Auth::id())->get();
+        return view('Instructor.dashboard', compact('courses'));
     }
 
 

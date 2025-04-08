@@ -118,24 +118,26 @@
 
                                     <div class="mb-3">
                                         <label class="form-label">Course Fee</label>
-                                        <input type="text" class="form-control" name="course_fee" value="{{ $cou->courseFee->price }}" required>
+                                        <input type="text" class="form-control" name="course_fee" value="{{ $cou->courseFee->price  ?? ""}}" required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Course Discout</label>
-                                        <input type="text" class="form-control" name="course_discount" value="{{ $cou->courseFee->discount }}" required>
+                                        <input type="text" class="form-control" name="course_discount" value="{{ $cou->courseFee->discount ?? "" }}" required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Course Duration</label>
-                                        <input type="text" class="form-control" name="course_duration" value="{{ $cou->courseFee->course_duration }}" required>
+                                        <input type="text" class="form-control" name="course_duration" value="{{ $cou->courseFee->course_duration ?? "" }}" required>
                                     </div>
 
                                     <label for="payment_plan">Payment Plan:</label>
 <select id="payment_plan" name="payment_plan" required style="width: 100%; padding: 10px; font-size: 16px;">
-    <option value="one-time" {{ $cou->courseFee->payment_plan === 'one-time' ? 'selected' : '' }}>One-Time Payment</option>
-    <option value="monthly" {{ $cou->courseFee->payment_plan === 'monthly' ? 'selected' : '' }}>Monthly Installments</option>
-    <option value="quarterly" {{ $cou->courseFee->payment_plan === 'quarterly' ? 'selected' : '' }}>Quarterly Installments</option>
+    <option value="one-time" {{ optional($cou->courseFee)->payment_plan === 'one-time' ? 'selected' : '' }}>One-Time Payment</option>
+    <option value="monthly" {{ optional($cou->courseFee)->payment_plan === 'monthly' ? 'selected' : '' }}>Monthly Installments</option>
+    <option value="quarterly" {{ optional($cou->courseFee)->payment_plan === 'quarterly' ? 'selected' : '' }}>Quarterly Installments</option>
+
+
 </select>
 
 

@@ -3,9 +3,7 @@ use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EnrolmentController;
 use App\Http\Controllers\InstructorController;
-use App\Http\Controllers\LectureVideoController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\QuizController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -75,13 +73,13 @@ Route::middleware(['auth', 'instructor'])->group(function () {
     Route::get('/instructor/dashboard', [InstructorController::class, 'showInstructor'])->name('instructor.dashboard');
     Route::get('/instructor/mycourses', [CourseController::class, 'myCourses'])->name('instructor.mycourses');
     Route::get('/instructor/mycourses/content', [CourseController::class, 'myCoursesContent'])->name('instructor.mycourses.content');
-    Route::get('/mycourses/videos/add', [LectureVideoController::class, 'addVideo'])->name('mycourses.videos.add');
-    Route::get('/mycourses/videos/manage', [LectureVideoController::class, 'manageVideo'])->name('mycourses.videos.manage');
+    Route::get('/mycourses/videos/adad', [CourseController::class, 'addVideo'])->name('mycourses.videos.add');
+    Route::get('/mycourses/videos/manage', [CourseController::class, 'manageVideo'])->name('mycourses.videos.manage');
     Route::get('/mycourses/assignments/add', [AssignmentController::class, 'addAssignment'])->name('mycourses.assignment.add');
     Route::get('/mycourses/assignments/manage', [AssignmentController::class, 'manageAssignment'])->name('mycourses.assignment.manage');
-    Route::get('/mycourses/quizes/add', [QuizController::class, 'addQuizes'])->name('mycourses.quizes.add');
-    Route::get('/mycourses/quizes/manage', [QuizController::class, 'manageQuizes'])->name('mycourses.quiz.manage');
-    Route::get('/mycourses/enrolments/manage', [EnrolmentController::class, 'manageCourseEnrollments'])->name('mycourses.enrolments.manage');
     Route::get('/student/progress', [StudentController::class, 'studentProgress'])->name('student.progress');
-    
+
+
+    Route::post('/mycourses/assignments/create', [AssignmentController::class, 'createAssignment'])->name('mycourses.assignment.create');
+
 });
