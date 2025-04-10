@@ -1,4 +1,4 @@
-@extends('Admin.layots.main')
+@extends('Instructor.layots.main')
 
 @section('title', 'Manage Videos')
 
@@ -9,7 +9,7 @@
     <section id="manage-videos" style="margin-left: 100px">
         <div class="container">
             <h2>Manage Videos</h2>
-            <button class="btn btn-success"  href="{{route('mycourses.videos.add')}}">Add New Video</button>
+            <button class="btn btn-success" onclick="window.location='{{ route('mycourses.videos.add') }}'">Add New Video</button>
             <br><br>
 
             <div class="videos-list">

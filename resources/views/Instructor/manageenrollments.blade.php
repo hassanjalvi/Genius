@@ -1,4 +1,4 @@
-@extends('Admin.layots.main')
+@extends('Instructor.layots.main')
 
 @section('title', 'Manage Enrollments')
 

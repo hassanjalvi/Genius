@@ -1,4 +1,4 @@
-@extends('Admin.layots.main')
+@extends('Instructor.layots.main')
 
 @section('title', 'Manage Quizzes')
 
@@ -9,7 +9,8 @@
     <section id="manage-quizzes" style="margin-left: 100px">
         <div class="container">
             <h2>Manage Quizzes</h2>
-            <button class="btn btn-success"  href="{{route('mycourses.quizes.add')}}">Add New Quiz</button>
+            <button class="btn btn-success" onclick="window.location='{{ route('mycourses.quizes.add') }}'">Add New Quiz</button>
+
             <br><br>
 
             <div class="quizzes-list">

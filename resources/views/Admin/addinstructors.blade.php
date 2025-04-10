@@ -26,7 +26,7 @@
         </div>
         @endif
 
-        <form class="admin-form" action="{{route('instructor.create')}}" method="post">
+        <form class="admin-form" action="{{route('instructor.create')}}" method="post" enctype="multipart/form-data">
             @csrf
             <label for="name">Name:</label>
             <input type="text" id="name" placeholder="Enter Instructor Name" name="name" required>
@@ -51,8 +51,15 @@
             @if ($errors->has('expertise'))
             <span class="text-danger">{{ $errors->first('expertise') }}</span>
             @endif
-            <br>
-            <br>
+
+            <!-- Instructor Image Upload -->
+            <label for="image">Instructor Image:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+            @if ($errors->has('image'))
+            <span class="text-danger">{{ $errors->first('image') }}</span>
+            @endif
+
+            <br><br>
             <button type="submit" name="BtnSubmit">Submit</button>
         </form>
 
@@ -92,9 +99,10 @@
         background-color: #007bff;
     }
 </style>
- <!-- Bootstrap JS -->
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-cjMd6EtUpRVnJoHyX+51ptbV65+5tX+NF9I3zqW3A0u6v/u0apZ/6p6H5L7KwMgB" crossorigin="anonymous"></script>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+c6MAdNpH1flVWTpLk+bPQ7KgV8rW34ZZfYjZG3PAgR2Xp+qq0N6GnHD7o4eGa" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-cjMd6EtUpRVnJoHyX+51ptbV65+5tX+NF9I3zqW3A0u6v/u0apZ/6p6H5L7KwMgB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+c6MAdNpH1flVWTpLk+bPQ7KgV8rW34ZZfYjZG3PAgR2Xp+qq0N6GnHD7o4eGa" crossorigin="anonymous"></script>
 
 </html>
 @endsection

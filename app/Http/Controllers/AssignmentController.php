@@ -15,9 +15,9 @@ class AssignmentController extends Controller
      */
     public function manageAssignment()
     {
-        $coursesAssigment = Course::where('instructor_id', Auth::id())->with('assignment')->get();
-        dd($coursesAssigment);
-        return view('Instructor.manageAssignments', compact('coursesAssigment'));
+        // $coursesAssigment = Course::where('instructor_id', Auth::id())->with('assignment')->get();
+        // dd($coursesAssigment);
+        return view('Instructor.manageAssignments');
     }
     public function addAssignment()
     {

@@ -1,5 +1,5 @@
 @section('title', 'Admin')
-@extends('Admin.layots.main')
+@extends('Instructor.layots.main')
 @section('main-container')
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +29,11 @@
                 <!-- Add more dynamically -->
             </select>
             @error('course_id') <span class="text-danger">{{ $message }}</span> @enderror
+
+            <!-- ✅ Added Quiz Number Field -->
+            <label for="quiz_number">Quiz Number:</label>
+            <input type="number" name="quiz_number" id="quiz_number" class="form-control" placeholder="Enter Quiz Number" required min="1">
+            @error('quiz_number') <span class="text-danger">{{ $message }}</span> @enderror
 
             <label for="quiz_type">Quiz Type:</label>
             <select name="quiz_type" id="quiz_type" class="form-control" onchange="toggleQuizFields()" required>
@@ -160,5 +165,6 @@
         }
     }
 </script>
+
 </html>
 @endsection

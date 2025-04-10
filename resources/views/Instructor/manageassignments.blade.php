@@ -1,4 +1,4 @@
-@extends('Admin.layots.main')
+@extends('Instructor.layots.main')
 
 @section('title', 'Manage Assignments')
 
@@ -9,7 +9,8 @@
     <section id="manage-assignments" style="margin-left: 100px">
         <div class="container">
             <h2>Manage Assignments</h2>
-           <a href="{{route('mycourses.assignment.add')}}"> <button class="btn btn-success"  >Add New Assignment</button></a>
+           
+           <button class="btn btn-success" onclick="window.location='{{ route('mycourses.assignment.add') }}'">Add New Assignment</button>
             <br><br>
 
             <div class="assignments-list">
@@ -26,15 +27,15 @@
                     <tbody>
 
                         <!-- Assignment Row 1 -->
-                        @foreach ($coursesAssigment as $cou )
+                        {{-- @foreach ($coursesAssigment as $cou ) --}}
 
 
                         <tr>
-                            <td>{{$cou->id}}</td>
+                            {{-- <td>{{$cou->id}}</td> --}}
                             <td>
                                 <a href="{{ asset('storage/assignments/assignment1.pdf') }}" target="_blank">View Assignment</a>
                             </td>
-                            <td>{{$cou->assigment->assignment_title ?? ""}}</td>
+                            {{-- <td>{{$cou->assigment->assignment_title ?? ""}}</td> --}}
                             <td>Course1</td>
                             <td>
                                 <button class="btn btn-primary" onclick="toggleEditForm(1)">
@@ -71,7 +72,7 @@
                                 </form>
                             </td>
                         </tr>
-                        @endforeach
+                        {{-- @endforeach --}}
 
                         <!-- Assignment Row 2 -->
 

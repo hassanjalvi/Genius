@@ -1,5 +1,5 @@
-@section('title', 'Admin')
-@extends('Admin.layots.main')
+@section('title', 'Instructor')
+@extends('Instructor.layots.main')
 @section('main-container')
 <!DOCTYPE html>
 <html lang="en">

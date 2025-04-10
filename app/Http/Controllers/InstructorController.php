@@ -32,24 +32,33 @@ class InstructorController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:5',
             'expertise' => 'required',
-
+            'image'   =>'required | mimes:png,jpg,jpeg,gif '
         ]);
 
         if ($validatedData->fails()) {
             return back()->withErrors($validatedData)->withInput();
         }
-
+        $imagename = "Instructor_upload_" . time() . "." . $request->file('image')->extension();
+        //  echo "<pre>";
+        // print_r($imagename);
+        $folderPath = 'Instructor/images';
+        $imagePath = $folderPath . '/' . $imagename;
+        
+        //  echo "$imagePath";
+        $request->img->move(public_path($folderPath), $imagename);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role' => 'instructor',
+           
         ]);
 
         $expertise = Instructor::create([
             'user_id' => $user->id,
             'expertise' => $request->expertise,
+            'image_path' => $imagePath,
         ]);
 
         return redirect()->route('instructors.manage')->with('success', 'Instructor added successfully');

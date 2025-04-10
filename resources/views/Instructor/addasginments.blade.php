@@ -1,5 +1,5 @@
-@section('title', 'Admin')
-@extends('Admin.layots.main')
+@section('title', 'Instructor')
+@extends('Instructor.layots.main')
 @section('main-container')
 <!DOCTYPE html>
 <html lang="en">
@@ -26,12 +26,14 @@
             <label for="course_id">Select Course:</label>
             <select name="course_id" id="course_id" class="form-control" required>
                 @foreach ($courses as $cour)
-                <option value={{ $cour->id }}>{{ $cour->name }}</option>
+                <option value="{{ $cour->id }}">{{ $cour->name }}</option>
                 @endforeach
-                {{-- <option value="course1">Course 1</option> --}}
-
             </select>
             @error('course_id') <span class="text-danger">{{ $message }}</span> @enderror
+
+            <label for="assignment_number">Assignment Number:</label>
+            <input type="number" id="assignment_number" name="assignment_number" class="form-control" placeholder="Enter Assignment Number" required min="1">
+            @error('assignment_number') <span class="text-danger">{{ $message }}</span> @enderror
 
             <label for="assignment_title">Assignment Title:</label>
             <input type="text" id="assignment_title" name="assignment_title" class="form-control" placeholder="Enter Assignment Title" required>
@@ -87,7 +89,7 @@
     }
 
     .manage-instructors-button .btn:hover {
-        background-color: #0056b3;
+        background-color: #004080;
     }
 </style>
 
