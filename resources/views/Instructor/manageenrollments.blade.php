@@ -16,15 +16,26 @@
                             <th>#</th>
                             <th>Student Name</th>
                             <th>Email</th>
-                            <th>Action</th>
+                            <th>Course</th>
+
+                            {{-- <th>Action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
+
+                        @foreach ($enroll as $en)
+                        @foreach ( $en->enrollment as $stu )
+
+
+
+
                         <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>john@example.com</td>
-                            
+                            <td>{{$stu->id ?? ""}}</td>
+                            <td>{{$stu->user->name ?? ""}}</td>
+                            <td>{{$stu->user->email ?? ""}}</td>
+                            <td>{{$en->name ?? ""}}</td>
+
+{{--
                             <td>
                                 <button class="btn btn-primary edit-btn" onclick="toggleEditForm(1)"><i class="fas fa-edit"></i></button>
                                 <div style="display: inline-block;">
@@ -32,8 +43,10 @@
                                         <button class="btn btn-warning"><i class="fas fa-user-slash"></i></button>
                                     </form>
                                 </div>
-                            </td>
+                            </td> --}}
                         </tr>
+
+
                         <tr id="edit-form-1" class="edit-form" style="display: none;">
                             <td colspan="4">
                                 <form>
@@ -45,11 +58,14 @@
                                         <label class="form-label">Email:</label>
                                         <input type="email" class="form-control" name="user_email" value="john@example.com" required>
                                     </div>
-                                    
+
                                     <button type="submit" class="btn btn-primary">Update Enrollment</button>
                                 </form>
                             </td>
                         </tr>
+
+                        @endforeach
+                        @endforeach
                         <!-- Add more static entries below if needed -->
                     </tbody>
                 </table>

@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EnrolmentController;
 use App\Http\Controllers\InstructorController;
@@ -21,12 +22,18 @@ Route::get('/user/login', [UserController::class, 'showLogin'])->name('login.for
 #userside
 
 Route::get('/', [UserController::class, 'index'])->name('Home');
+Route::get('/course/detail/{id}', [UserController::class, 'showCourseDetail'])->name('course.details');
+
+Route::get('/checkout/{id}', [CheckoutController::class, 'index'])->name('checkout');
+
+Route::get('/about', [UserController::class, 'showAbout'])->name('About');
+
+
 
 Route::middleware(['auth', 'user'])->group(function () {
 
     // Route::post('/login/user', [UserController::class, 'onLogin'])->name('login');
-    Route::get('/about', [UserController::class, 'showAbout'])->name('About');
-    Route::get('/check-out', [PaymentController::class, 'showCheckout'])->name('Checkout');
+    Route::post('/payment/{id}', [CheckoutController::class, 'payment'])->name('payment');
 
 });
 
@@ -86,5 +93,13 @@ Route::middleware(['auth', 'instructor'])->group(function () {
 
 
     Route::post('/mycourses/assignments/create', [AssignmentController::class, 'createAssignment'])->name('mycourses.assignment.create');
+
+
+
+    Route::delete('/assignment/delete/{id}', [AssignmentController::class, 'deleteAssignment'])->name('assignment.delete');
+    Route::post('/assignment/update/{id}', [AssignmentController::class, 'updateAssignment'])->name('assignment.update');
+
+    Route::post('/quiz/create', [QuizController::class, 'createQuiz'])->name('quiz.create');
+
 
 });

@@ -54,12 +54,29 @@
 
             <!-- Instructor Image Upload -->
             <label for="image">Instructor Image:</label>
-            <input type="file" id="image" name="image" accept="image/*">
+            <input type="file" id="image" name="instructor_file" accept="image/*">
             @if ($errors->has('image'))
             <span class="text-danger">{{ $errors->first('image') }}</span>
             @endif
 
             <br><br>
+
+
+            <div class="mb-5">
+                <label for="image">Feature Instructor</label>
+
+            <select id="assign-instructor" name="feature" required>
+                <!-- Dynamically fetch instructors here -->
+
+                <option value="0" selected>no</option>
+                <option value="1">yes</option>
+
+
+                <!-- Add more options as per the instructor data -->
+            </select>
+
+        </div>
+
             <button type="submit" name="BtnSubmit">Submit</button>
         </form>
 

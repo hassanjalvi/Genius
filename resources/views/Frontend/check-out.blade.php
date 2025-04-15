@@ -139,8 +139,8 @@
 														<input class="pass" name="name" type="password" placeholder="Your password*">
 													</div>
 													<div class="nws-button text-center white text-capitalize">
-														<button type="submit" value="Submit">LOg in Now</button> 
-													</div> 
+														<button type="submit" value="Submit">LOg in Now</button>
+													</div>
 												</form>
 												<div class="log-in-footer text-center">
 													<p>* Denotes mandatory field.</p>
@@ -220,12 +220,12 @@
 			</div>
 		</header>
  	<!-- Start of Header section
- 		============================================= --> 
+ 		============================================= -->
 
 
 	<!-- Start of breadcrumb section
 		============================================= -->
-		<section id="breadcrumb" class="breadcrumb-section relative-position backgroud-style">
+		{{-- <section id="breadcrumb" class="breadcrumb-section relative-position backgroud-style">
 			<div class="blakish-overlay"></div>
 			<div class="container">
 				<div class="page-breadcrumb-content text-center">
@@ -240,7 +240,7 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section> --}}
 	<!-- End of breadcrumb section
 		============================================= -->
 
@@ -263,13 +263,12 @@
 
 								<div class="course-list-view table-responsive">
 									<table class="table">
-										
+
 										<thead>
 											<tr class="list-head">
 												<th>COURSE NAME</th>
-												<th>COURSE TYPE</th>
-												<th>STARTS</th>
-												<th>LENGTH</th>
+												<th>COURSE Duration</th>
+												<th>Payment Plan</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -280,10 +279,11 @@
 															<img src="assets/img/course/cl-1.jpg" alt="">
 														</div>
 														<div class="course-list-text">
-															<h3><a href="#">Fully Responsive Web Design &amp; Development.</a></h3>
+															<h3><a href="#">{{$course->name ?? ""}}</a></h3>
 															<div class="course-meta">
-																<span class="course-category bold-font"><a href="#">$120.25</a></span>
-																<div class="course-rate ul-li">
+																<span class="course-category bold-font"><a href="#">${{$course->courseFee->price}}</a></span>
+
+																{{-- <div class="course-rate ul-li">
 																	<ul>
 																		<li><i class="fas fa-star"></i></li>
 																		<li><i class="fas fa-star"></i></li>
@@ -291,12 +291,16 @@
 																		<li><i class="fas fa-star"></i></li>
 																		<li><i class="fas fa-star"></i></li>
 																	</ul>
-																</div>
+																</div> --}}
 															</div>
 														</div>
 													</div>
 												</td>
-												<td>
+                                                <td>{{$course->courseFee->course_duration ?? ""}}</td>
+                                                <td>{{$course->courseFee->payment_plan ?? ""}}</td>
+
+
+												{{-- <td>
 													<div class="course-type-list">
 														<span>Graphic Design &amp; 3D</span>
 													</div>
@@ -307,188 +311,9 @@
 													<div class="check-dlt">
 														<a href="#"><i class="fas fa-times"></i></a>
 													</div>
-												</td>
+												</td> --}}
 											</tr>
-											<tr>
-												<td>
-													<div class="course-list-img-text">
-														<div class="course-list-img">
-															<img src="assets/img/course/cl-2.jpg" alt="">
-														</div>
-														<div class="course-list-text">
-															<h3><a href="#">Fully Responsive Web Design &amp; Development.</a></h3>
-															<div class="course-meta">
-																<span class="course-category bold-font"><a href="#">$120.25</a></span>
-																<div class="course-rate ul-li">
-																	<ul>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-												</td>
-												<td>
-													<div class="course-type-list">
-														<span>Graphic Design &amp; 3D</span>
-													</div>
-												</td>
-												<td>6-06-2018</td>
-												<td class="dlt-price relative-position">
-													3 Months
-													<div class="check-dlt">
-														<a href="#"><i class="fas fa-times"></i></a>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="course-list-img-text">
-														<div class="course-list-img">
-															<img src="assets/img/course/cl-3.jpg" alt="">
-														</div>
-														<div class="course-list-text">
-															<h3><a href="#">Fully Responsive Web Design &amp; Development.</a></h3>
-															<div class="course-meta">
-																<span class="course-category bold-font"><a href="#">$120.25</a></span>
-																<div class="course-rate ul-li">
-																	<ul>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-												</td>
-												<td>
-													<div class="course-type-list">
-														<span>Graphic Design &amp; 3D</span>
-													</div>
-												</td>
-												<td>6-06-2018</td>
-												<td class="dlt-price relative-position">
-													3 Months
-													<div class="check-dlt">
-														<a href="#"><i class="fas fa-times"></i></a>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="course-list-img-text">
-														<div class="course-list-img">
-															<img src="assets/img/course/cl-4.jpg" alt="">
-														</div>
-														<div class="course-list-text">
-															<h3><a href="#">Fully Responsive Web Design &amp; Development.</a></h3>
-															<div class="course-meta">
-																<span class="course-category bold-font"><a href="#">$120.25</a></span>
-																<div class="course-rate ul-li">
-																	<ul>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-												</td>
-												<td>
-													<div class="course-type-list">
-														<span>Graphic Design &amp; 3D</span>
-													</div>
-												</td>
-												<td>6-06-2018</td>
-												<td class="dlt-price relative-position">
-													3 Months
-													<div class="check-dlt">
-														<a href="#"><i class="fas fa-times"></i></a>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="course-list-img-text">
-														<div class="course-list-img">
-															<img src="assets/img/course/cl-5.jpg" alt="">
-														</div>
-														<div class="course-list-text">
-															<h3><a href="#">Fully Responsive Web Design &amp; Development.</a></h3>
-															<div class="course-meta">
-																<span class="course-category bold-font"><a href="#">$120.25</a></span>
-																<div class="course-rate ul-li">
-																	<ul>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-												</td>
-												<td>
-													<div class="course-type-list">
-														<span>Graphic Design &amp; 3D</span>
-													</div>
-												</td>
-												<td>6-06-2018</td>
-												<td class="dlt-price relative-position">
-													3 Months
-													<div class="check-dlt">
-														<a href="#"><i class="fas fa-times"></i></a>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="course-list-img-text">
-														<div class="course-list-img">
-															<img src="assets/img/course/cl-1.jpg" alt="">
-														</div>
-														<div class="course-list-text">
-															<h3><a href="#">Fully Responsive Web Design &amp; Development.</a></h3>
-															<div class="course-meta">
-																<span class="course-category bold-font"><a href="#">$120.25</a></span>
-																<div class="course-rate ul-li">
-																	<ul>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																		<li><i class="fas fa-star"></i></li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-												</td>
-												<td>
-													<div class="course-type-list">
-														<span>Graphic Design &amp; 3D</span>
-													</div>
-												</td>
-												<td>6-06-2018</td>
-												<td class="dlt-price relative-position">
-													3 Months
-													<div class="check-dlt">
-														<a href="#"><i class="fas fa-times"></i></a>
-													</div>
-												</td>
-											</tr>
+
 										</tbody>
 									</table>
 								</div>
@@ -505,7 +330,7 @@
 												<div class="method-header-text">
 													<div class="checkbox">
 														<label>
-															<input type="checkbox" value="" >
+															{{-- <input type="checkbox" value="" > --}}
 															<span class="cr"><i class="cr-icon fa fa-check"></i></span>
 															Credit or Debit Card
 														</label>
@@ -522,43 +347,48 @@
 									</div>
 
 									<div class="check-out-form">
-										<form action="#" method="post">	
+
+
+										<form action="{{ route('payment',$course->id) }}" method="post">
+                                            @csrf
 											<div class="payment-info">
 												<label class=" control-label">Name On Card :</label>
-												<input type="text" class="form-control"  name="name" placeholder="Enter the name of your card" value="">
+												<input type="number" class="form-control"  name="name" placeholder="Enter the name of your card" value="">
 											</div>
 											<div class="payment-info">
 												<label class=" control-label">Card Number :</label>
-												<input type="text" class="form-control"  name="name" placeholder="Enter Your Number" value="">
+												<input type="text" class="form-control"  name="number" placeholder="Enter Your Number" value="">
 											</div>
 											<div class="payment-info input-2">
 												<label class=" control-label">Expired Date :</label>
-												<input type="text" class="form-control"  name="name" placeholder="MM" value="">
-												<input type="text" class="form-control"  name="name" placeholder="YY" value="">
+												<input type="text" class="form-control"  name="exp_month" placeholder="MM" value="">
+												<input type="text" class="form-control"  name="exp_year" placeholder="YY" value="">
 											</div>
 											<div class="payment-info input-2">
 												<label class=" control-label">CVV :</label>
-												<input type="text" class="form-control"  name="name" placeholder="CVV" value="">
+												<input type="text" class="form-control"  name="cvv" placeholder="CVV" value="">
 											</div>
-											<div class="payment-info">
+                                            <input type="hidden" class="form-control"  name="price" placeholder="Enter Your Number" value="{{ $course->courseFee->price }}">
+
+											{{-- <div class="payment-info">
 												<label class=" control-label">Country :</label>
 												<input type="text" class="form-control"  name="name" placeholder="Select Your Country" value="">
-											</div>
-										</form>
+											</div> --}}
+
 										<div class="method-header-text">
-											<div class="checkbox save-credit">
+											{{-- <div class="checkbox save-credit">
 												<label>
 													<input type="checkbox" value="" >
 													<span class="cr text-uppercase bold-font"><i class="cr-icon fa fa-check"></i></span>
 													SAVE YOUR CREDIT CARD FOR FUTURE PURCHASES
 													<span class="sub-text">Your payment information is stored securely. <b>Learn More</b></span>
 												</label>
-											</div>
+											</div> --}}
 										</div>
 									</div>
 								</div>
 
-								<div class="payment-method-header">
+								{{-- <div class="payment-method-header">
 									<div class="row">
 										<div class="col-md-6">
 											<div class="method-header-text">
@@ -570,7 +400,7 @@
 													</label>
 												</div>
 											</div>
-										</div>
+										</div> --}}
 
 										<div class="col-md-6">
 											<div class="payment-img float-right">
@@ -580,16 +410,19 @@
 									</div>
 								</div>
 
-								<div class="genius-btn mt25 gradient-bg text-center text-uppercase  bold-font">
-									<a href="#">Pay Now <i class="fas fa-caret-right"></i></a>
-								</div>
+								<div class="genius-btn mt25 gradient-bg text-center text-uppercase bold-font">
+                                    <button type="submit" class="w-100 text-white border-0 bg-transparent">
+                                        Pay Now <i class="fas fa-caret-right"></i>
+                                    </button>
+                                </div>
+                            </form>
 								<div class="terms-text pb45 mt25">
 									<p>By confirming this purchase, I agree to the <b>Term of Use, Refund Policy</b>  and <b>Privacy Policy</b></p>
 								</div>
 							</div>
 						</div>
 
-						<div class="col-md-3">
+						{{-- <div class="col-md-3">
 							<div class="side-bar-widget first-widget">
 								<h2 class="widget-title text-capitalize">Order <span>Detail.</span></h2>
 								<div class="sub-total-item">
@@ -616,6 +449,8 @@
 												<span>Trending</span>
 											</div>
 										</div>
+
+
 										<div class="best-course-text">
 											<div class="course-title mb20 headline relative-position">
 												<h3><a href="#">Fully Responsive Web Design &amp; Development.</a></h3>
@@ -628,7 +463,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>
@@ -734,12 +569,12 @@
 												</div>
 
 											</li>
-										</ul> 
+										</ul>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div> 
+					</div>
 					<!-- /footer-widget-content -->
 					<div class="footer-social-subscribe mb65">
 						<div class="row">
@@ -761,7 +596,7 @@
 										<form action="#" method="post">
 											<input class="course" name="course" type="email" placeholder="Email Address.">
 											<div class="nws-button text-center  gradient-bg text-uppercase">
-												<button type="submit" value="Submit">Subscribe now</button> 
+												<button type="submit" value="Submit">Subscribe now</button>
 											</div>
 										</form>
 									</div>
@@ -815,6 +650,6 @@
 
 		<script src="{{asset('assets/js/script.js')}}"></script>
 	</body>
-	
+
 
 </html>

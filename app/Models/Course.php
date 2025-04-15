@@ -12,6 +12,7 @@ class Course extends Model
         'syllabus',
         'instructor_id',
         'status',
+        'pic',
 
     ];
 

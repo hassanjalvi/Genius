@@ -26,7 +26,7 @@
         </div>
         @endif
 
-        <form class="admin-form" action="{{route('course.create')}}" method="post">
+        <form class="admin-form" action="{{route('course.create')}}" method="post" enctype="multipart/form-data">
             @csrf
             <label for="course-name">Course Name:</label>
             <input type="text" id="course-name" placeholder="Enter Course Name" name="course_name" required>
@@ -63,6 +63,7 @@
             @endif
             <br>
             <br>
+            <input type="file" name="course_pic"/>
             <button type="submit" name="BtnSubmit">Submit</button>
         </form>
 

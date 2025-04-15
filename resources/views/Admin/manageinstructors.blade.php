@@ -11,7 +11,7 @@
           <a href="{{route('instructors.add')}}">  <button class="btn btn-success" >Add New Instructors</button></a>
             <br>
             <br>
-            
+
             <div class="instructors-list">
                 <table class="table table-striped">
                     <thead>
@@ -56,15 +56,15 @@
                                     @method('PUT')
                                     <div class="mb-3">
                                         <label class="form-label">Name:</label>
-                                        <input type="text" class="form-control" name="name" value="{{ $ins->name }}" required>
+                                        <input type="text" class="form-control" name="name" value="{{ $ins->name ?? "" }}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Email:</label>
-                                        <input type="email" class="form-control" name="email" value="{{ $ins->email }}" required>
+                                        <input type="email" class="form-control" name="email" value="{{ $ins->email ?? "" }}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Expertise:</label>
-                                        <input type="text" class="form-control" name="expertise" value="{{ $ins->instructor->expertise }}" required>
+                                        <input type="text" class="form-control" name="expertise" value="{{ $ins->instructor->expertise ?? "" }}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Status:</label>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\Instructor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +18,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('Frontend.index');
+        $courses = Course::with(['courseFee', 'instructor'])->latest()->get();
+        $instructor = Instructor::where('feature', '1')->latest()->get();
+        return view('Frontend.index', compact('courses', 'instructor'));
+    }
+
+    public function showCourseDetail($id)
+    {
+        $course = Course::with(['instructor', 'courseFee', 'assignment', 'enrollment'])->findOrFail($id);
+
+
+        return view('Frontend.course-details', compact('course'));
     }
 
     public function registerUser(Request $request)

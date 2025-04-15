@@ -16,6 +16,7 @@ class InstructorController extends Controller
      */
     public function addInstructors()
     {
+
         $instructor = User::where('role', 'instructor')->with('instructor')->get();
         return view('Admin.addinstructors');
     }
@@ -32,33 +33,35 @@ class InstructorController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:5',
             'expertise' => 'required',
-            'image'   =>'required | mimes:png,jpg,jpeg,gif '
+            'instructor_file' => 'required | mimes:png,jpg,jpeg,gif '
         ]);
 
         if ($validatedData->fails()) {
             return back()->withErrors($validatedData)->withInput();
         }
-        $imagename = "Instructor_upload_" . time() . "." . $request->file('image')->extension();
-        //  echo "<pre>";
-        // print_r($imagename);
-        $folderPath = 'Instructor/images';
-        $imagePath = $folderPath . '/' . $imagename;
-        
-        //  echo "$imagePath";
-        $request->img->move(public_path($folderPath), $imagename);
+
+        $instructorPicPath = null;
+        if ($request->hasFile('instructor_file')) {
+            $instructorPicPath = rand() . time() . '.' . $request->instructor_file->extension();
+            $request->instructor_file->move(public_path('instructor_files'), $instructorPicPath);
+            $instructorPicPath = url('instructor_files') . '/' . $instructorPicPath;
+        }
+
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role' => 'instructor',
-           
+
+
         ]);
 
         $expertise = Instructor::create([
             'user_id' => $user->id,
             'expertise' => $request->expertise,
-            'image_path' => $imagePath,
+            'pic' => $instructorPicPath ?? null,
+            'feature' => $request->feature,
         ]);
 
         return redirect()->route('instructors.manage')->with('success', 'Instructor added successfully');
@@ -97,7 +100,8 @@ class InstructorController extends Controller
     public function showInstructor()
     {
         $courses = Course::where('instructor_id', Auth::id())->get();
-        return view('Instructor.dashboard', compact('courses'));
+        $total_courses = $courses->count();
+        return view('Instructor.dashboard', compact('courses', 'total_courses'));
     }
 
 

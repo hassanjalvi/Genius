@@ -9,7 +9,7 @@
     <section id="manage-assignments" style="margin-left: 100px">
         <div class="container">
             <h2>Manage Assignments</h2>
-           
+
            <button class="btn btn-success" onclick="window.location='{{ route('mycourses.assignment.add') }}'">Add New Assignment</button>
             <br><br>
 
@@ -30,48 +30,59 @@
                         {{-- @foreach ($coursesAssigment as $cou ) --}}
 
 
+                        @foreach($coursesAssigment as $course)
+    @foreach($course->assignment as $assignment)
                         <tr>
-                            {{-- <td>{{$cou->id}}</td> --}}
+                            <td>{{$assignment->id ?? ""}}</td>
                             <td>
-                                <a href="{{ asset('storage/assignments/assignment1.pdf') }}" target="_blank">View Assignment</a>
+                                <a href="{{$assignment->assignment_file ?? ""}}" target="_blank">View Assignment</a>
                             </td>
                             {{-- <td>{{$cou->assigment->assignment_title ?? ""}}</td> --}}
-                            <td>Course1</td>
+                            <td>{{$assignment->assignment_title ?? ""}}</td>
+                            <td>{{$course->name ?? ""}}</td>
+
                             <td>
-                                <button class="btn btn-primary" onclick="toggleEditForm(1)">
+                                <button class="btn btn-primary" onclick="toggleEditForm({{ $assignment->id }})">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <form action="#" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this assignment?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                </form>
+
+
+                                <div style="display: inline-block;">
+
+                                    <form action="{{ route('assignment.delete', $assignment->id) }}"  method="POST" onsubmit="return confirm('Are you sure you want to delete this assignment?');">
+                                        @csrf
+                                        @method('DELETE')
+                                <button class="btn btn-danger delete-btn" ><i class="fas fa-trash"></i></button>
+                                    </form>
+                            </div>
                             </td>
                         </tr>
-                        <tr id="edit-form-1" style="display: none;">
+                        <tr id="edit-form-{{ $assignment->id }}" style="display: none;">
                             <td colspan="5">
-                                <form action="#" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('assignment.update', $assignment->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3">
                                         <label class="form-label">Assignment Title</label>
-                                        <input type="text" class="form-control" name="title" value="Intro to Laravel Assignment" required>
+                                        <input type="text" class="form-control" name="assignment_title" value="{{ $assignment->assignment_title }}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Assignment File (optional)</label>
                                         <input type="file" class="form-control" name="assignment_file">
                                     </div>
-                                    <div class="mb-3">
+                                    {{-- <div class="mb-3">
                                         <label class="form-label">Course</label>
                                         <select class="form-control" name="course_id" required>
                                             <option value="1" selected>Course1</option>
                                             <option value="2">Course2</option>
                                             <option value="3">Course3</option>
                                         </select>
-                                    </div>
+                                    </div> --}}
                                     <button type="submit" class="btn btn-primary">Update Assignment</button>
                                 </form>
                             </td>
                         </tr>
+                        @endforeach
+                        @endforeach
                         {{-- @endforeach --}}
 
                         <!-- Assignment Row 2 -->

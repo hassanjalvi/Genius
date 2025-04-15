@@ -10,13 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('instructors', function (Blueprint $table) {
+        Schema::create('quiz_questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->string('pic')->nullable();
-            $table->enum('feature', ['0', '1'])->default('0');
+            $table->foreignId('quiz_id')->constrained('quizzes')->cascadeOnDelete();
+            $table->string('question')->nullable();
+            $table->string('description')->nullable();
+            $table->enum("correct_option", ['a', 'b', 'c', 'd'])->nullable();
 
-            $table->string('expertise', 255)->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('instructors');
+        Schema::dropIfExists('quiz_questions');
     }
 };

@@ -31,7 +31,7 @@
 	<link href="{{asset('assets/css/colors/color-7.css')}}" rel="alternate stylesheet" type="text/css" title="color-7">
 	<link href="{{asset('assets/css/colors/color-8.css')}}" rel="alternate stylesheet" type="text/css" title="color-8">
 	<link href="{{asset('assets/css/colors/color-9.css')}}" rel="alternate stylesheet" type="text/css" title="color-9">
-	
+
 
 </head>
 
@@ -140,8 +140,8 @@
 														<input class="pass" name="name" type="password" placeholder="Your password*">
 													</div>
 													<div class="nws-button text-center white text-capitalize">
-														<button type="submit" value="Submit">LOg in Now</button> 
-													</div> 
+														<button type="submit" value="Submit">LOg in Now</button>
+													</div>
 												</form>
 												<div class="log-in-footer text-center">
 													<p>* Denotes mandatory field.</p>
@@ -221,12 +221,12 @@
 			</div>
 		</header>
  	<!-- Start of Header section
- 		============================================= --> 
+ 		============================================= -->
 
 
 	<!-- Start of breadcrumb section
 		============================================= -->
-		<section id="breadcrumb" class="breadcrumb-section relative-position backgroud-style">
+		{{-- <section id="breadcrumb" class="breadcrumb-section relative-position backgroud-style">
 			<div class="blakish-overlay"></div>
 			<div class="container">
 				<div class="page-breadcrumb-content text-center">
@@ -241,7 +241,7 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section> --}}
 	<!-- End of breadcrumb section
 		============================================= -->
 
@@ -258,15 +258,17 @@
 							</div>
 							<div class="course-single-text">
 								<div class="course-title mt10 headline relative-position">
-									<h3><a href="#">Fully Responsive <b>Web Design &amp; Development.</b></a> <span class="trend-badge text-uppercase bold-font"><i class="fas fa-bolt"></i> TRENDING</span></h3>
-								</div>
-								<div class="course-details-content">
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
-									<p>
-										Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-									</p>
+									<h3><a href="#">{{$course->name ?? ""}}</b></a> <span class="trend-badge text-uppercase bold-font"><i class="fas fa-bolt"></i> TRENDING</span></h3>
 								</div>
 
+
+								<div class="course-details-content">
+									<p>{{$course->description ?? ""}}</p>
+									{{-- <p>
+										Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+									</p> --}}
+								</div>
+{{--
 								<div class="course-details-category ul-li">
 									<span>Course <b>Section:</b></span>
 									<ul>
@@ -276,12 +278,15 @@
 										<li><a href="#">SEction 4  </a></li>
 										<li><a href="#">SEction 5  </a></li>
 									</ul>
-								</div>
+								</div> --}}
+
+
+
 							</div>
 						</div>
 						<!-- /course-details -->
 
-						<div class="affiliate-market-guide mb65">
+						{{-- <div class="affiliate-market-guide mb65">
 							<div class="section-title-2 mb20 headline text-left">
 								<h2><span>Affiliate Marketing</span> A Begginer's Guide</h2>
 							</div>
@@ -291,12 +296,12 @@
 									<div class="panel">
 										<div class="panel-title" id="headingOne">
 											<div class="ac-head">
-												
+
 												<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-													<span>01</span>	Designing Website Using Photoshop 
+													<span>01</span>	Designing Website Using Photoshop
 												</button>
 												<div class="course-by">
-													BY: <b>TONI KROSS</b> 
+													BY: <b>TONI KROSS</b>
 												</div>
 												<div class="leanth-course">
 													<span>60 Minuttes</span>
@@ -313,12 +318,12 @@
 									<div class="panel">
 										<div class="panel-title" id="headingTwo">
 											<div class="ac-head">
-												
+
 												<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-													<span>02</span>	Designing Website Using Photoshop 
+													<span>02</span>	Designing Website Using Photoshop
 												</button>
 												<div class="course-by">
-													BY: <b>TONI KROSS</b> 
+													BY: <b>TONI KROSS</b>
 												</div>
 												<div class="leanth-course">
 													<span>60 Minuttes</span>
@@ -336,10 +341,10 @@
 										<div class="panel-title" id="headingThree">
 											<div class="ac-head">
 												<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-													<span>03</span>	Designing Website Using Photoshop 
+													<span>03</span>	Designing Website Using Photoshop
 												</button>
 												<div class="course-by">
-													BY: <b>TONI KROSS</b> 
+													BY: <b>TONI KROSS</b>
 												</div>
 												<div class="leanth-course">
 													<span>60 Minuttes</span>
@@ -357,10 +362,10 @@
 										<div class="panel-title" id="headingFoure">
 											<div class="ac-head">
 												<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFoure" aria-expanded="true" aria-controls="collapseFoure">
-													<span>04</span>	Designing Website Using Photoshop 
+													<span>04</span>	Designing Website Using Photoshop
 												</button>
 												<div class="course-by">
-													BY: <b>TONI KROSS</b> 
+													BY: <b>TONI KROSS</b>
 												</div>
 												<div class="leanth-course">
 													<span>60 Minuttes</span>
@@ -376,9 +381,9 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 						<!-- /market guide -->
-
+{{--
 						<div class="course-review">
 							<div class="section-title-2 mb20 headline text-left">
 								<h2>Course <span>Reviews:</span></h2>
@@ -435,10 +440,10 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 						<!-- /review overview -->
 
-						<div class="couse-comment">
+						{{-- <div class="couse-comment">
 							<div class="blog-comment-area ul-li about-teacher-2">
 								<ul class="comment-list">
 									<li>
@@ -448,7 +453,7 @@
 
 										<div class="author-name-rate">
 											<div class="author-name float-left">
-												BY: <span>FRANK LAMPARD</span> 
+												BY: <span>FRANK LAMPARD</span>
 											</div>
 											<div class="comment-ratting float-right ul-li">
 												<ul>
@@ -476,7 +481,7 @@
 
 										<div class="author-name-rate">
 											<div class="author-name float-left">
-												BY: <span>FRANK LAMPARD</span> 
+												BY: <span>FRANK LAMPARD</span>
 											</div>
 											<div class="comment-ratting float-right ul-li">
 												<ul>
@@ -519,7 +524,7 @@
 													<input type="radio" name="stars" value="3" />
 													<span class="icon"><i class="fas fa-star"></i></span>
 													<span class="icon"><i class="fas fa-star"></i></span>
-													<span class="icon"><i class="fas fa-star"></i></span>   
+													<span class="icon"><i class="fas fa-star"></i></span>
 												</label>
 												<label>
 													<input type="radio" name="stars" value="4" />
@@ -554,28 +559,28 @@
 											<label for="comments">Message</label>
 											<textarea name="comments" id="comments" rows="2" cols="20" required="required"></textarea>
 											<div class="nws-button text-center  gradient-bg text-uppercase">
-												<button type="submit" value="Submit">Send Message now</button> 
+												<button type="submit" value="Submit">Send Message now</button>
 											</div>
 										</form>
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 					</div>
 
 					<div class="col-md-3">
 						<div class="side-bar">
 							<div class="course-side-bar-widget">
-								<h3>Price <span>$69.99</span></h3>
+								<h3>Price <span>${{$course->courseFee->price ?? ""}}</span></h3>
 								<div class="genius-btn gradient-bg text-center text-uppercase float-left bold-font">
-									<a href="#">Enroll THis course <i class="fas fa-caret-right"></i></a>
+									<a href="{{route('checkout',$course->id) }}">Enroll THis course <i class="fas fa-caret-right"></i></a>
 								</div>
-								<div class="like-course">
+								{{-- <div class="like-course">
 									<a href="#"><i class="fas fa-heart"></i></a>
-								</div>
+								</div> --}}
 							</div>
 							<div class="enrolled-student">
-								<div class="comment-ratting float-left ul-li">
+								{{-- <div class="comment-ratting float-left ul-li">
 									<ul>
 										<li><i class="fas fa-star"></i></li>
 										<li><i class="fas fa-star"></i></li>
@@ -583,7 +588,7 @@
 										<li><i class="fas fa-star"></i></li>
 										<li><i class="fas fa-star"></i></li>
 									</ul>
-								</div>
+								</div> --}}
 								<div class="student-number bold-font">
 									250 Enrolled
 								</div>
@@ -591,14 +596,14 @@
 							<div class="couse-feature ul-li-block">
 								<ul>
 									<li>Lectures <span>20 Lectures</span></li>
-									<li>Language  <span>English, France</span></li>
-									<li>Video  <span>8 Hours</span></li>
+									{{-- <li>Language  <span>English, France</span></li> --}}
+									{{-- <li>Video  <span>8 Hours</span></li> --}}
 									<li>Duration <span>30 Days</span></li>
-									<li>Includes  <span>Breakfast</span></li>
+									{{-- <li>Includes  <span>Breakfast</span></li> --}}
 								</ul>
 							</div>
 
-							<div class="side-bar-widget">
+							{{-- <div class="side-bar-widget">
 								<h2 class="widget-title text-capitalize"><span>Related </span>News.</h2>
 								<div class="latest-news-posts">
 									<div class="latest-news-area">
@@ -637,9 +642,9 @@
 										<a href="#">View All News <i class="fas fa-chevron-circle-right"></i></a>
 									</div>
 								</div>
-							</div>
+							</div> --}}
 
-							<div class="side-bar-widget">
+							{{-- <div class="side-bar-widget">
 								<h2 class="widget-title text-capitalize"><span>Featured</span> Course.</h2>
 								<div class="featured-course">
 									<div class="best-course-pic-text relative-position">
@@ -661,14 +666,14 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 	<!-- End of course details section
-		============================================= -->	
+		============================================= -->
 
 
 
@@ -773,7 +778,7 @@
 								</div>
 							</div>
 						</div>
-					</div> 
+					</div>
 					<!-- /footer-widget-content -->
 					<div class="footer-social-subscribe mb65">
 						<div class="row">
@@ -795,7 +800,7 @@
 										<form action="#" method="post">
 											<input class="course" name="course" type="email" placeholder="Email Address.">
 											<div class="nws-button text-center  gradient-bg text-uppercase">
-												<button type="submit" value="Submit">Subscribe now</button> 
+												<button type="submit" value="Submit">Subscribe now</button>
 											</div>
 										</form>
 									</div>
@@ -849,6 +854,6 @@
 
 		<script src="{{asset('assets/js/script.js')}}"></script>
 	</body>
-	
+
 
 </html>

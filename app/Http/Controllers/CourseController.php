@@ -45,12 +45,20 @@ class CourseController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
+        $coursePicPath = null;
+        if ($request->hasFile('course_pic')) {
+            $coursePicPath = rand() . time() . '.' . $request->course_pic->extension();
+            $request->course_pic->move(public_path('course_pics'), $coursePicPath);
+            $coursePicPath = url('course_pics') . '/' . $coursePicPath;
+        }
+
 
         $user = Course::create([
             'name' => $request->course_name,
             'description' => $request->course_description,
             'syllabus' => $request->course_syllabus,
             'instructor_id' => $request->instructor_id,
+            'pic' => $coursePicPath ?? null,
         ]);
 
 

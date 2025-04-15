@@ -19,13 +19,16 @@
 
         <h2>Add Course Quiz</h2>
 
-        <form class="admin-form" action="" method="POST" enctype="multipart/form-data">
+        <form class="admin-form" action="{{ route('quiz.create') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <label for="course_id">Select Course:</label>
             <select name="course_id" id="course_id" class="form-control" required>
                 <option value="">-- Select Course --</option>
-                <option value="course1">Course 1</option>
+                @foreach ($courses as $cour)
+
+                <option value="{{ $cour->id }}">{{$cour->name}}</option>
+                @endforeach
                 <!-- Add more dynamically -->
             </select>
             @error('course_id') <span class="text-danger">{{ $message }}</span> @enderror
@@ -39,7 +42,7 @@
             <select name="quiz_type" id="quiz_type" class="form-control" onchange="toggleQuizFields()" required>
                 <option value="">-- Select Quiz Type --</option>
                 <option value="pdf">PDF Quiz</option>
-                <option value="mcqs">MCQs Quiz</option>
+                <option value="mcq">mcq Quiz</option>
             </select>
             @error('quiz_type') <span class="text-danger">{{ $message }}</span> @enderror
 
@@ -54,21 +57,21 @@
                 @error('pdf_quiz_file') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
-            <!-- MCQs Section -->
-            <div id="mcqs_quiz_section" style="display: none;">
+            <!-- mcq Section -->
+            <div id="mcq_quiz_section" style="display: none;">
                 <label for="mcq_title">Quiz Title:</label>
                 <input type="text" name="mcq_title" id="mcq_title" class="form-control" placeholder="Enter Quiz Title">
                 @error('mcq_title') <span class="text-danger">{{ $message }}</span> @enderror
 
-                <!-- Number of MCQs -->
-                <div id="mcqs-number-section">
-                    <label for="mcq_count">How many MCQs do you want to enter?</label>
-                    <input type="number" name="mcq_count" id="mcq_count" class="form-control" placeholder="Enter Number of MCQs" min="1" required>
-                    <button type="button" class="btn btn-secondary mt-2" onclick="generateMCQsFields()">Generate MCQs</button>
+                <!-- Number of mcq -->
+                <div id="mcq-number-section">
+                    <label for="mcq_count">How many mcq do you want to enter?</label>
+                    <input type="number" name="mcq_count" id="mcq_count" class="form-control" placeholder="Enter Number of mcq" min="1" >
+                    <button type="button" class="btn btn-secondary mt-2" onclick="generatemcqFields()">Generate mcq</button>
                     @error('mcq_count') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
-                <div id="mcqs-container"></div>
+                <div id="mcq-container"></div>
 
             </div>
 
@@ -123,12 +126,12 @@
     function toggleQuizFields() {
         const quizType = document.getElementById('quiz_type').value;
         document.getElementById('pdf_quiz_section').style.display = quizType === 'pdf' ? 'block' : 'none';
-        document.getElementById('mcqs_quiz_section').style.display = quizType === 'mcqs' ? 'block' : 'none';
+        document.getElementById('mcq_quiz_section').style.display = quizType === 'mcq' ? 'block' : 'none';
     }
 
-    function generateMCQsFields() {
+    function generatemcqFields() {
         const mcqCount = document.getElementById('mcq_count').value;
-        const container = document.getElementById('mcqs-container');
+        const container = document.getElementById('mcq-container');
         container.innerHTML = ''; // Clear any existing MCQ fields
 
         for (let i = 0; i < mcqCount; i++) {

@@ -26,12 +26,12 @@
                     <div class="card text-white bg-primary mb-3 text-center">
                         <div class="card-body">
                             <h5 class="card-title" style="color: white">Total Courses</h5>
-                            <h3>0</h3>
+                            <h3>{{$total_courses ?? ""}}</h3>
                         </div>
                     </div>
                 </a>
             </div>
-        
+
             <div class="col-md-6">
                 <a href="" style="text-decoration: none;">
                     <div class="card text-white bg-warning mb-3 text-center">

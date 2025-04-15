@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Enrolment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EnrolmentController extends Controller
 {
@@ -13,7 +15,7 @@ class EnrolmentController extends Controller
     public function manageEnrollments()
     {
         $enrollmnet = Enrolment::with(['user', 'course'])->get();
-        // dd($enrollmnet);
+
         return view('Admin.manageenrollments', compact('enrollmnet'));
     }
 
@@ -48,9 +50,11 @@ class EnrolmentController extends Controller
     }
     public function manageCourseEnrollments()
     {
-        return view('Instructor.manageenrollments');
+        $enroll = Course::where('instructor_id', Auth()->id())->with(['enrollment.user', 'enrollmentCourse'])->get();
+        // dd($enroll);
+        return view('Instructor.manageenrollments', compact('enroll'));
     }
-    
+
     public function index()
     {
 

@@ -15,9 +15,9 @@ class AssignmentController extends Controller
      */
     public function manageAssignment()
     {
-        // $coursesAssigment = Course::where('instructor_id', Auth::id())->with('assignment')->get();
+        $coursesAssigment = Course::where('instructor_id', Auth::id())->with('assignment')->get();
         // dd($coursesAssigment);
-        return view('Instructor.manageAssignments');
+        return view('Instructor.manageAssignments', compact('coursesAssigment'));
     }
     public function addAssignment()
     {
@@ -62,31 +62,35 @@ class AssignmentController extends Controller
 
     }
 
-    public function deletecourse($id)
+    public function deleteAssignment($id)
     {
 
-        $course = Course::findOrFail($id);
+        $course = Assignment::findOrFail($id);
         $course->delete();
 
-        return redirect()->back()->with('success', 'Course deleted successfully!');
+        return redirect()->back()->with('success', 'Assignment deleted successfully!');
 
     }
-    public function updatecourse(Request $request, $id)
+    public function updateAssignment(Request $request, $id)
     {
-        $course = Course::where('id', $id)->first();
+        // dd($request->all(), $id);
+        $assignment = Assignment::where('id', $id)->first();
 
-        $course->update([
-            'name' => $request->course_name ?? $course->name,
-            'description' => $request->course_description ?? $course->description,
-            'syllabus' => $request->course_syllabus ?? $course->course_syllabus,
-            'status' => $request->status ?? $course->status,
-            'instructor_id' => $request->coutructor_id ?? $course->instructor_id,
+        $assigmentPicPath = null;
+        if ($request->hasFile('assignment_file')) {
+            $assigmentPicPath = rand() . time() . '.' . $request->assignment_file->extension();
+            $request->assignment_file->move(public_path('assignment_files'), $assigmentPicPath);
+            $assigmentPicPath = url('assignment_files') . '/' . $assigmentPicPath;
+        }
+
+        $assignment->update([
+            'assignment_title' => $request->assignment_title ?? $assignment->assignment_title,
+            'assignment_file' => $assigmentPicPath ?? $assignment->assignment_file,
+
         ]);
 
 
-
-
-        return redirect()->back()->with('success', 'Instructor updated successfully!');
+        return redirect()->back()->with('success', 'Assignment updated successfully!');
 
     }
 

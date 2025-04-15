@@ -10,12 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('course_id')->constrained('courses')->cascadeOnDelete();
-            $table->decimal('amount', 10, 2)->nullable();
-            $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');
+
+            $table->bigInteger('number')->nullable();
+            $table->string('title')->nullable();
+            $table->enum('type', ['mcq', 'pdf'])->nullable();
+            $table->string('documnet')->nullable();
+
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('quizzes');
     }
 };
