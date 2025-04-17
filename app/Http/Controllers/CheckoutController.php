@@ -19,13 +19,18 @@ class CheckoutController extends Controller
 
     public function Payment($id, Request $request)
     {
+
+
+
+
         $course = Course::find($id);
+
 
         if (!$course) {
             return back()->with('error', 'You cannot enroll in this course please register another course');
         }
 
-        // dd($request->all());
+
 
         $paymeny = Payment::create([
             'user_id' => Auth()->id(),
@@ -33,7 +38,6 @@ class CheckoutController extends Controller
             'amount' => $request->price,
             'status' => 'completed',
         ]);
-
         $enrollment = Enrolment::create([
             'student_id' => Auth()->id(),
             'course_id' => $id,
@@ -41,7 +45,7 @@ class CheckoutController extends Controller
         ]);
 
         $enrollment_courses = EnrollmentCourse::create([
-            'course_id' => Auth()->id(),
+            'course_id' => $id,
             'enrollment_id' => $enrollment->id,
         ]);
 

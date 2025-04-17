@@ -27,21 +27,34 @@
                     <tbody>
 
                         <!-- Example Quiz Row -->
+
+                        @foreach ($course as  $singleCourse)
+                        @foreach($singleCourse->courseQuiz as $quiz)
+
                         <tr>
-                            <td>1</td>
-                            <td>PDF</td>
-                            <td>Laravel Basics Quiz</td>
-                            <td>Course1</td>
+                            <td>{{$quiz->id ?? ""}}</td>
                             <td>
-                                <a href="{{ asset('storage/quizzes/laravel_quiz.pdf') }}" target="_blank" class="btn btn-sm btn-info">View</a>
-                                <button class="btn btn-primary" onclick="toggleEditForm(1)">
+                                @if($quiz->type === 'pdf')
+                                    <a href="{{ $quiz->documnet }}" target="_blank" class="btn btn-primary btn-sm">View</a>
+                                @else
+                                    {{ ucfirst($quiz->type) }}
+                                @endif
+                            </td>
+                            <td>{{$quiz->title ?? ""}}</td>
+                            <td>{{$singleCourse->name}}</td>
+                            <td>
+                                {{-- <a href="{{ asset('storage/quizzes/laravel_quiz.pdf') }}" target="_blank" class="btn btn-sm btn-info">View</a> --}}
+                                {{-- <button class="btn btn-primary" onclick="toggleEditForm(1)">
                                     <i class="fas fa-edit"></i>
-                                </button>
-                                <form action="#" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this quiz?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                </form>
+                                </button> --}}
+                                <div style="display: inline-block;">
+
+                                    <form action="{{ route('quiz.delete', $quiz->id) }}"  method="POST" onsubmit="return confirm('Are you sure you want to delete this assignment?');">
+                                        @csrf
+                                        @method('DELETE')
+                                <button class="btn btn-danger delete-btn" ><i class="fas fa-trash"></i></button>
+                                    </form>
+                            </div>
                             </td>
                         </tr>
 
@@ -77,6 +90,8 @@
                                 </form>
                             </td>
                         </tr>
+                        @endforeach
+                        @endforeach
 
                     </tbody>
                 </table>

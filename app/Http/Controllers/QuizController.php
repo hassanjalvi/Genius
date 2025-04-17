@@ -22,7 +22,8 @@ class QuizController extends Controller
     }
     public function manageQuizes()
     {
-        return view('Instructor.managequizes');
+        $course = Course::with('courseQuiz')->get();
+        return view('Instructor.managequizes', compact('course'));
     }
 
     public function createQuiz(Request $request)
@@ -59,6 +60,9 @@ class QuizController extends Controller
                 'documnet' => $quizPicPath,
             ]);
 
+            return redirect()->route('mycourses.quiz.manage')->with('success', 'Quiz added successfully');
+
+
         }
 
 
@@ -73,47 +77,66 @@ class QuizController extends Controller
                 'type' => $request->quiz_type,
             ]);
 
-            foreach ($request->questions as $key => $ques) {
 
-                foreach ($request->option_a as $key => $a) {
+            // foreach ($request->mcqs as $mcq) {
 
-                    foreach ($request->option_b as $key => $b) {
-
-                        foreach ($request->option_c as $key => $c) {
-
-                            foreach ($request->option_d as $key => $d) {
-                                foreach ($request->correct_answers as $key => $correct_answerss) {
-
-                                    $quizNumber = QuizQuestions::create([
-                                        'quiz_id' => $quiz->id,
-                                        'question' => $ques,
-                                        // 'description'=>$request->description ?? null,
-                                        'correct_option' => $correct_answerss,
-                                    ]);
-
-                                    $quizOptions = QuizOptions::create([
-                                        'quiz_question_id' => $quizNumber->id,
-                                        'option_a' => $a,
-                                        'option_b' => $b,
-                                        'option_c' => $c,
-                                        'option_d' => $d,
-                                        'is_correct' => $correct_answerss,
-                                    ]);
-
-                                }
-                            }
-                        }
-                    }
-                }
+            //     $quizNumber = QuizQuestions::create([
+            //         'quiz_id' => $quiz->id,
+            //         'question' => $mcq->question,
+            //         // 'description'=>$request->description ?? null,
+            //         'correct_option' => $mcq->correct_answer,
+            //     ]);
 
 
+            //     $quizOptions = QuizOptions::create([
+            //         'quiz_question_id' => $quizNumber->id,
+            //         'option_a' => $mcq->options->A,
+            //         'option_b' => $mcq->options->B,
+            //         'option_c' => $mcq->options->C,
+            //         'option_d' => $mcq->options->D,
+            //         'is_correct' => $mcq->correct_answer,
+            //     ]);
 
+            // }
+            foreach ($request->mcqs as $mcq) {
+
+                $quizNumber = QuizQuestions::create([
+                    'quiz_id' => $quiz->id,
+                    'question' => $mcq['question'], // ✅ ARRAY syntax
+                    // 'description'=>$request->description ?? null,
+                    'correct_option' => $mcq['correct_answer'],
+                ]);
+
+                $quizOptions = QuizOptions::create([
+                    'quiz_question_id' => $quizNumber->id,
+                    'option_a' => $mcq['options']['A'],
+                    'option_b' => $mcq['options']['B'],
+                    'option_c' => $mcq['options']['C'],
+                    'option_d' => $mcq['options']['D'],
+                    'is_correct' => $mcq['correct_answer'],
+                ]);
             }
+
         }
 
-        return redirect()->back()->with('success', 'Quiz added successfully!');
+
+
+        return redirect()->route('mycourses.quiz.manage')->with('success', 'Quiz added successfully');
 
     }
+
+
+    public function deleteQuiz($id)
+    {
+
+        $course = Quiz::findOrFail($id);
+        $course->delete();
+
+        return redirect()->back()->with('success', 'Quiz deleted successfully!');
+
+    }
+
+
     public function index()
     {
         //

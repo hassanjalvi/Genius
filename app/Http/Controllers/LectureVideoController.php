@@ -21,13 +21,25 @@ class LectureVideoController extends Controller
     public function manageVideo()
     {
         $courseVideo = Course::with('courseVideo')->latest()->get();
+
         return view('Instructor.managevideos', compact('courseVideo'));
     }
 
     public function myCoursesContent($id)
     {
-        $course = Course::where('id', $id)->latest()->first();
-        return view('Instructor.mycoursecontent', compact('course'));
+        $course = Course::where('id', $id)->with('enrollment', 'assignment', 'courseVideo', 'courseQuiz')->latest()->first();
+        if ($course) {
+            $total_video = $course->courseVideo->count();
+            $total_assignment = $course->assignment->count();
+            $total_enrollment = $course->enrollment->count();
+            $total_quiz = $course->courseQuiz->count();
+
+        } else {
+            $total_video = 0;
+            $total_assignment = 0;
+            $total_quiz = 0;
+        }
+        return view('Instructor.mycoursecontent', compact('course', 'total_video', 'total_assignment', 'total_enrollment', 'total_quiz'));
     }
 
     public function uploadVideo(Request $request)
@@ -37,7 +49,7 @@ class LectureVideoController extends Controller
         $validator = Validator::make($request->all(), [
             'course_id' => 'required|integer',
             'title' => 'required|string|max:255',
-            'video_file' => 'required|max:51200',
+            'video_file' => 'required|file|max:51200',
         ]);
 
         if ($validator->fails()) {

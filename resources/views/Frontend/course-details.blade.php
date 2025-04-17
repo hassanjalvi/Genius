@@ -254,7 +254,7 @@
 					<div class="col-md-9">
 						<div class="course-details-item">
 							<div class="course-single-pic mb30">
-								<img src="assets/img/course/cs-1.jpg" alt="">
+								<img src="{{ $course->pic ?? "" }}" alt="">
 							</div>
 							<div class="course-single-text">
 								<div class="course-title mt10 headline relative-position">
@@ -589,19 +589,11 @@
 										<li><i class="fas fa-star"></i></li>
 									</ul>
 								</div> --}}
-								<div class="student-number bold-font">
+								{{-- <div class="student-number bold-font">
 									250 Enrolled
-								</div>
+								</div> --}}
 							</div>
-							<div class="couse-feature ul-li-block">
-								<ul>
-									<li>Lectures <span>20 Lectures</span></li>
-									{{-- <li>Language  <span>English, France</span></li> --}}
-									{{-- <li>Video  <span>8 Hours</span></li> --}}
-									<li>Duration <span>30 Days</span></li>
-									{{-- <li>Includes  <span>Breakfast</span></li> --}}
-								</ul>
-							</div>
+
 
 							{{-- <div class="side-bar-widget">
 								<h2 class="widget-title text-capitalize"><span>Related </span>News.</h2>

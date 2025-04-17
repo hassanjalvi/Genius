@@ -38,7 +38,7 @@
                                     <source src="{{ $video->file ?? "" }}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
-                            </td>s
+                            </td>
                             <td>{{$video->title ?? ""}}</td>
                             <td>{{$cou->name ?? ""}}</td>
                             <td>

@@ -35,7 +35,6 @@ class AssignmentController extends Controller
             'course_id' => 'required',
             'assignment_title' => 'required|string',
             'assignment_description' => 'required|string',
-            'video_file' => 'required',
         ]);
 
         if ($validator->fails()) {

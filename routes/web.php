@@ -104,6 +104,7 @@ Route::middleware(['auth', 'instructor'])->group(function () {
     Route::post('/assignment/update/{id}', [AssignmentController::class, 'updateAssignment'])->name('assignment.update');
 
     Route::post('/quiz/create', [QuizController::class, 'createQuiz'])->name('quiz.create');
+    Route::delete('/course/quiz/delete/{id}', [QuizController::class, 'deleteQuiz'])->name('quiz.delete');
 
 
 });

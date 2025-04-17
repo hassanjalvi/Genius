@@ -448,7 +448,9 @@
 						<div class="course-pic relative-position mb25">
 
                             @if ($cou->pic)
+                            <a href="{{ route('course.details', $cou->id) }}">
                             <img src="{{ $cou->pic }}" alt="" style="width: 300px; height: 250px;">
+                            </a>
 
                                 @else
 							<img src="assets/img/course/c-1.jpg" alt="">
@@ -463,7 +465,7 @@
 						<div class="course-item-text">
 							<div class="course-meta">
 								{{-- <span class="course-category bold-font"><a href="#">Web Design</a></span> --}}
-								<span class="course-author bold-font"><a href="#">{{$cou->instructor->name ?? ""}}</a></span>
+								<span class="course-author bold-font"><a href="{{ route('course.details', $cou->id) }}">{{$cou->instructor->name ?? ""}}</a></span>
 								{{-- <div class="course-rate ul-li">
 									<ul>
 										<li><i class="fas fa-star"></i></li>
@@ -475,7 +477,7 @@
 								</div> --}}
 							</div>
 							<div class="course-title mt10 headline pb45 relative-position">
-								<h3><a href="#">{{$cou->name ?? ""}}</a> <span class="trend-badge text-uppercase bold-font"><i class="fas fa-bolt"></i> TRENDING</span></h3>
+								<h3><a href="{{ route('course.details', $cou->id) }}">{{$cou->name ?? ""}}</a> <span class="trend-badge text-uppercase bold-font"><i class="fas fa-bolt"></i> TRENDING</span></h3>
 							</div>
 							{{-- <div class="course-viewer ul-li">
 								<ul>
@@ -875,7 +877,7 @@
 						<div class="product-img text-center mb20">
                             @if ($cou->pic)
 
-                            <img src="{{ $cou->pic  }}" alt="">
+                          <a href="{{ route('course.details', $cou->id) }}">  <img src="{{ $cou->pic  }}" alt=""> </a>
 
                             @else
 							<img src="assets/img/product/bp-1.png" alt="">
@@ -886,7 +888,7 @@
 						<div class="product-text-content relative-position">
 							<div class="best-title-price float-left">
 								<div class="course-title headline">
-									<h3><a href="#">{{$cou->name}}</a></h3>
+									<h3><a href="{{ route('course.details', $cou->id) }}">{{$cou->name}}</a></h3>
 								</div>
 								<div class="price-start">
 									Start from
@@ -934,8 +936,13 @@
 
 							<div class="best-course-pic-text relative-position">
 								<div class="best-course-pic relative-position">
-									<img src="assets/img/course/bc-1.jpg" alt="">
-									{{-- <div class="trend-badge-2 text-center text-uppercase">
+                                    @if ($cou->pic)
+
+                                <a href="{{ route('course.details', $cou->id) }}">    <img  src="{{ $cou->pic  }}" alt="">  </a>
+
+                                    @else
+                                    <img src="assets/img/product/bp-1.png" alt="">
+                                    @endif									{{-- <div class="trend-badge-2 text-center text-uppercase">
 										<i class="fas fa-bolt"></i>
 										<span>Trending</span>
 									</div> --}}

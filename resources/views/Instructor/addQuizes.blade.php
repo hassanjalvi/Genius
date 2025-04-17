@@ -26,14 +26,11 @@
             <select name="course_id" id="course_id" class="form-control" required>
                 <option value="">-- Select Course --</option>
                 @foreach ($courses as $cour)
-
                 <option value="{{ $cour->id }}">{{$cour->name}}</option>
                 @endforeach
-                <!-- Add more dynamically -->
             </select>
             @error('course_id') <span class="text-danger">{{ $message }}</span> @enderror
 
-            <!-- ✅ Added Quiz Number Field -->
             <label for="quiz_number">Quiz Number:</label>
             <input type="number" name="quiz_number" id="quiz_number" class="form-control" placeholder="Enter Quiz Number" required min="1">
             @error('quiz_number') <span class="text-danger">{{ $message }}</span> @enderror
@@ -42,7 +39,7 @@
             <select name="quiz_type" id="quiz_type" class="form-control" onchange="toggleQuizFields()" required>
                 <option value="">-- Select Quiz Type --</option>
                 <option value="pdf">PDF Quiz</option>
-                <option value="mcq">mcq Quiz</option>
+                <option value="mcq">MCQ Quiz</option>
             </select>
             @error('quiz_type') <span class="text-danger">{{ $message }}</span> @enderror
 
@@ -57,22 +54,20 @@
                 @error('pdf_quiz_file') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
-            <!-- mcq Section -->
+            <!-- MCQ Section -->
             <div id="mcq_quiz_section" style="display: none;">
                 <label for="mcq_title">Quiz Title:</label>
-                <input type="text" name="mcq_title" id="mcq_title" class="form-control" placeholder="Enter Quiz Title">
+                <input type="text" name="mcq_title" id="mcq_title" class="form-control" placeholder="Enter Quiz Title" >
                 @error('mcq_title') <span class="text-danger">{{ $message }}</span> @enderror
 
-                <!-- Number of mcq -->
                 <div id="mcq-number-section">
-                    <label for="mcq_count">How many mcq do you want to enter?</label>
-                    <input type="number" name="mcq_count" id="mcq_count" class="form-control" placeholder="Enter Number of mcq" min="1" >
-                    <button type="button" class="btn btn-secondary mt-2" onclick="generatemcqFields()">Generate mcq</button>
+                    <label for="mcq_count">How many questions do you want to add?</label>
+                    <input type="number" name="mcq_count" id="mcq_count" class="form-control" placeholder="Enter number of questions" min="1" >
+                    <button type="button" class="btn btn-secondary mt-2" onclick="generateMcqFields()">Generate Questions</button>
                     @error('mcq_count') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
-                <div id="mcq-container"></div>
-
+                <div id="mcq-container" class="mt-4"></div>
             </div>
 
             <br><br>
@@ -119,9 +114,15 @@
     .manage-instructors-button .btn:hover {
         background-color: #003f7f;
     }
+
+    .mcq-item {
+        background-color: #f8f9fa;
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 5px;
+    }
 </style>
 
-<!-- Bootstrap JS & Dynamic Script -->
 <script>
     function toggleQuizFields() {
         const quizType = document.getElementById('quiz_type').value;
@@ -129,40 +130,67 @@
         document.getElementById('mcq_quiz_section').style.display = quizType === 'mcq' ? 'block' : 'none';
     }
 
-    function generatemcqFields() {
+    function generateMcqFields() {
         const mcqCount = document.getElementById('mcq_count').value;
         const container = document.getElementById('mcq-container');
-        container.innerHTML = ''; // Clear any existing MCQ fields
+        container.innerHTML = '';
 
         for (let i = 0; i < mcqCount; i++) {
             const mcqItem = document.createElement('div');
-            mcqItem.classList.add('mcq-item', 'mb-4', 'border', 'rounded', 'p-3');
+            mcqItem.classList.add('mcq-item');
             mcqItem.innerHTML = `
-                <label>Question ${i + 1}:</label>
-                <input type="text" name="questions[]" class="form-control" placeholder="Enter Question">
+                <input type="hidden" name="mcqs[${i}][type]" value="mcq">
+                <h5>Question ${i + 1}</h5>
 
-                <label>Option A:</label>
-                <input type="text" name="option_a[]" class="form-control" placeholder="Option A">
+                <div class="form-group mb-3">
+                    <label>Question Text</label>
+                    <input type="text" name="mcqs[${i}][question]" class="form-control" >
+                </div>
 
-                <label>Option B:</label>
-                <input type="text" name="option_b[]" class="form-control" placeholder="Option B">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label>Option A</label>
+                            <input type="text" name="mcqs[${i}][options][A]" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label>Option B</label>
+                            <input type="text" name="mcqs[${i}][options][B]" class="form-control" >
+                        </div>
+                    </div>
+                </div>
 
-                <label>Option C:</label>
-                <input type="text" name="option_c[]" class="form-control" placeholder="Option C">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label>Option C</label>
+                            <input type="text" name="mcqs[${i}][options][C]" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label>Option D</label>
+                            <input type="text" name="mcqs[${i}][options][D]" class="form-control" >
+                        </div>
+                    </div>
+                </div>
 
-                <label>Option D:</label>
-                <input type="text" name="option_d[]" class="form-control" placeholder="Option D">
+                <div class="form-group mb-3">
+                    <label>Correct Answer</label>
+                    <select name="mcqs[${i}][correct_answer]" class="form-control" >
+                        <option value="A">Option A</option>
+                        <option value="B">Option B</option>
+                        <option value="C">Option C</option>
+                        <option value="D">Option D</option>
+                    </select>
+                </div>
 
-                <label>Correct Answer:</label>
-                <select name="correct_answers[]" class="form-control">
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                </select>
-
-                <label>Description (Optional):</label>
-                <textarea name="descriptions[]" class="form-control" rows="2" placeholder="Explain the answer (optional)"></textarea>
+                <div class="form-group">
+                    <label>Explanation (Optional)</label>
+                    <textarea name="mcqs[${i}][description]" class="form-control" rows="2"></textarea>
+                </div>
             `;
             container.appendChild(mcqItem);
         }
