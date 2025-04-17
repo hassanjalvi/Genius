@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignment;
 use App\Models\Course;
+use App\Models\CourseVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -34,18 +35,18 @@ class AssignmentController extends Controller
             'course_id' => 'required',
             'assignment_title' => 'required|string',
             'assignment_description' => 'required|string',
-            'assignment_file' => 'required',
+            'video_file' => 'required',
         ]);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
-        $assigmentPicPath = null;
-        if ($request->hasFile('assignment_file')) {
-            $assigmentPicPath = rand() . time() . '.' . $request->assignment_file->extension();
-            $request->assignment_file->move(public_path('assignment_files'), $assigmentPicPath);
-            $assigmentPicPath = url('assignment_files') . '/' . $assigmentPicPath;
+        $videoPicPath = null;
+        if ($request->hasFile('video_file')) {
+            $videoPicPath = rand() . time() . '.' . $request->video_file->extension();
+            $request->video_file->move(public_path('video_files'), $videoPicPath);
+            $videoPicPath = url('video_files') . '/' . $videoPicPath;
         }
 
 
@@ -53,7 +54,7 @@ class AssignmentController extends Controller
             'course_id' => $request->course_id,
             'assignment_title' => $request->assignment_title,
             'assignment_description' => $request->assignment_description,
-            'assignment_file' => $assigmentPicPath,
+            'video_file' => $videoPicPath,
         ]);
 
 
@@ -76,16 +77,16 @@ class AssignmentController extends Controller
         // dd($request->all(), $id);
         $assignment = Assignment::where('id', $id)->first();
 
-        $assigmentPicPath = null;
-        if ($request->hasFile('assignment_file')) {
-            $assigmentPicPath = rand() . time() . '.' . $request->assignment_file->extension();
-            $request->assignment_file->move(public_path('assignment_files'), $assigmentPicPath);
-            $assigmentPicPath = url('assignment_files') . '/' . $assigmentPicPath;
+        $videoPicPath = null;
+        if ($request->hasFile('video_file')) {
+            $videoPicPath = rand() . time() . '.' . $request->video_file->extension();
+            $request->video_file->move(public_path('video_files'), $videoPicPath);
+            $videoPicPath = url('video_files') . '/' . $videoPicPath;
         }
 
         $assignment->update([
             'assignment_title' => $request->assignment_title ?? $assignment->assignment_title,
-            'assignment_file' => $assigmentPicPath ?? $assignment->assignment_file,
+            'video_file' => $videoPicPath ?? $assignment->video_file,
 
         ]);
 
@@ -93,6 +94,8 @@ class AssignmentController extends Controller
         return redirect()->back()->with('success', 'Assignment updated successfully!');
 
     }
+
+
 
 
     public function index()

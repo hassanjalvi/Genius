@@ -20,10 +20,20 @@
     <a href="{{ route('mycourses.assignment.manage') }}">Assignments</a>
     <a href="{{ route('mycourses.quiz.manage') }}">Quizes</a>
     <a href="{{ route('mycourses.enrolments.manage') }}">Enrollments</a>
-    
-  
-    <a href="{{ url('/logout') }}" onclick="return confirm('Are you sure you want to logout?');" class="logout-btn">Logout</a>
-</div>
+
+
+    @if(Auth::check())
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+
+    <a href="#" class="logout-btn"
+       onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?')) document.getElementById('logout-form').submit();">
+        Logout
+    </a>
+@else
+    <a href="{{ route('login') }}" class="login-btn">Login</a>
+@endif</div>
 
 <div class="main open" id="main">
     <!-- Content of your main section goes here -->

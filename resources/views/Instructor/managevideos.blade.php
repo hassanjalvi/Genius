@@ -25,106 +25,56 @@
                     </thead>
                     <tbody>
                         <!-- Video Row 1 -->
-                        <tr>
-                            <td>1</td>
-                            <td>
-                                <video width="200" controls>
-                                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </td>
-                            <td>Intro to Laravel</td>
-                            <td>Course 1</td>
-                            <td>
-                                <button class="btn btn-primary" onclick="toggleEditForm(1)">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <form action="#" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this video?');">
-                                    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr id="edit-form-1" class="edit-form" style="display: none;">
-                            <td colspan="6">
-                                <form action="#" method="POST" enctype="multipart/form-data">
-                                    <div class="mb-3">
-                                        <label class="form-label">Video Title:</label>
-                                        <input type="text" class="form-control" name="title" value="Intro to Laravel" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Video File (leave blank to keep existing):</label>
-                                        <input type="file" class="form-control" name="video_file">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Course:</label>
-                                        <select class="form-control" name="course_id" required>
-                                            <option value="1" selected>Course 1</option>
-                                            <option value="2">Course 2</option>
-                                            <option value="3">Course 3</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Status:</label>
-                                        <select name="status" class="form-control">
-                                            <option value="1" selected>Active</option>
-                                            <option value="0">Inactive</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Update Video</button>
-                                </form>
-                            </td>
-                        </tr>
+                        @foreach ($courseVideo as $cou )
+                        @foreach ($cou->courseVideo as $video )
 
-                        <!-- Video Row 2 -->
+
+
+
                         <tr>
-                            <td>2</td>
+                            <td>{{$video->id}}</td>
                             <td>
                                 <video width="200" controls>
-                                    <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                                    <source src="{{ $video->file ?? "" }}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
-                            </td>
-                            <td>Understanding Blade Templates</td>
-                            <td>Course 2</td>
+                            </td>s
+                            <td>{{$video->title ?? ""}}</td>
+                            <td>{{$cou->name ?? ""}}</td>
                             <td>
-                                <button class="btn btn-primary" onclick="toggleEditForm(2)">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <form action="#" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this video?');">
-                                    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                </form>
+                                <button onclick="toggleEditForm({{ $video->id }})" class="btn btn-primary edit-btn" ><i class="fas fa-edit"></i></button>
+
+                                <div style="display: inline-block;">
+
+                                    <form action="{{ route('course.video.delete', $video->id) }}"  method="POST" onsubmit="return confirm('Are you sure you want to delete this coutructor?');">
+                                        @csrf
+                                        @method('DELETE')
+                                <button class="btn btn-danger delete-btn" ><i class="fas fa-trash"></i></button>
+                                    </form>
+                            </div>
                             </td>
                         </tr>
-                        <tr id="edit-form-2" class="edit-form" style="display: none;">
+                        <tr id="edit-form-{{ $video->id }}" class="edit-form" style="display: none;">
                             <td colspan="6">
-                                <form action="#" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('course.video.update', $video->id) }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="mb-3">
                                         <label class="form-label">Video Title:</label>
-                                        <input type="text" class="form-control" name="title" value="Understanding Blade Templates" required>
+                                        <input type="text" class="form-control" name="title" value="{{$video->title ?? ""}}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Video File (leave blank to keep existing):</label>
                                         <input type="file" class="form-control" name="video_file">
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Course:</label>
-                                        <select class="form-control" name="course_id" required>
-                                            <option value="1">Course 1</option>
-                                            <option value="2" selected>Course 2</option>
-                                            <option value="3">Course 3</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Status:</label>
-                                        <select name="status" class="form-control">
-                                            <option value="1">Active</option>
-                                            <option value="0" selected>Inactive</option>
-                                        </select>
-                                    </div>
+
                                     <button type="submit" class="btn btn-primary">Update Video</button>
                                 </form>
                             </td>
                         </tr>
+                        @endforeach
+                        @endforeach
+                        <!-- Video Row 2 -->
+
 
                         <!-- Add more static rows as needed -->
 

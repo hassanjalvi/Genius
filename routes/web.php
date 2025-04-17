@@ -81,7 +81,7 @@ Route::middleware(['auth', 'instructor'])->group(function () {
     #instructorside
     Route::get('/instructor/dashboard', [InstructorController::class, 'showInstructor'])->name('instructor.dashboard');
     Route::get('/instructor/mycourses', [CourseController::class, 'myCourses'])->name('instructor.mycourses');
-    Route::get('/instructor/mycourses/content', [LectureVideoController::class, 'myCoursesContent'])->name('instructor.mycourses.content');
+    Route::get('/instructor/mycourses/content/{id}', [LectureVideoController::class, 'myCoursesContent'])->name('instructor.mycourses.content');
     Route::get('/mycourses/videos/adad', [LectureVideoController::class, 'addVideo'])->name('mycourses.videos.add');
     Route::get('/mycourses/videos/manage', [LectureVideoController::class, 'manageVideo'])->name('mycourses.videos.manage');
     Route::get('/mycourses/assignments/add', [AssignmentController::class, 'addAssignment'])->name('mycourses.assignment.add');
@@ -93,6 +93,10 @@ Route::middleware(['auth', 'instructor'])->group(function () {
 
 
     Route::post('/mycourses/assignments/create', [AssignmentController::class, 'createAssignment'])->name('mycourses.assignment.create');
+
+    Route::post('/mycourses/videos/create', [LectureVideoController::class, 'uploadVideo'])->name('mycourses.videos.create');
+    Route::delete('/course/video/delete/{id}', [LectureVideoController::class, 'deleteCourseVideo'])->name('course.video.delete');
+    Route::post('/course/video/update/{id}', [LectureVideoController::class, 'updateCourseVideo'])->name('course.video.update');
 
 
 

@@ -16,29 +16,44 @@
 
 <body>
     <section class="admin-panel">
-        
+
 
         <!-- Add Course Video Section -->
         <h2>Add Course Video</h2>
 
-        <form class="admin-form" action="" method="POST" enctype="multipart/form-data">
+        <form class="admin-form" action="{{ route('mycourses.videos.create') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <label for="course_id">Select Course:</label>
             <select name="course_id" id="course_id" class="form-control" required>
                 <option value="">-- Select Course --</option>
-                <option value="course1">course1</option>
+                @foreach ($courses as $cou )
+
+                <option value="{{ $cou->id }}">{{$cou->name}}</option>
+                @endforeach
             </select>
             @error('course_id') <span class="text-danger">{{ $message }}</span> @enderror
-
+            @if ($errors->has('course_id'))
+            <span class="text-primary">
+                {{ $errors->first('course_id') }}
+            </span>
+            @endif
             <label for="video_title">Video Title:</label>
-            <input type="text" id="video_title" name="video_title" placeholder="Enter Video Title" required>
-            @error('video_title') <span class="text-danger">{{ $message }}</span> @enderror
-
+            <input type="text" id="video_title" name="title" placeholder="Enter Video Title" required>
+            @error('title') <span class="text-danger">{{ $message }}</span> @enderror
+            @if ($errors->has('title'))
+            <span class="text-primary">
+                {{ $errors->first('title') }}
+            </span>
+            @endif
             <label for="video_file">Upload Video File:</label>
             <input type="file" id="video_file" name="video_file" accept="video/*" required>
             @error('video_file') <span class="text-danger">{{ $message }}</span> @enderror
-
+            @if ($errors->has('video_file'))
+            <span class="text-primary">
+                {{ $errors->first('video_file') }}
+            </span>
+            @endif
             <br><br>
             <button type="submit">Upload Video</button>
         </form>
