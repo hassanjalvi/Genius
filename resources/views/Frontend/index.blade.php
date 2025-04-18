@@ -61,6 +61,40 @@
 		============================================= -->
 		<header>
 			<div id="main-menu"  class="main-menu-container">
+                @if(session('success'))
+                <div id="toast-success" class="toast-message">
+                    {{ session('success') }}
+                </div>
+
+                <style>
+                .toast-message {
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 8px;
+                    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+                    z-index: 9999;
+                    font-weight: bold;
+                    animation: fadeout 1s ease-in-out 9s forwards;
+                }
+
+                @keyframes fadeout {
+                    to { opacity: 0; transform: translateY(-20px); visibility: hidden; }
+                }
+                </style>
+
+                <script>
+                    setTimeout(function() {
+                        let toast = document.getElementById('toast-success');
+                        if (toast) {
+                            toast.remove();
+                        }
+                    }, 10000); // 10 seconds
+                </script>
+            @endif
 				<div  class="main-menu">
 					<div class="container">
 						<div class="navbar-default">
@@ -514,30 +548,44 @@
 						<div class="about-resigter-form backgroud-style relative-position">
 							<div class="register-content">
 								<div class="register-fomr-title text-center">
-									<h3 class="bold-font"><span>Get a</span> Free Registration.</h3>
+									<h3 class="bold-font"><span></span> Contact Us</h3>
 									<p>More Than 122K Online Available Courses</p>
 								</div>
 								<div class="register-form-area">
-									<form class="contact_form" action="#" method="POST" enctype="multipart/form-data">
+									<form class="contact_form" action="{{ route('contact.form') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
 										<div class="contact-info">
 											<input class="name" name="name" type="text" placeholder="Your Name.">
+                                            @error('name')
+                                            <div class="error-message">{{ $message }}</div>
+                                        @enderror
 										</div>
 										<div class="contact-info">
 											<input class="nbm" name="nbm" type="number" placeholder="Your Number">
+                                            @error('nbm')
+                                            <div class="error-message">{{ $message }}</div>
+                                        @enderror
 										</div>
 										<div class="contact-info">
 											<input class="email" name="email" type="email" placeholder="Email Address.">
+                                            @error('email')
+            <div class="error-message">{{ $message }}</div>
+        @enderror
 										</div>
-										<select>
+										{{-- <select>
 											<option value="9" selected="">Select Course.</option>
 											<option value="10">Web Design</option>
 											<option value="11">Web Development</option>
 											<option value="12">Php Core</option>
-										</select>
-										<div class="contact-info">
+										</select> --}}
+										{{-- <div class="contact-info">
 											<input type="text" id="datepicker" placeholder="Date.">
-										</div>
-										<textarea placeholder="Message."></textarea>
+										</div> --}}
+										<textarea name="message" placeholder="Message."></textarea>
+                                        @error('message')
+                                        <div class="error-message">{{ $message }}</div>
+                                    @enderror
+
 										<div class="nws-button text-uppercase text-center white text-capitalize">
 											<button type="submit" value="Submit">SUBMIT REQUEST </button>
 										</div>
@@ -1501,7 +1549,7 @@
 							</div> --}}
 						</div>
 						<div class="teacher-name-designation mt15">
-							<span class="teacher-name">{{$ins->name ?? ""}}</span>
+							<span class="teacher-name">{{$ins->user->name ?? ""}}</span>
 							<span class="teacher-designation">{{$ins->expertise ?? ""}}</span>
 						</div>
 					</div>
