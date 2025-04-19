@@ -11,17 +11,13 @@
 <body>
 
 <div class="open-btn" onclick="toggleSidebar()">☰</div>
-
 <div class="sidebar open" id="sidebar">
     <div class="sidebar-heading">Student Dashboard</div>
     <a href="{{ route('student.dashboard') }}" class="active">Dashboard</a>
-    {{-- <a href="{{ route('Student.mycourses') }}">My Courses</a>
-    <a href="{{ route('mycourses.videos.manage') }}">Videos</a>
-    <a href="{{ route('mycourses.assignment.manage') }}">Assignments</a>
-    <a href="{{ route('mycourses.quiz.manage') }}">Quizes</a>
-    <a href="{{ route('mycourses.enrolments.manage') }}">Enrollments</a> --}}
-
-
+    <a href="{{ route('student.mycourses') }}">My Courses</a>
+    <a href="{{ route('student.mycourses.videos') }}">Course Videos</a>
+    <a href="{{ route('student.mycourses.assignments') }}">Course Assignments</a>
+    <a href="{{ route('student.mycourses.quizes') }}">Course Quizes</a>
     @if(Auth::check())
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf

@@ -23,7 +23,7 @@
             <div class="row mt-5">
 
                 <div class="col-md-4">
-                    <a href="{{ route('mycourses.videos.manage') }}" style="text-decoration: none;">
+                    <a href="{{ route('student.mycourses.videos') }}" style="text-decoration: none;">
                         <div class="card text-white bg-primary mb-3 text-center">
                             <div class="card-body">
                                 <h5 class="card-title" style="color: white">Total Videos</h5>
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <a href="{{ route('mycourses.assignment.manage') }}" style="text-decoration: none;">
+                    <a href="{{ route('student.mycourses.assignments') }}" style="text-decoration: none;">
                         <div class="card text-white bg-success mb-3 text-center">
                             <div class="card-body">
                                 <h5 class="card-title" style="color: white">Total Assignments</h5>
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <a href="{{ route('mycourses.quiz.manage') }}" style="text-decoration: none;">
+                    <a href="{{ route('student.mycourses.quizes') }}" style="text-decoration: none;">
                         <div class="card text-white bg-warning mb-3 text-center">
                             <div class="card-body">
                                 <h5 class="card-title" style="color: white">Total Quizes</h5>

@@ -123,6 +123,10 @@ class LectureVideoController extends Controller
     {
         return view('Student.mycoursescontent');
     }
+    public function sawvideo()
+    {
+        return view('Student.videos');
+    }
 
     public function index()
     {

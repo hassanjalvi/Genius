@@ -22,7 +22,7 @@
         <!-- 🔧 Quick Stats Section -->
         <div class="row mt-5">
             <div class="col-md-6">
-                <a href="{{ route('instructor.mycourses') }}" style="text-decoration: none;">
+                <a href="{{ route('student.mycourses') }}" style="text-decoration: none;">
                     <div class="card text-white bg-primary mb-3 text-center">
                         <div class="card-body">
                             <h5 class="card-title" style="color: white">Total Courses</h5>

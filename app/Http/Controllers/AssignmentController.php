@@ -95,7 +95,10 @@ class AssignmentController extends Controller
         return redirect()->back()->with('success', 'Assignment updated successfully!');
 
     }
-
+    public function studentAssignments()
+    {
+        return view('Student.assignments');
+    }
 
 
 

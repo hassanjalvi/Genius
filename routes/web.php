@@ -115,9 +115,10 @@ Route::middleware(['auth', 'instructor'])->group(function () {
 Route::get('/student/dashboard', [StudentController::class, 'showStudent'])->name('student.dashboard');
 Route::get('/student/mycourses', [CourseController::class, 'myCoursesStudent'])->name('student.mycourses');
 Route::get('/student/mycourses/content', [LectureVideoController::class, 'myCoursesContentStudent'])->name('student.mycourses.content');
-
-
-
+Route::get('/student/mycourses/videos', [LectureVideoController::class, 'sawVideo'])->name('student.mycourses.videos');
+Route::get('/student/mycourses/assignments', [AssignmentController::class, 'studentAssignments'])->name('student.mycourses.assignments');
+Route::get('/student/mycourses/quizes', [QuizController::class, 'studentQuizes'])->name('student.mycourses.quizes');
+Route::get('/student/mycourses/attempt/quizes', [QuizController::class, 'attemptQuizes'])->name('student.mycourses.attempt.quizes');
 Route::controller(StripePaymentController::class)->group(function () {
     Route::get('stripe', 'stripe');
     Route::post('stripe', 'stripePost')->name('stripe.post');

@@ -27,7 +27,7 @@
 
 
                 <div class="col-md-4">
-                    <a href="" style="text-decoration: none;">
+                    <a href="{{route('student.mycourses.content')}}" style="text-decoration: none;">
                         <div class="card text-white bg-primary mb-3 text-center">
                             <div class="card-body">
                                 <br>

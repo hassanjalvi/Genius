@@ -25,7 +25,14 @@ class QuizController extends Controller
         $course = Course::with('courseQuiz')->get();
         return view('Instructor.managequizes', compact('course'));
     }
-
+    public function studentQuizes()
+    {
+       return view('Student.quizes');
+    }
+    public function attemptQuizes()
+    {
+       return view('Student.attemptquiz');
+    }
     // public function createQuiz(Request $request)
     // {
     //     // dd($request->all());
