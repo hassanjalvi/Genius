@@ -9,6 +9,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
+use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 
 
@@ -74,7 +75,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
 // use student.dashboard and parent.dashboard instructor.dashboard oter wise it will give error due to its used in index.js
-Route::get('/admin/dashboard/dummy', [UserController::class, 'showAdmin'])->name('student.dashboard');
+// Route::get('/admin/dashboard/dummy', [UserController::class, 'showAdmin'])->name('student.dashboard');
 Route::get('/admin/dashboard/dummy/parent', [UserController::class, 'showAdmin'])->name('parent.dashboard');
 Route::middleware(['auth', 'instructor'])->group(function () {
 
@@ -108,3 +109,7 @@ Route::middleware(['auth', 'instructor'])->group(function () {
 
 
 });
+#studentDashboard
+Route::get('/student/dashboard', [StudentController::class, 'showStudent'])->name('student.dashboard');
+Route::get('/student/mycourses', [CourseController::class, 'myCoursesStudent'])->name('student.mycourses');
+Route::get('/student/mycourses/content', [LectureVideoController::class, 'myCoursesContentStudent'])->name('student.mycourses.content');

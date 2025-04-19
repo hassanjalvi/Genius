@@ -1501,8 +1501,8 @@
 							</div> --}}
 						</div>
 						<div class="teacher-name-designation mt15">
-							<span class="teacher-name">{{$ins->name ?? ""}}</span>
-							<span class="teacher-designation">{{$ins->expertise ?? ""}}</span>
+							<span class="teacher-name">{{$ins->name }}</span>
+							<span class="teacher-designation">{{$ins->expertise}}</span>
 						</div>
 					</div>
 

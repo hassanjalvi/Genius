@@ -134,10 +134,12 @@ class CourseController extends Controller
 
         return view('Instructor.mycourses', compact('courses'));
     }
-    public function myCoursesContent()
+   
+    public function myCoursesStudent()
     {
-        return view('Instructor.mycoursecontent');
+       
+        return view('Student.mycourses');
     }
-
+   
 
 }

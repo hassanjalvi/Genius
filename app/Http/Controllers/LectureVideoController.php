@@ -118,13 +118,11 @@ class LectureVideoController extends Controller
 
 
         return redirect()->route('mycourses.videos.manage')->with('success', 'Video updated successfully.');
-
-
-
-
-
     }
-
+    public function myCoursesContentStudent()
+    {
+        return view('Student.mycoursescontent');
+    }
 
     public function index()
     {

@@ -43,6 +43,10 @@ class StudentController extends Controller
     {
         return view('Instructor.studentprogress');
     }
+    public function showStudent()
+    {
+        return view('Student.dashboard');
+    }
 
     public function index()
     {

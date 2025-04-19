@@ -46,7 +46,7 @@
 
                                 <div style="display: inline-block;">
 
-                                    <form action="{{ route('course.video.delete', $video->id) }}"  method="POST" onsubmit="return confirm('Are you sure you want to delete this coutructor?');">
+                                    <form action="{{ route('course.video.delete', $video->id) }}"  method="POST" onsubmit="return confirm('Are you sure you want to delete this vidoe lecture?');">
                                         @csrf
                                         @method('DELETE')
                                 <button class="btn btn-danger delete-btn" ><i class="fas fa-trash"></i></button>
