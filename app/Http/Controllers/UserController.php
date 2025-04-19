@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Course;
 use App\Models\Instructor;
 use App\Models\User;
@@ -19,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         $courses = Course::with(['courseFee', 'instructor'])->latest()->get();
-        $instructor = Instructor::where('feature', '1')->latest()->get();
+        $instructor = Instructor::where('feature', '1')->with('user')->latest()->get();
         return view('Frontend.index', compact('courses', 'instructor'));
     }
 
@@ -113,6 +114,28 @@ class UserController extends Controller
         Auth::logout();
         return redirect()->route('login.form')->with('success', 'You have been logged out.');
     }
+
+    public function contactCreate(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'nbm' => 'required|numeric|min:10',
+            'email' => 'required|email',
+            'message' => 'required|string|min:10',
+        ]);
+
+        // Store the contact form data
+        Contact::create([
+            'name' => $request->name,
+            'nbm' => $request->nbm,
+            'email' => $request->email,
+            'message' => $request->message,
+        ]);
+
+        // Redirect with a success message
+        return back()->with('success', 'Your request has been submitted successfully!');
+    }
+
 
     public function showRegister()
     {

@@ -1,7 +1,22 @@
 <!doctype html>
 <html lang="en">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .error-message {
+            margin-top: 5px;
+        }
+        </style>
 
+<style>
+    @keyframes fadeout {
+        to { opacity: 0; transform: translateY(-20px); visibility: hidden; }
+    }
+    .toast-message {
+        animation: fadeout 1s ease-in-out 9s forwards;
+    }
+    </style>
 <head>
 	<meta charset="UTF-8">
 	<title>Check Out Page</title>
@@ -349,26 +364,51 @@
 									<div class="check-out-form">
 
 
-										<form action="{{ route('payment',$course->id) }}" method="post">
+										{{-- <form action="{{ route('payment',$course->id) }}" method="post"> --}}
+                                            <form
+                                            role="form"
+                                            action="{{route('stripe.post')}}"
+                                            method="post"
+                                            class="require-validation"
+                                            data-cc-on-file="false"
+                                            data-stripe-publishable-key="{{ config('services.stripe.public') }}"
+                                            id="payment-form"
+                                          >
                                             @csrf
+                                            @if ($errors->any())
+                                            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-lg">
+                                              <ul class="list-disc pl-5">
+                                                @foreach ($errors->all() as $error)
+                                                  <li>{{ $error }}</li>
+                                                @endforeach
+                                              </ul>
+                                            </div>
+                                          @endif
+
+                                          @if (session('success'))
+                                            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded-lg">
+                                              {{ session('success') }}
+                                            </div>
+                                          @endif
 											<div class="payment-info">
-												<label class=" control-label">Name On Card :</label>
-												<input type="number" class="form-control"  name="name" placeholder="Enter the name of your card" value="">
+												<label for="card_number" for="card_number"  class=" control-label">Name On Card :</label>
+												<input type="text" class="form-control" name="firstname_booking" id="name_on_card"    placeholder="Enter the name of your card" required>
 											</div>
 											<div class="payment-info">
 												<label class=" control-label">Card Number :</label>
-												<input type="text" class="form-control"  name="number" placeholder="Enter Your Number" value="">
+												<input type="text" class="form-control"    name="card_number"  id="card_number" placeholder="Enter Your Number" >
 											</div>
 											<div class="payment-info input-2">
-												<label class=" control-label">Expired Date :</label>
-												<input type="text" class="form-control"  name="exp_month" placeholder="MM" value="">
-												<input type="text" class="form-control"  name="exp_year" placeholder="YY" value="">
+												<label for="expiration_month" class=" control-label">Expired Date :</label>
+												<input type="text" class="form-control"     name="expire_month" id="expiration_month" placeholder="MM" >
+												<input type="text" class="form-control"  name="expire_year" id="expiration_year" placeholder="YY" >
 											</div>
 											<div class="payment-info input-2">
-												<label class=" control-label">CVV :</label>
-												<input type="text" class="form-control"  name="cvv" placeholder="CVV" value="">
+												<label for="cvc" class=" control-label">CVV :</label>
+												<input type="text" class="form-control"  name="ccv"  id="cvc" placeholder="CVV" >
 											</div>
                                             <input type="hidden" class="form-control"  name="price" placeholder="Enter Your Number" value="{{ $course->courseFee->price }}">
+                                            <input type="hidden" class="form-control"  name="course_id" placeholder="Enter Your Number" value="{{ $course->id }}">
 
 											{{-- <div class="payment-info">
 												<label class=" control-label">Country :</label>
@@ -416,6 +456,8 @@
                                     </button>
                                 </div>
                             </form>
+
+
 								<div class="terms-text pb45 mt25">
 									<p>By confirming this purchase, I agree to the <b>Term of Use, Refund Policy</b>  and <b>Privacy Policy</b></p>
 								</div>
@@ -626,9 +668,238 @@
 				</div>
 			</section>
 		</footer>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('payment-form'); // Now targeting the form correctly
+                const cardNumberInput = document.getElementById('card_number');
+                const expirationMonthInput = document.getElementById('expiration_month');
+                const expirationYearInput = document.getElementById('expiration_year');
+                const cvcInput = document.getElementById('cvc');
+
+                // Card Number Formatting
+                cardNumberInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length > 16) {
+                        value = value.slice(0, 16);
+                    }
+                    value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+                    e.target.value = value;
+                });
+
+                // Expiration Month Input
+                expirationMonthInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length > 2) {
+                        value = value.slice(0, 2);
+                    }
+                    e.target.value = value;
+                });
+
+                // Expiration Year Input
+                expirationYearInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length > 4) {
+                        value = value.slice(0, 4);
+                    }
+                    e.target.value = value;
+                });
+
+                // CVC Input
+                cvcInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length > 3) {
+                        value = value.slice(0, 3);
+                    }
+                    e.target.value = value;
+                });
+
+                // Submit Validation
+                form.addEventListener('submit', function(e) {
+                    let isValid = true;
+                    clearErrors();
+
+                    const cardNumber = cardNumberInput.value.replace(/\s/g, '');
+                    if (cardNumber.length !== 16) {
+                        showError(cardNumberInput, 'Card number must be 16 digits.');
+                        isValid = false;
+                    }
+
+                    const month = parseInt(expirationMonthInput.value, 10);
+                    if (isNaN(month) || month < 1 || month > 12) {
+                        showError(expirationMonthInput, 'Month must be between 01 and 12.');
+                        isValid = false;
+                    }
+
+                    const year = expirationYearInput.value;
+                    if (year.length !== 4) {
+                        showError(expirationYearInput, 'Year must be 4 digits (e.g., 2024).');
+                        isValid = false;
+                    }
+
+                    const cvc = cvcInput.value;
+                    if (cvc.length !== 3) {
+                        showError(cvcInput, 'CVC must be exactly 3 digits.');
+                        isValid = false;
+                    }
+
+                    if (!isValid) {
+                        e.preventDefault(); // Stop form submit if errors
+                    }
+                });
+
+                function showError(input, message) {
+                    const error = document.createElement('div');
+                    error.className = 'error-message';
+                    error.style.color = 'red';
+                    error.style.fontSize = '13px';
+                    error.textContent = message;
+                    input.parentNode.appendChild(error);
+                }
+
+                function clearErrors() {
+                    const errors = document.querySelectorAll('.error-message');
+                    errors.forEach(error => error.remove());
+                }
+            });
+            </script>
+
+
 	<!-- End of footer section
 		============================================= -->
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+        {{-- <script src="https://js.stripe.com/v3/"></script> --}}
+
+
+        <script type="text/javascript">
+
+        $(function() {
+
+            /*------------------------------------------
+            --------------------------------------------
+            Stripe Payment Code
+            --------------------------------------------
+            --------------------------------------------*/
+
+            var $form = $(".require-validation");
+
+            $('form.require-validation').bind('submit', function(e) {
+                var $form = $(".require-validation"),
+                inputSelector = ['input[type=email]', 'input[type=password]',
+                                 'input[type=text]', 'input[type=file]',
+                                 'textarea'].join(', '),
+                $inputs = $form.find('.required').find(inputSelector),
+                $errorMessage = $form.find('div.error'),
+                valid = true;
+                $errorMessage.addClass('hide');
+
+                $('.has-error').removeClass('has-error');
+                $inputs.each(function(i, el) {
+                  var $input = $(el);
+                  if ($input.val() === '') {
+                    $input.parent().addClass('has-error');
+                    $errorMessage.removeClass('hide');
+                    e.preventDefault();
+                  }
+                });
+
+                console.log($form.data('stripe-publishable-key'));
+                console.log($form.data('stripe-publishable-key'));
+                console.log($form.data('stripe-publishable-key'));
+                console.log("jbjj");
+                console.log({{ env('STRIPE_KEY') }});
+                console.log($form.data('stripe-publishable-key'));
+
+                if (!$form.data('cc-on-file')) {
+                  e.preventDefault();
+                  Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+                  Stripe.createToken({
+                    // number: $('.card-number').val(),
+                    // cvc: $('.card-cvc').val(),
+                    // exp_month: $('.card-expiry-month').val(),
+                    // exp_year: $('.card-expiry-year').val()
+                    number: $('#card_number').val(),
+    cvc: $('#cvc').val(),
+    exp_month: $('#expiration_month').val(),
+    exp_year: $('#expiration_year').val()
+                  }, stripeResponseHandler);
+                }
+
+            });
+
+            /*------------------------------------------
+            --------------------------------------------
+            Stripe Response Handler
+            --------------------------------------------
+            --------------------------------------------*/
+            // function stripeResponseHandler(status, response) {
+            //     if (response.error) {
+            //         $('.error')
+            //             .removeClass('hide')
+            //             .find('.alert')
+            //             .text(response.error.message);
+            //     } else {
+            //         /* token contains id, last4, and card type */
+            //         var token = response['id'];
+
+            //         $form.find('input[type=text]').empty();
+            //         $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+            //         $form.get(0).submit();
+            //     }
+            // }
+
+            function stripeResponseHandler(status, response) {
+    if (response.error) {
+        showToast(response.error.message, 'error');
+    } else {
+        /* token contains id, last4, and card type */
+        var token = response['id'];
+
+        $form.find('input[type=text]').empty();
+        $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+        $form.get(0).submit();
+    }
+}
+
+// Function to show toast messages
+function showToast(message, type) {
+    // Remove existing toast if any
+    let existingToast = document.getElementById('dynamic-toast');
+    if (existingToast) {
+        existingToast.remove();
+    }
+
+    // Create new toast
+    const toast = document.createElement('div');
+    toast.id = 'dynamic-toast';
+    toast.className = 'toast-message';
+    toast.style.backgroundColor = (type === 'error') ? '#f44336' : '#4CAF50'; // red for error, green for success
+    toast.style.color = 'white';
+    toast.style.position = 'fixed';
+    toast.style.top = '20px';
+    toast.style.right = '20px';
+    toast.style.padding = '15px 25px';
+    toast.style.borderRadius = '8px';
+    toast.style.boxShadow = '0px 0px 10px rgba(0,0,0,0.3)';
+    toast.style.zIndex = '9999';
+    toast.style.fontWeight = 'bold';
+    toast.style.animation = 'fadeout 1s ease-in-out 9s forwards';
+    toast.textContent = message;
+
+    document.body.appendChild(toast);
+
+    // Remove toast after 10 seconds
+    setTimeout(function() {
+        toast.remove();
+    }, 10000);
+}
+
+
+        });
+        </script>
 
 
 		<!-- For Js Library -->

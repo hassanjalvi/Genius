@@ -7,6 +7,7 @@ use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\LectureVideoController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Models\Student;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/user/register', [UserController::class, 'registerUser'])->name('register');
 Route::post('/user/login', [UserController::class, 'loginUser'])->name('login');
 Route::post('/user/logout', [UserController::class, 'logoutuser'])->name('logout');
+Route::post('/contact', [UserController::class, 'contactCreate'])->name('contact.form');
 
 Route::get('/user/register', [UserController::class, 'showRegister'])->name('register.form');
 // Route::post('/register/user', [UserController::class, 'onRegister'])->name('register');
@@ -113,3 +115,11 @@ Route::middleware(['auth', 'instructor'])->group(function () {
 Route::get('/student/dashboard', [StudentController::class, 'showStudent'])->name('student.dashboard');
 Route::get('/student/mycourses', [CourseController::class, 'myCoursesStudent'])->name('student.mycourses');
 Route::get('/student/mycourses/content', [LectureVideoController::class, 'myCoursesContentStudent'])->name('student.mycourses.content');
+
+
+
+Route::controller(StripePaymentController::class)->group(function () {
+    Route::get('stripe', 'stripe');
+    Route::post('stripe', 'stripePost')->name('stripe.post');
+});
+

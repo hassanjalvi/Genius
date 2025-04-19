@@ -11,6 +11,7 @@ class Assignment extends Model
         'assignment_file',
         'assignment_description',
         'assignment_title',
+        'assigment_file'
 
     ];
 
