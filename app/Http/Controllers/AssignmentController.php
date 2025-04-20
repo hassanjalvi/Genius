@@ -101,9 +101,18 @@ class AssignmentController extends Controller
     {
         // $assignment = Course::where('id', $id)->with('assignment.assignmentSubmission')->first();
 
+        // $assignment = Course::where('id', $id)
+        //     ->with(['assignment.assignmentSubmission']) // Eager load the relationship
+        //     ->first();
+
         $assignment = Course::where('id', $id)
-            ->with(['assignment.assignmentSubmission']) // Eager load the relationship
+            ->with([
+                'assignment.assignmentSubmission' => function ($query) {
+                    $query->where('student_id', Auth::id());
+                }
+            ])
             ->first();
+
 
         // dd($assignment);
         return view('Student.assignments', compact('assignment'));

@@ -95,29 +95,28 @@
                     <tbody>
                         @foreach ($assignment->assignment as $ass)
                         <tr>
-                            <td>{{ $loop->iteration ?? ""}}</td>
-                            <td>{{ $ass->assignment_title ?? ""}}</td>
-                            <td>{{ $assignment->name ?? ""}}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $ass->assignment_title ?? "" }}</td>
+                            <td>{{ $assignment->name ?? "" }}</td>
                             <td>
                                 @if ($ass->assigment_file)
-                                    <a href="{{ $ass->assigment_file ?? "" }}" target="_blank">Download</a>
+                                    <a href="{{ $ass->assigment_file }}" target="_blank">Download</a>
                                 @else
-                                    No file available
+                                    <span class="text-muted">No file available</span>
                                 @endif
                             </td>
                             <td>
                                 @php
-                                    // Check if the assignment submission relationship exists
-                                    $submission = $ass->assignmentSubmission ? $ass->assignmentSubmission->where('student_id', Auth::id())->first() : null;
+                                    // Get the student's submission (first one)
+                                    $submission = optional($ass->assignmentSubmission)->where('student_id', Auth::id())->first();
                                 @endphp
 
-                                @if (!empty($submission))
-                                    <a href="{{$ass->assignmentSubmission->file}}" >View Submission</a>
-                                    <br>
-                                    @if ($submission->marks === null)
-                                        <span class="text-warning">Pending</span> <!-- Show Pending if marks are null -->
+                                @if ($submission)
+                                    <a href="{{ $submission->file }}" >View Submission</a><br>
+                                    @if (is_null($submission->file))
+                                        <span class="text-warning">Pending</span> <!-- Pending if marks are null -->
                                     @else
-                                        <span class="text-success">{{  ""}}</span> <!-- Show marks if they are not null -->
+                                        <span class="text-success">{{ "" }}</span> <!-- Show marks -->
                                     @endif
                                 @else
                                     <span class="text-muted">No Submission Yet</span>
@@ -136,10 +135,26 @@
                                     </form>
                                 @endif
                             </td>
-                            <td>{{ $ass->assignmentSubmission->marks ?? "pending"}}</td>
 
+
+
+                            <td>
+                                @if ($submission)
+                                {{$submission->marks ?? "pending"}}
+                                @else
+                                pending
+                                @endif
+                            </td>
+
+
+
+
+
+
+                            {{-- <td> {{$ass->assignmentSubmission->marks ?? "pending"}}</td> --}}
                         </tr>
                         @endforeach
+
 
 
 
