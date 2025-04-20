@@ -1,6 +1,6 @@
-@extends('Student.layots.main')
+@extends('Instructor.layots.main')
 
-@section('title', 'chat')
+@section('title', 'Chat')
 @section('main-container')
 <!DOCTYPE html>
 <html lang="en">

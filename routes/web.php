@@ -93,7 +93,7 @@ Route::middleware(['auth', 'instructor'])->group(function () {
     Route::get('/mycourses/quizes/manage', [QuizController::class, 'manageQuizes'])->name('mycourses.quiz.manage');
     Route::get('/mycourses/enrolments/manage', [EnrolmentController::class, 'manageCourseEnrollments'])->name('mycourses.enrolments.manage');
     Route::get('/student/progress', [StudentController::class, 'studentProgress'])->name('student.progress');
-
+    
 
     Route::post('/mycourses/assignments/create', [AssignmentController::class, 'createAssignment'])->name('mycourses.assignment.create');
 
@@ -122,8 +122,9 @@ Route::get('/student/mycourses/attempt/quizes/{id?}', [QuizController::class, 'a
 
 Route::post('/student/assignments/upload', [AssignmentController::class, 'studentSolveAssignments'])->name('student.assignment.upload');
 Route::post('/student/quiz/upload', [QuizController::class, 'studentSolveQuiz'])->name('student.submit.mcq');
-
-
+Route::get('/student/chat', [StudentController::class, 'studentChat'])->name('student.chat');
+#instructor just to be build logic
+Route::get('/instructor/chat', [InstructorController::class, 'instructorChat'])->name('instructor.chat');
 Route::controller(StripePaymentController::class)->group(function () {
     Route::get('stripe', 'stripe');
     Route::post('stripe', 'stripePost')->name('stripe.post');

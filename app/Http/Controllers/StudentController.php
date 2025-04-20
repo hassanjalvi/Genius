@@ -52,6 +52,10 @@ class StudentController extends Controller
         // dd($user);
         return view('Student.dashboard', compact('user', 'total_courses'));
     }
+    public function studentChat()
+    {
+        return view('Student.chat');
+    }
 
     public function index()
     {

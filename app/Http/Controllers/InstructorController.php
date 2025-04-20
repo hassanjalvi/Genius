@@ -103,6 +103,10 @@ class InstructorController extends Controller
         $total_courses = $courses->count();
         return view('Instructor.dashboard', compact('courses', 'total_courses'));
     }
+    public function instructorChat()
+    {
+       return view('Instructor.chat');
+    }
 
 
 
