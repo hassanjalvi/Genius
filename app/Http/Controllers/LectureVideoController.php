@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\CourseVideo;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -119,13 +120,19 @@ class LectureVideoController extends Controller
 
         return redirect()->route('mycourses.videos.manage')->with('success', 'Video updated successfully.');
     }
-    public function myCoursesContentStudent()
+    public function myCoursesContentStudent($id)
     {
-        return view('Student.mycoursescontent');
+        $course = Course::where('id', $id)->with('courseVideo', 'assignment', 'courseQuiz')->first();
+        $totalVideos = $course->courseVideo ? $course->courseVideo->count() : 0;
+        $totalAssignments = $course->assignment ? $course->assignment->count() : 0;
+        $totalQuizzes = $course->courseQuiz ? $course->courseQuiz->count() : 0;
+
+        return view('Student.mycoursescontent', compact('course', 'totalVideos', 'totalAssignments', 'totalQuizzes'));
     }
-    public function sawvideo()
+    public function sawvideo($id)
     {
-        return view('Student.videos');
+        $video = CourseVideo::where('course_id', $id)->get();
+        return view('Student.videos', compact('video'));
     }
 
     public function index()

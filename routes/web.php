@@ -114,11 +114,16 @@ Route::middleware(['auth', 'instructor'])->group(function () {
 #studentDashboard
 Route::get('/student/dashboard', [StudentController::class, 'showStudent'])->name('student.dashboard');
 Route::get('/student/mycourses', [CourseController::class, 'myCoursesStudent'])->name('student.mycourses');
-Route::get('/student/mycourses/content', [LectureVideoController::class, 'myCoursesContentStudent'])->name('student.mycourses.content');
-Route::get('/student/mycourses/videos', [LectureVideoController::class, 'sawVideo'])->name('student.mycourses.videos');
-Route::get('/student/mycourses/assignments', [AssignmentController::class, 'studentAssignments'])->name('student.mycourses.assignments');
-Route::get('/student/mycourses/quizes', [QuizController::class, 'studentQuizes'])->name('student.mycourses.quizes');
-Route::get('/student/mycourses/attempt/quizes', [QuizController::class, 'attemptQuizes'])->name('student.mycourses.attempt.quizes');
+Route::get('/student/mycourses/content/{id}', [LectureVideoController::class, 'myCoursesContentStudent'])->name('student.mycourses.content');
+Route::get('/student/mycourses/videos/{id?}', [LectureVideoController::class, 'sawVideo'])->name('student.mycourses.videos');
+Route::get('/student/mycourses/assignments/{id?}', [AssignmentController::class, 'studentAssignments'])->name('student.mycourses.assignments');
+Route::get('/student/mycourses/quizes/{id?}', [QuizController::class, 'studentQuizes'])->name('student.mycourses.quizes');
+Route::get('/student/mycourses/attempt/quizes/{id?}', [QuizController::class, 'attemptQuizes'])->name('student.mycourses.attempt.quizes');
+
+Route::post('/student/assignments/upload', [AssignmentController::class, 'studentSolveAssignments'])->name('student.assignment.upload');
+Route::post('/student/quiz/upload', [QuizController::class, 'studentSolveQuiz'])->name('student.submit.mcq');
+
+
 Route::controller(StripePaymentController::class)->group(function () {
     Route::get('stripe', 'stripe');
     Route::post('stripe', 'stripePost')->name('stripe.post');

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Assignment;
 use App\Models\Course;
 use App\Models\CourseVideo;
+use App\Models\Enrolment;
+use App\Models\StudentAssignmentSubmissions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -95,9 +97,52 @@ class AssignmentController extends Controller
         return redirect()->back()->with('success', 'Assignment updated successfully!');
 
     }
-    public function studentAssignments()
+    public function studentAssignments($id)
     {
-        return view('Student.assignments');
+        // $assignment = Course::where('id', $id)->with('assignment.assignmentSubmission')->first();
+
+        $assignment = Course::where('id', $id)
+            ->with(['assignment.assignmentSubmission']) // Eager load the relationship
+            ->first();
+
+        // dd($assignment);
+        return view('Student.assignments', compact('assignment'));
+    }
+
+
+    public function studentSolveAssignments(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'assignment_file' => 'required|file|mimes:pdf,doc,docx,zip,jpg,png|max:5120',
+            'assignment_id' => 'required',
+            'course_id' => 'required',
+
+
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $assignmentPicPath = null;
+        if ($request->hasFile('assignment_file')) {
+            $assignmentPicPath = rand() . time() . '.' . $request->assignment_file->extension();
+            $request->assignment_file->move(public_path('assignment_files'), $assignmentPicPath);
+            $assignmentPicPath = url('assignment_files') . '/' . $assignmentPicPath;
+        }
+
+
+        $user = StudentAssignmentSubmissions::create([
+            'student_id' => Auth::id(),
+            'assignment_id' => $request->assignment_id,
+            'course_id' => $request->course_id,
+            'file' => $assignmentPicPath,
+        ]);
+
+
+        return redirect()->back()->with('success', 'Assignment added successfully');
+
+
     }
 
 

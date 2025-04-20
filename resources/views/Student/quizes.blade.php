@@ -66,49 +66,55 @@
                         <!-- Static Data for Demo -->
 
                         <!-- PDF Quiz 1 -->
-                        <tr>
-                            <td>1</td>
-                            <td>Pdf</td>
-                            <td>Introduction to Laravel</td>
-                            <td>Laravel Basics</td>
-                            <td>
-                                <a href="{{ asset('quizzes/sample_quiz_1.pdf') }}" download class="btn btn-sm btn-info">Download</a>
 
-                                <form action="#" method="POST" enctype="multipart/form-data" style="display:inline-block;">
-                                    @csrf
-                                    <input type="file" name="student_answer" style="display: none;" id="upload1" onchange="this.form.submit()">
-                                    <label for="upload1" class="btn btn-sm btn-warning">Upload Answer</label>
-                                </form>
+                        @foreach ($quiz as $q )
+                        <tr>
+                            <td>{{$loop->iteration ?? ""}}</td>
+                            <td>{{$q->type ?? ""}}</td>
+                            <td>{{$q->title ?? ""}}</td>
+                            <td>{{$q->course->name ?? ""}}</td>
+                            <td style="display: flex; align-items: center; gap: 10px;">
+                                @if ($q->type==='pdf')
+                                <a href="{{ $q->file ?? "" }}" download class="btn btn-sm btn-info">Download</a>
+                               @php
+    $submission = $q->quizSubmission->first(); // Get the first (or only) submission
+@endphp
+
+@if (is_null($submission) || is_null($submission->file))
+    <form action="{{ route('student.submit.mcq') }}" method="POST" enctype="multipart/form-data" style="display:inline-block;" id="uploadForm">
+        @csrf
+        <input type="hidden" name="course_id" value="{{ $q->course->id }}">
+        <input type="hidden" name="quiz_id" value="{{ $q->id }}">
+
+        <input type="file" name="assignment_file" id="assignmentFile" style="display: none;" onchange="document.getElementById('uploadForm').submit();">
+
+        <label for="assignmentFile" class="btn btn-sm btn-warning">Upload Answer</label>
+    </form>
+@else
+    <p>Quiz completed</p>
+@endif
+
+                                <script>
+                                    // Submit form when file is selected
+                                    document.getElementById('assignmentFile').addEventListener('change', function() {
+                                        document.getElementById('uploadForm').submit();
+                                    });
+                                </script>
+
+                                @endif
+                                @if ($q->type==='mcq')
+                                <a href="{{route('student.mycourses.attempt.quizes',$q->id)}}" class="btn btn-sm btn-success">Attempt Quiz</a>
+
+                                @endif
+
                             </td>
                         </tr>
+                        @endforeach
+
 
                         <!-- MCQ Quiz -->
-                        <tr>
-                            <td>2</td>
-                            <td>MCQ</td>
-                            <td>Laravel MCQ Quiz</td>
-                            <td>Laravel Basics</td>
-                            <td>
-                                <a href="{{route('student.mycourses.attempt.quizes')}}" class="btn btn-sm btn-success">Attempt Quiz</a>
-                            </td>
-                        </tr>
 
-                        <!-- PDF Quiz 2 -->
-                        <tr>
-                            <td>3</td>
-                            <td>pdf</td>
-                            <td>HTML Basics</td>
-                            <td>Web Development</td>
-                            <td>
-                                <a href="{{ asset('quizzes/sample_quiz_2.pdf') }}" download class="btn btn-sm btn-info">Download</a>
 
-                                <form action="#" method="POST" enctype="multipart/form-data" style="display:inline-block;">
-                                    @csrf
-                                    <input type="file" name="student_answer" style="display: none;" id="upload2" onchange="this.form.submit()">
-                                    <label for="upload2" class="btn btn-sm btn-warning">Upload Answer</label>
-                                </form>
-                            </td>
-                        </tr>
 
                     </tbody>
                 </table>

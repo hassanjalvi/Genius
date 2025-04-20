@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class StudentController extends Controller
 {
@@ -45,7 +47,10 @@ class StudentController extends Controller
     }
     public function showStudent()
     {
-        return view('Student.dashboard');
+        $user = User::where('id', Auth::id())->with('enrolmnets.course')->first();
+        $total_courses = $user->enrolmnets->count();
+        // dd($user);
+        return view('Student.dashboard', compact('user', 'total_courses'));
     }
 
     public function index()

@@ -23,21 +23,23 @@
             <div class="row mt-5">
 
 
-                {{-- @foreach ($courses as $cour) --}}
+
+                @foreach ($user->enrolmnets as $cou)
 
 
-                <div class="col-md-4">
-                    <a href="{{route('student.mycourses.content')}}" style="text-decoration: none;">
+
+
+                <div class="col-md-4 mb-5">
+                    <a href="{{route('student.mycourses.content',$cou->course->id)}}" style="text-decoration: none;">
                         <div class="card text-white bg-primary mb-3 text-center">
                             <div class="card-body">
                                 <br>
-                                <h3>Algebra</h3>
+                                <h3>{{$cou->course->name}}</h3>
                             </div>
                         </div>
                     </a>
                 </div>
-
-                {{-- @endforeach --}}
+                @endforeach
 
                 {{-- <div class="col-md-4">
                     <a href="{{ route('instructor.mycourses.content') }}" style="text-decoration: none;">

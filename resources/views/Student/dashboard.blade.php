@@ -26,7 +26,7 @@
                     <div class="card text-white bg-primary mb-3 text-center">
                         <div class="card-body">
                             <h5 class="card-title" style="color: white">Total Courses</h5>
-                            <h3>0</h3>
+                            <h3>{{$total_courses ?? "0"}}</h3>
                         </div>
                     </div>
                 </a>

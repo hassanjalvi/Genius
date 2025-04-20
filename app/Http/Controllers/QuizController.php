@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Quiz;
 use App\Models\QuizOptions;
 use App\Models\QuizQuestions;
+use App\Models\StudentQuizSubmissions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -25,13 +26,26 @@ class QuizController extends Controller
         $course = Course::with('courseQuiz')->get();
         return view('Instructor.managequizes', compact('course'));
     }
-    public function studentQuizes()
+    public function studentQuizes($id)
     {
-       return view('Student.quizes');
+        // $quiz = Quiz::where('course_id', $id)->with('course')->with('quizSubmission')->get();
+
+        $quiz = Quiz::where('course_id', $id)
+            ->with('course')
+            ->with([
+                'quizSubmission' => function ($query) {
+                    $query->where('student_id', Auth::id());
+                }
+            ])
+            ->get();
+
+        return view('Student.quizes', compact('quiz'));
     }
-    public function attemptQuizes()
+    public function attemptQuizes($id)
     {
-       return view('Student.attemptquiz');
+        $quiz = QuizQuestions::where('quiz_id', $id)->with('options')->get();
+        dd($quiz);
+        return view('Student.attemptquiz', compact('quiz'));
     }
     // public function createQuiz(Request $request)
     // {
@@ -230,6 +244,42 @@ class QuizController extends Controller
         $course->delete();
 
         return redirect()->back()->with('success', 'Quiz deleted successfully!');
+
+    }
+
+
+    public function studentSolveQuiz(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'assignment_file' => 'required|file|mimes:pdf,doc,docx,zip,jpg,png|max:5120',
+            'quiz_id' => 'required',
+            'course_id' => 'required',
+
+
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $assignmentPicPath = null;
+        if ($request->hasFile('assignment_file')) {
+            $assignmentPicPath = rand() . time() . '.' . $request->assignment_file->extension();
+            $request->assignment_file->move(public_path('assignment_files'), $assignmentPicPath);
+            $assignmentPicPath = url('assignment_files') . '/' . $assignmentPicPath;
+        }
+
+
+        $user = StudentQuizSubmissions::create([
+            'student_id' => Auth::id(),
+            'quiz_id' => $request->quiz_id,
+            'course_id' => $request->course_id,
+            'file' => $assignmentPicPath,
+        ]);
+
+
+        return redirect()->back()->with('success', 'Assignment added successfully');
+
 
     }
 

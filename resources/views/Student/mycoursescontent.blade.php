@@ -16,47 +16,47 @@
 <body>
     <center style="margin-left: 250px;">
         <div class="container">
-            <h2 class="text-center mt-4">Computer-Content</h2>
+            <h2 class="text-center mt-4">Course-Content</h2>
             <hr>
 
             <!-- 🔧 Quick Stats Section -->
             <div class="row mt-5">
 
                 <div class="col-md-4">
-                    <a href="{{ route('student.mycourses.videos') }}" style="text-decoration: none;">
+                    <a href="{{ route('student.mycourses.videos',$course->id) }}" style="text-decoration: none;">
                         <div class="card text-white bg-primary mb-3 text-center">
                             <div class="card-body">
                                 <h5 class="card-title" style="color: white">Total Videos</h5>
-                                <h3>{{$total_video ?? "0"}}</h3>
+                                <h3>{{$totalVideos ?? "0"}}</h3>
                             </div>
                         </div>
                     </a>
                 </div>
 
                 <div class="col-md-4">
-                    <a href="{{ route('student.mycourses.assignments') }}" style="text-decoration: none;">
+                    <a href="{{ route('student.mycourses.assignments',$course->id) }}" style="text-decoration: none;">
                         <div class="card text-white bg-success mb-3 text-center">
                             <div class="card-body">
                                 <h5 class="card-title" style="color: white">Total Assignments</h5>
-                                <h3>{{$total_assignment ?? "0"}}</h3>
+                                <h3>{{$totalAssignments ?? "0"}}</h3>
                             </div>
                         </div>
                     </a>
                 </div>
 
                 <div class="col-md-4">
-                    <a href="{{ route('student.mycourses.quizes') }}" style="text-decoration: none;">
+                    <a href="{{ route('student.mycourses.quizes',$course->id) }}" style="text-decoration: none;">
                         <div class="card text-white bg-warning mb-3 text-center">
                             <div class="card-body">
                                 <h5 class="card-title" style="color: white">Total Quizes</h5>
-                                <h3>{{$total_quiz ?? "0"}}</h3>
+                                <h3>{{$totalQuizzes ?? "0"}}</h3>
                             </div>
                         </div>
                     </a>
                 </div>
             </div>
 
-          
+
         </div>
     </center>
 

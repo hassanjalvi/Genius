@@ -6,128 +6,31 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <div class="container mt-5">
-    <h2 class="mb-4 text-center" style="margin-left: 100px">🎓 My Course Lectures</h2>
+    <h2 class="mb-4 text-center">🎓 My Course Lectures</h2>
     <hr>
-    <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-left:200px">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
 
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <video class="card-img-top" controls style="height: 200px; object-fit: cover;">
-                    <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="card-body bg-dark text-white">
-                    <h5 class="card-title">Intro to HTML</h5>
-                    <p class="card-text">Learn the basics of web structure with HTML5 elements.</p>
+        @foreach ($video as $vid)
+            <div class="col">
+                <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden">
+                    <div class="position-relative" style="height: 220px;">
+                        <video class="w-100 h-100" style="object-fit: cover; border-bottom: 3px solid #0d6efd;" controls>
+                            <source src="{{ $vid->file }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <span class="badge bg-primary position-absolute top-0 start-0 m-2 px-3 py-2 rounded-pill">
+                            Video
+                        </span>
+                    </div>
+                    <div class="card-body bg-dark text-white text-center">
+                        <h5 class="card-title mb-2" style="font-weight: 600;">{{ $vid->title }}</h5>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <video class="card-img-top" controls style="height: 200px; object-fit: cover;">
-                    <source src="https://filesamples.com/samples/video/mp4/sample_640x360.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="card-body bg-dark text-white">
-                    <h5 class="card-title">CSS Flexbox Guide</h5>
-                    <p class="card-text">Master layout control using Flexbox in CSS.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <video class="card-img-top" controls style="height: 200px; object-fit: cover;">
-                    <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="card-body bg-dark text-white">
-                    <h5 class="card-title">JavaScript Basics</h5>
-                    <p class="card-text">Introduction to JavaScript syntax and DOM manipulation.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <video class="card-img-top" controls style="height: 200px; object-fit: cover;">
-                    <source src="https://filesamples.com/samples/video/mp4/sample_960x400.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="card-body bg-dark text-white">
-                    <h5 class="card-title">Laravel Basics</h5>
-                    <p class="card-text">Setup, routes, and controllers in Laravel framework.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <video class="card-img-top" controls style="height: 200px; object-fit: cover;">
-                    <source src="https://filesamples.com/samples/video/mp4/sample_960x400.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="card-body bg-dark text-white">
-                    <h5 class="card-title">Laravel Blade Templating</h5>
-                    <p class="card-text">Learn how to create reusable templates in Laravel using Blade.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <video class="card-img-top" controls style="height: 200px; object-fit: cover;">
-                    <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="card-body bg-dark text-white">
-                    <h5 class="card-title">Eloquent ORM</h5>
-                    <p class="card-text">Use Laravel Eloquent to interact with your database effortlessly.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <video class="card-img-top" controls style="height: 200px; object-fit: cover;">
-                    <source src="https://filesamples.com/samples/video/mp4/sample_640x360.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="card-body bg-dark text-white">
-                    <h5 class="card-title">PHP Functions</h5>
-                    <p class="card-text">Understand how to create and use functions in PHP.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <video class="card-img-top" controls style="height: 200px; object-fit: cover;">
-                    <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="card-body bg-dark text-white">
-                    <h5 class="card-title">API Integration</h5>
-                    <p class="card-text">Connect your Laravel app with external APIs and fetch data.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100 shadow-sm">
-                <video class="card-img-top" controls style="height: 200px; object-fit: cover;">
-                    <source src="https://filesamples.com/samples/video/mp4/sample_960x400.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="card-body bg-dark text-white">
-                    <h5 class="card-title">MySQL with Laravel</h5>
-                    <p class="card-text">Learn how to manage MySQL databases within Laravel projects.</p>
-                </div>
-            </div>
-        </div>
+        @endforeach
 
     </div>
 </div>
+
 
 @endsection

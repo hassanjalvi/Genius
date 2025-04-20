@@ -134,12 +134,13 @@ class CourseController extends Controller
 
         return view('Instructor.mycourses', compact('courses'));
     }
-   
+
     public function myCoursesStudent()
     {
-       
-        return view('Student.mycourses');
+        $user = User::where('id', Auth::id())->with('enrolmnets.course')->first();
+        // dd($user);
+        return view('Student.mycourses', compact('user'));
     }
-   
+
 
 }
