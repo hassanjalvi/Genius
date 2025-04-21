@@ -44,7 +44,7 @@ class QuizController extends Controller
     public function attemptQuizes($id)
     {
         $quiz = QuizQuestions::where('quiz_id', $id)->with('options')->get();
-        dd($quiz);
+        // dd($quiz);
         return view('Student.attemptquiz', compact('quiz'));
     }
     // public function createQuiz(Request $request)
