@@ -17,7 +17,7 @@
                             <th>Student Name</th>
                             <th>Email</th>
                             <th>Course</th>
-
+                            <th>Grade</th>
                             {{-- <th>Action</th> --}}
                         </tr>
                     </thead>
@@ -34,6 +34,7 @@
                             <td>{{$stu->user->name ?? ""}}</td>
                             <td>{{$stu->user->email ?? ""}}</td>
                             <td>{{$en->name ?? ""}}</td>
+                            <td>A+</td>
 
 {{--
                             <td>

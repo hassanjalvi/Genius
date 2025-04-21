@@ -108,7 +108,7 @@ Route::middleware(['auth', 'instructor'])->group(function () {
 
     Route::post('/quiz/create', [QuizController::class, 'createQuiz'])->name('quiz.create');
     Route::delete('/course/quiz/delete/{id}', [QuizController::class, 'deleteQuiz'])->name('quiz.delete');
-
+    Route::get('/assign/numbers', [InstructorController::class, 'assignTask'])->name('assign.numbers');
 
 });
 #studentDashboard
@@ -123,6 +123,7 @@ Route::get('/student/mycourses/attempt/quizes/{id?}', [QuizController::class, 'a
 Route::post('/student/assignments/upload', [AssignmentController::class, 'studentSolveAssignments'])->name('student.assignment.upload');
 Route::post('/student/quiz/upload', [QuizController::class, 'studentSolveQuiz'])->name('student.submit.mcq');
 Route::get('/student/chat', [StudentController::class, 'studentChat'])->name('student.chat');
+Route::get('/student/progress', [StudentController::class,'myProgress'])->name('student.progress');
 #instructor just to be build logic
 Route::get('/instructor/chat', [InstructorController::class, 'instructorChat'])->name('instructor.chat');
 Route::controller(StripePaymentController::class)->group(function () {

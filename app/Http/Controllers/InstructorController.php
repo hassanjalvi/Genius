@@ -107,7 +107,9 @@ class InstructorController extends Controller
     {
        return view('Instructor.chat');
     }
-
-
+    public function assignTask()
+    {
+        return view('Instructor.assignnumbers');
+    }
 
 }

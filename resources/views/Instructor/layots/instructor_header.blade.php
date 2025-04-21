@@ -19,6 +19,7 @@
     <a href="{{ route('mycourses.videos.manage') }}">Videos</a>
     <a href="{{ route('mycourses.assignment.manage') }}">Assignments</a>
     <a href="{{ route('mycourses.quiz.manage') }}">Quizes</a>
+    <a href="{{ route('assign.numbers') }}">Assign Marks</a>
     <a href="{{ route('mycourses.enrolments.manage') }}">Enrollments</a>
 
 

@@ -56,7 +56,10 @@ class StudentController extends Controller
     {
         return view('Student.chat');
     }
-
+    public function myProgress()
+    {
+        return view('Student.myprogrss');
+    }
     public function index()
     {
 
