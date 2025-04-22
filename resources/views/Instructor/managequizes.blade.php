@@ -56,6 +56,8 @@
                             <th>Type</th>
                             <th>Title</th>
                             <th>Course</th>
+                            <th>Total Mark</th>
+
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -77,6 +79,8 @@
                             </td>
                             <td>{{$quiz->title ?? ""}}</td>
                             <td>{{$singleCourse->name}}</td>
+                            <td>{{$quiz->total_mark ?? ""}}</td>
+
                             <td>
                                 {{-- <a href="{{ asset('storage/quizzes/laravel_quiz.pdf') }}" target="_blank" class="btn btn-sm btn-info">View</a> --}}
                                 {{-- <button class="btn btn-primary" onclick="toggleEditForm(1)">

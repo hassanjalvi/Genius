@@ -91,7 +91,7 @@
         }
     }
 
-  
+
 
     .results {
         text-align: center;
@@ -132,12 +132,24 @@
 
 
 <script>
-    const quizData = [
-        { question: "What is the capital of France?", options: ["London", "Berlin", "Paris", "Madrid"], correct: 2 },
-        { question: "Which planet is known as the Red Planet?", options: ["Venus", "Mars", "Jupiter", "Saturn"], correct: 1 },
-        { question: "Who painted the Mona Lisa?", options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"], correct: 2 },
-        { question: "What is the largest ocean on Earth?", options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"], correct: 3 },
-        { question: "Which element has the chemical symbol 'O'?", options: ["Gold", "Silver", "Oxygen", "Iron"], correct: 2 }
+   const quizData = [
+        @foreach($quiz as $q)
+            {
+                question: "{{ addslashes($q->question) }}",
+                options: [
+                    "{{ addslashes($q->options->option_a ?? '') }}",
+                    "{{ addslashes($q->options->option_b ?? '') }}",
+                    "{{ addslashes($q->options->option_c ?? '') }}",
+                    "{{ addslashes($q->options->option_d ?? '') }}"
+                ],
+                correct:
+                    @php
+                        $correct = strtolower($q->correct_option); // 'a', 'b', 'c', 'd'
+                        $map = ['a' => 0, 'b' => 1, 'c' => 2, 'd' => 3];
+                        echo $map[$correct] ?? 0;
+                    @endphp
+            }@if(!$loop->last),@endif
+        @endforeach
     ];
 
     let currentQuestion = 0;
@@ -205,6 +217,13 @@
 
     function showResults() {
         quizContainer.innerHTML = `
+          <form method="POST" action="{{ route('mcq.mark') }}">
+               @csrf
+            <input type="hidden" name="score" value="${score}">
+                        <input type="hidden" name="quiz_id" value="{{ $quiz->first()->quiz_id }}">
+                                                <input type="hidden" name="course" value="{{ $course_id->course_id }}">
+
+
             <div class="results">
                 <div class="result-icon">
                     <i class="fas ${score >= quizData.length / 2 ? 'fa-trophy text-success' : 'fa-times-circle text-danger'}"></i>
@@ -212,7 +231,10 @@
                 <div class="score">Your score: ${score}/${quizData.length}</div>
                 <p>${score >= quizData.length / 2 ? 'Great job!' : 'Keep practicing!'}</p>
                 <button class="btn btn-primary" onclick="location.reload()">Restart Quiz</button>
+                                <button type="submit" class="btn btn-primary">Submit Score</button>
+
             </div>
+             </form>
         `;
     }
 

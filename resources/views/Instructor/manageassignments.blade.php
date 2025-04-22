@@ -56,6 +56,8 @@
                             <th>Assignment File</th>
                             <th>Assignment Title</th>
                             <th>Course</th>
+                            <th>Total Mark</th>
+
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -76,6 +78,8 @@
                             {{-- <td>{{$cou->assigment->assignment_title ?? ""}}</td> --}}
                             <td>{{$assignment->assignment_title ?? ""}}</td>
                             <td>{{$course->name ?? ""}}</td>
+                            <td>{{$assignment->total_mark ?? ""}}</td>
+
 
                             <td>
                                 <button class="btn btn-primary" onclick="toggleEditForm({{ $assignment->id }})">

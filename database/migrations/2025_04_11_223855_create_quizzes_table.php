@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('title')->nullable();
             $table->enum('type', ['mcq', 'pdf'])->nullable();
             $table->string('documnet')->nullable();
+            $table->string('total_mark')->nullable();
 
             $table->timestamps();
         });

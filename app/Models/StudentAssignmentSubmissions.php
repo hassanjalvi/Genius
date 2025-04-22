@@ -20,4 +20,9 @@ class StudentAssignmentSubmissions extends Model
         return $this->belongsTo(StudentAssignmentSubmissions::class);
     }
 
+    public function student()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

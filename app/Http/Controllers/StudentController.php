@@ -41,9 +41,11 @@ class StudentController extends Controller
         return redirect()->back()->with('success', 'User deleted successfully!');
 
     }
-    public function studentProgress()
+    public function studentProgress($id)
     {
-        return view('Instructor.studentprogress');
+        $stu_assignment = User::where('id', $id)->with('enrolmnets.course.assignment.assignmentSubmission')->get();
+        // dd($stu_assignment);
+        return view('Instructor.studentprogress', compact('stu_assignment'));
     }
     public function showStudent()
     {

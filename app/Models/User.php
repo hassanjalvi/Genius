@@ -48,6 +48,16 @@ class User extends Authenticatable
         return $this->hasMany(Payment::class);
     }
 
+    public function assignment()
+    {
+        return $this->hasMany(StudentAssignmentSubmissions::class);
+    }
+
+    public function quiz()
+    {
+        return $this->hasMany(StudentQuizSubmissions::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

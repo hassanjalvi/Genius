@@ -39,6 +39,10 @@
             <input type="text" id="assignment_title" name="assignment_title" class="form-control" placeholder="Enter Assignment Title" required>
             @error('assignment_title') <span class="text-danger">{{ $message }}</span> @enderror
 
+            <label for="assignment_title">Assignment Total Marks:</label>
+            <input type="number" id="assignment_title" name="total_mark" class="form-control" placeholder="Enter Assignment Total Mark" required>
+            @error('assignment_title') <span class="text-danger">{{ $message }}</span> @enderror
+
             <label for="assignment_description">Assignment Description:</label>
             <textarea id="assignment_description" name="assignment_description" class="form-control" rows="4" placeholder="Enter Description" required></textarea>
             @error('assignment_description') <span class="text-danger">{{ $message }}</span> @enderror

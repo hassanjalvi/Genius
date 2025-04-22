@@ -68,9 +68,9 @@
 <main>
     <section id="manage-assignments" style="padding: 10px 0;"  >
 
-        <h2 class="text-center mb-4" style="margin-left: 230px">Assignment Number</h2>
+        <h2 class="text-center mb-4" style="margin-left: 230px">Quiz Numbers</h2>
 
-        {{-- Success Message --}}
+      {{-- Success Message --}}
 @if(session('success'))
 <div id="toast-success" class="toast-message success">
     {{ session('success') }}
@@ -116,6 +116,7 @@ setTimeout(() => {
 }, 10000);
 </script>
 
+
         <!-- Filters -->
 
 
@@ -129,24 +130,23 @@ setTimeout(() => {
                         <th>Title</th>
                         <th>Course</th>
                         <th>Student Name</th>
-                        <th>Total Mark</th>
-
-                        <th>Obtain Mark</th>
+                        <th>Total Marks</th>
+                        <th>Mark Obtained</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($courseAssignmentSubmission as $data)
-                    @foreach ($data->assignment as  $ass)
-                    @foreach ($ass->assignmentSubmission as $submission)
+                    @foreach ($data->courseQuiz as  $ass)
+                    @foreach ($ass->quizSubmission as $submission)
                         <tr class="assignment-row"
                             data-quiztype="{{ strtolower($data['quiz_type']) }}">
                             <td>{{ $data['id'] ?? ''}}</td>
-                            <td><a href="{{route('submiited.assignment.pdf',$submission->id) }}">View</a></td>
-                            <td>{{ $ass->assignment_title ?? '' }}</td>
+                            <td><a href="{{route('submiited.quiz.pdf',$submission->id) }}">View</a></td>
+                            <td>{{ $ass->title ?? '' }}</td>
                             <td>{{ $data->name ?? '' }}</td>
                             <td>{{ $submission->student->name ?? "" }}</td>
-                            <td>{{ $ass->total_mark ?? "Marks pending" }}</td>
+                            <td>{{  $ass->total_mark ?? "Marks pending" }}</td>
 
                             <td>{{ $submission->marks ?? "Marks pending" }}</td>
                             <td>
@@ -154,8 +154,7 @@ setTimeout(() => {
                                     data-submission-id="{{ $submission->id }}"
                                     data-student="{{ $submission->student->name }}"
                                     data-title="{{ $ass->assignment_title }}"
-                                    data-total_mark="{{ $ass->total_mark }}"
-                                    >
+                                    data-total_mark="{{ $ass->total_mark }}">
 
                                     Upload Number
                                 </button>
@@ -169,7 +168,7 @@ setTimeout(() => {
         </div>
 
         <!-- Modal -->
-        <form id="marksForm" action="{{ route('assignment.store.mark') }}" method="POST">
+        <form id="marksForm" action="{{ route('quiz.store.mark') }}" method="POST">
             @csrf
             <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
                 <div class="modal-dialog">

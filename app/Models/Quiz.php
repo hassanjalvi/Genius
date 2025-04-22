@@ -12,6 +12,7 @@ class Quiz extends Model
         'title',
         'type',
         'documnet',
+        'total_mark'
     ];
 
     public function questions()

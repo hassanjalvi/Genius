@@ -13,4 +13,16 @@ class StudentQuizSubmissions extends Model
         'file',
         'marks',
     ];
+
+    public function quiz()
+    {
+        return $this->belongsTo(Quiz::class);
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
 }

@@ -37,6 +37,7 @@ class AssignmentController extends Controller
             'course_id' => 'required',
             'assignment_title' => 'required|string',
             'assignment_description' => 'required|string',
+            'total_mark' => 'required|numeric',
             'assignment_file' => 'required',
 
         ]);
@@ -58,6 +59,8 @@ class AssignmentController extends Controller
             'assignment_title' => $request->assignment_title,
             'assignment_description' => $request->assignment_description,
             'assigment_file' => $assignmentPicPath,
+            'total_mark' => $request->total_mark,
+            'number' => $request->assignment_number,
         ]);
 
 

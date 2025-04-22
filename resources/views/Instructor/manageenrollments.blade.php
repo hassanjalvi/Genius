@@ -18,6 +18,8 @@
                             <th>Email</th>
                             <th>Course</th>
                             <th>Grade</th>
+                            <th>View Progress</th>
+
                             {{-- <th>Action</th> --}}
                         </tr>
                     </thead>
@@ -35,6 +37,8 @@
                             <td>{{$stu->user->email ?? ""}}</td>
                             <td>{{$en->name ?? ""}}</td>
                             <td>A+</td>
+                            <td><a href="{{ route('student.progress',$stu->user->id) }}"> View Progress</a></td>
+
 
 {{--
                             <td>

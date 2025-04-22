@@ -114,6 +114,13 @@
                            accept=".pdf,.doc,.docx">
                     @error('pdf_quiz_file') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
+
+                <div class="form-group mb-3">
+                    <label for="pdf_quiz_file" class="required-field">Total Marks</label>
+                    <input type="number" name="total_mark" id="pdf_quiz_file" class="form-control"
+                           accept=".pdf,.doc,.docx">
+                    @error('total_mark') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
             </div>
 
             <!-- MCQ Section -->
@@ -250,6 +257,8 @@
                 // Remove required from PDF fields
                 document.getElementById('pdf_quiz_title').removeAttribute('required');
                 document.getElementById('pdf_quiz_file').removeAttribute('required');
+                document.getElementById('total_mark').removeAttribute('required');
+
             }
         }
 
@@ -334,11 +343,19 @@
                 // Validate PDF fields
                 const pdfTitle = document.getElementById('pdf_quiz_title');
                 const pdfFile = document.getElementById('pdf_quiz_file');
+                const total_mark = document.getElementById('total_mark');
+
 
                 if (!pdfTitle.value) {
                     e.preventDefault();
                     alert('Please enter PDF quiz title');
                     pdfTitle.focus();
+                    return;
+                }
+                if (!total_mark.value) {
+                    e.preventDefault();
+                    alert('Please enter PDF quiz title');
+                    total_mark.focus();
                     return;
                 }
 

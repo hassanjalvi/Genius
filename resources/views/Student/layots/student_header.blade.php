@@ -15,7 +15,7 @@
     <div class="sidebar-heading">Student Dashboard</div>
     <a href="{{ route('student.dashboard') }}" class="active">Dashboard</a>
     <a href="{{ route('student.mycourses') }}">My Courses</a>
-    <a href="{{ route('student.progress') }}">My Progress</a>
+    {{-- <a href="{{ route('student.progress') }}">My Progress</a> --}}
     {{-- <a href="{{ route('student.mycourses.videos') }}">Course Videos</a>
     <a href="{{ route('student.mycourses.assignments') }}">Course Assignments</a>
     <a href="{{ route('student.mycourses.quizes') }}">Course Quizes</a> --}}

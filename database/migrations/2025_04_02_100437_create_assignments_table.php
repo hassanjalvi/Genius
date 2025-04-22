@@ -14,7 +14,11 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('course_id')->constrained('courses')->cascadeOnDelete();
             $table->string('assignment_title')->nullable();
+            $table->string('total_mark')->nullable();
+
             $table->string('assignment_description')->nullable();
+            $table->string('number')->nullable();
+
             $table->string('assigment_file')->nullable();
             $table->timestamps();
         });

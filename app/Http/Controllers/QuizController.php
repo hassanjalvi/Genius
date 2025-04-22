@@ -43,9 +43,10 @@ class QuizController extends Controller
     }
     public function attemptQuizes($id)
     {
+        $course_id = Quiz::where('id', $id)->first();
         $quiz = QuizQuestions::where('quiz_id', $id)->with('options')->get();
         // dd($quiz);
-        return view('Student.attemptquiz', compact('quiz'));
+        return view('Student.attemptquiz', compact('quiz', 'course_id'));
     }
     // public function createQuiz(Request $request)
     // {
@@ -166,6 +167,7 @@ class QuizController extends Controller
             $validator = Validator::make($request->all(), [
                 'pdf_quiz_title' => 'required|string|max:255',
                 'pdf_quiz_file' => 'required|file|mimes:pdf,doc,docx|max:2048',
+                'total_mark' => 'required|numeric'
             ]);
 
             if ($validator->fails()) {
@@ -185,6 +187,7 @@ class QuizController extends Controller
                 'title' => $request->pdf_quiz_title,
                 'type' => $request->quiz_type,
                 'documnet' => $quizPicPath,
+                'total_mark' => $request->total_mark,
             ]);
 
             return redirect()->route('mycourses.quiz.manage')->with('success', 'PDF Quiz added successfully');
