@@ -55,4 +55,9 @@ class Course extends Model
     {
         return $this->hasMany(Quiz::class);
     }
+
+    public function liveClass()
+    {
+        return $this->hasMany(LiveClass::class);
+    }
 }

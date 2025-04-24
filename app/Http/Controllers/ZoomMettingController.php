@@ -16,6 +16,14 @@ class ZoomMettingController extends Controller
         return view('instructor.zoommeeting', compact('courses'));
     }
 
+
+
+    public function listLiveVideo()
+    {
+        $course_live_video = Course::where('instructor_id', Auth::id())->with('liveClass')->get();
+        return view('instructor.livevideoshow', compact('course_live_video'));
+    }
+
     public function index($id)
     {
         $liveClasses = LiveClass::where('course_id', $id)->with(['course', 'instructor'])->get();
@@ -28,7 +36,7 @@ class ZoomMettingController extends Controller
         $request->validate([
             'zoom_link' => 'required',
             'meeting_time' => 'required',
-            'course_id' => 'requireds',
+            'course_id' => 'required',
         ]);
 
         $course = LiveClass::create([
@@ -66,5 +74,17 @@ class ZoomMettingController extends Controller
         ]);
 
         return response()->json(['message' => 'Attendance marked']);
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $liveClass = LiveClass::findOrFail($id);
+            $liveClass->delete();
+
+            return redirect()->back()->with('success', 'Live class deleted successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error deleting live class: ' . $e->getMessage());
+        }
     }
 }

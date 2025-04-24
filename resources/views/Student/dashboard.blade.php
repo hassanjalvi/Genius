@@ -16,7 +16,7 @@
 <body>
 <center style="margin-left: 250px;">
     <div class="container">
-        <h2 class="text-center mt-4">Instructor Dashboard Overview</h2>
+        <h2 class="text-center mt-4">Student Dashboard Overview</h2>
         <hr>
 
         <!-- 🔧 Quick Stats Section -->

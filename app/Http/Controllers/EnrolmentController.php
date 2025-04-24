@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Enrolment;
+use App\Models\StudentAssignmentSubmissions;
+use App\Models\StudentQuizSubmissions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,9 +52,99 @@ class EnrolmentController extends Controller
     }
     public function manageCourseEnrollments()
     {
-        $enroll = Course::where('instructor_id', Auth()->id())->with(['enrollment.user', 'enrollmentCourse'])->get();
+        // $enroll = Course::where('instructor_id', Auth()->id())->with(['enrollment.user', 'enrollmentCourse'])->get();
         // dd($enroll);
+        $enroll = Course::where('instructor_id', Auth::id())
+            ->with(['enrollment.user', 'enrollmentCourse'])
+            ->get()
+            ->map(function ($course) {
+                $course->enrollment->each(function ($enrollment) use ($course) {
+                    // Get all graded assignments with their assignments
+                    $assignments = StudentAssignmentSubmissions::with('assignment')
+                        ->where('student_id', $enrollment->student_id)
+                        ->where('course_id', $course->id)
+                        ->whereNotNull('marks')
+                        ->get()
+                        ->filter(function ($item) {
+                        return $item->assignment !== null; // Filter out submissions with deleted assignments
+                    });
+
+                    // Calculate totals safely
+                    $totalMarksObtained = $assignments->sum('marks');
+                    $totalPossibleMarks = $assignments->sum(function ($item) {
+                        return $item->assignment->total_mark ?? 0;
+                    });
+
+                    // Calculate percentage (handle division by zero)
+                    $percentage = $totalPossibleMarks > 0 ? ($totalMarksObtained / $totalPossibleMarks) * 100 : 0;
+
+                    // Add grade information to the enrollment
+                    $enrollment->grade_info = [
+                        'total_marks_obtained' => $totalMarksObtained,
+                        'total_possible_marks' => $totalPossibleMarks,
+                        'percentage' => round($percentage, 2),
+                        'grade' => $this->determineGrade($percentage),
+                        'assignment_count' => $assignments->count()
+                    ];
+                });
+
+                return $course;
+            });
+
         return view('Instructor.manageenrollments', compact('enroll'));
+    }
+
+    private function calculateStudentGrade($studentId, $courseId)
+    {
+        // Get all graded assignments and quizzes
+        $assignments = StudentAssignmentSubmissions::with('assignment')
+            ->where('student_id', $studentId)
+            ->where('course_id', $courseId)
+            ->whereNotNull('marks')
+            ->get();
+
+        $quizzes = StudentQuizSubmissions::with('quiz')
+            ->where('student_id', $studentId)
+            ->where('course_id', $courseId)
+            ->whereNotNull('marks')
+            ->get();
+
+        // Calculate totals
+        $totalMarksObtained = $assignments->sum('marks') + $quizzes->sum('marks');
+        $totalPossibleMarks = $assignments->sum(function ($item) {
+            return $item->assignment->total_mark;
+        }) + $quizzes->sum(function ($item) {
+            return $item->quiz->total_mark;
+        });
+
+        // Calculate percentage
+        $percentage = $totalPossibleMarks > 0 ? ($totalMarksObtained / $totalPossibleMarks) * 100 : 0;
+
+        // Determine grade
+        $grade = $this->determineGrade($percentage);
+
+        return [
+            'total_marks_obtained' => $totalMarksObtained,
+            'total_possible_marks' => $totalPossibleMarks,
+            'percentage' => round($percentage, 2),
+            'grade' => $grade
+        ];
+    }
+
+
+    private function determineGrade($percentage)
+    {
+        if ($percentage >= 90)
+            return 'A';
+        if ($percentage >= 80)
+            return 'B';
+        if ($percentage >= 70)
+            return 'C';
+        if ($percentage >= 60)
+            return 'D';
+        if ($percentage >= 50)
+            return 'E';
+        return 'Fail';
     }
 
     public function index()

@@ -27,7 +27,7 @@
 
 
                 <div class="col-md-4">
-                    <a href="{{ route('instructor.mycourses.content',$cour->id) }}" style="text-decoration: none;">
+                    <a href="{{ route('instructor.chat',$cour->id) }}" style="text-decoration: none;">
                         <div class="card text-white bg-primary mb-3 text-center">
                             <div class="card-body">
                                 <br>

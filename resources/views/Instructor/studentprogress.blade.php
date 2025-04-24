@@ -22,6 +22,8 @@
                             <th>Assignment No</th>
                             <th>Assignment Title</th>
                             <th>Assignment Total Marks</th>
+                            <th>Assignment Obtain Marks</th>
+
 
                             <th>Assignmnet Submission</th>
 
@@ -91,12 +93,16 @@
                 <td>{{ $loop->iteration ?? "" }}</td>
                 <td>{{ $stu->name }}</td>
                 <td>{{ $en->course->name ?? '' }}</td>
-                <td>{{ $ass->number ?? "No assignment uploaded" }}</td>
-                <td>{{ $ass->assignment_title ?? "No assignment uploaded" }}</td>
+                <td>{{ $ass->number ?? "---" }}</td>
+                <td>{{ $ass->assignment_title ?? "---" }}</td>
                 <td>{{ $ass->total_mark ?? "" }}</td>
 
+
+
+
+                <td>{{ $submission->marks ?? "pending" }}</td>
                 @if ($submission)
-                    <td><a href="{{ $submission->file }}">View</a></td>
+                    <td><a href="{{ $submission->file ?? ""  }}">View</a></td>
                 @else
                     <td>Pending</td>
                 @endif

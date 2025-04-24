@@ -97,10 +97,14 @@ Route::middleware(['auth', 'instructor'])->group(function () {
 
     Route::get('/add/live/class', [ZoomMettingController::class, 'zoomMeeting'])->name('meetings.store');
     Route::post('/create/live/class', [ZoomMettingController::class, 'createMetting'])->name('meetings.create');
+    Route::get('/live/class/list', [ZoomMettingController::class, 'listLiveVideo'])->name('meetings.show');
+    Route::delete('/live-class/{id}', [ZoomMettingController::class, 'destroy'])
+        ->name('delete.class.live');
 
-    Route::get('/instructor/chat/{id}', [StudentController::class, 'studentChat'])->name('instructor.chat');
-    Route::get('/instructor/chat/courses', [CourseController::class, 'myCoursesChat'])->name('instructor.chat.courses');
+    Route::get('/instructor/chat/{id}', [StudentController::class, 'instructorChat'])->name('instructor.chat');
+    // Route::get('/instructor/chat/courses', [CourseController::class, 'myCoursesChat'])->name('instructor.chat.courses');
 
+    Route::get('/all', [CourseController::class, 'myCoursesChat'])->name('instructor.chat.courses');
 
 
 

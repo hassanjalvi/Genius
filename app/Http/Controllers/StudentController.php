@@ -62,6 +62,13 @@ class StudentController extends Controller
         return view('Student.chat', compact('chat', 'currentUserId', 'id'));
     }
 
+    public function instructorChat($id)
+    {
+        $chat = Chat::where('course_id', $id)->get();
+        $currentUserId = auth()->id(); // Get the current authenticated user's ID
+        return view('Instructor.chat', compact('chat', 'currentUserId', 'id'));
+    }
+
     public function storeChat(Request $request)
     {
         $chat = Chat::create([

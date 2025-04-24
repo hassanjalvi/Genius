@@ -36,7 +36,27 @@
                             <td>{{$stu->user->name ?? ""}}</td>
                             <td>{{$stu->user->email ?? ""}}</td>
                             <td>{{$en->name ?? ""}}</td>
-                            <td>A+</td>
+                            <td>
+                                @if(isset($stu->grade_info))
+                                    @php
+                                        // Convert "Fail" to "F" while keeping other grades the same
+                                        $displayGrade = $stu->grade_info['grade'] == 'Fail' ? 'F' : $stu->grade_info['grade'];
+                                    @endphp
+                                    <span class="badge
+                                        @if($displayGrade == 'A') badge-success
+                                        @elseif($displayGrade == 'B') badge-primary
+                                        @elseif($displayGrade == 'C') badge-info
+                                        @elseif($displayGrade == 'D') badge-warning
+                                        @elseif($displayGrade == 'E') badge-secondary
+                                        @else badge-danger
+                                        @endif">
+                                        {{ $displayGrade }} ({{ $stu->grade_info['percentage'] }}%)
+                                    </span>
+                                @else
+                                    <span class="badge badge-secondary">No Grade Yet</span>
+                                @endif
+                            </td>
+
                             <td><a href="{{ route('student.progress',$stu->user->id) }}"> View Progress</a></td>
 
 
