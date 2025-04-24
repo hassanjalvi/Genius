@@ -16,7 +16,7 @@
 <body>
     <center style="margin-left: 250px;">
         <div class="container">
-            <h2 class="text-center mt-4">Computer-Content</h2>
+            <h2 class="text-center mt-4">Course-Content</h2>
             <hr>
 
             <!-- 🔧 Quick Stats Section -->

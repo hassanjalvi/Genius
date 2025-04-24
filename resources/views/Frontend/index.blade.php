@@ -478,50 +478,47 @@
 
                     @foreach ($courses as $cou)
 
+
 					<div class="course-item-pic-text">
-						<div class="course-pic relative-position mb25">
-
+                        <div class="course-pic relative-position mb25">
                             @if ($cou->pic)
-                            <a href="{{ route('course.details', $cou->id) }}">
-                            <img src="{{ $cou->pic }}" alt="" style="width: 300px; height: 250px;">
-                            </a>
-
-                                @else
-							<img src="assets/img/course/c-1.jpg" alt="">
+                                <a href="{{ route('course.details', $cou->id) }}">
+                                    <img src="{{ $cou->pic }}" alt="" style="width: 300px; height: 250px;">
+                                </a>
+                            @else
+                                <img src="assets/img/course/c-1.jpg" alt="">
                             @endif
-							<div class="course-price text-center gradient-bg">
-								<span>${{ $cou->courseFee->price ?? "" }}</span>
-							</div>
-							<div class="course-details-btn">
-								<a href="{{ route('course.details', $cou->id) }}">COURSE DETAIL <i class="fas fa-arrow-right"></i></a>
-							</div>
-						</div>
-						<div class="course-item-text">
-							<div class="course-meta">
-								{{-- <span class="course-category bold-font"><a href="#">Web Design</a></span> --}}
-								<span class="course-author bold-font"><a href="{{ route('course.details', $cou->id) }}">{{$cou->instructor->name ?? ""}}</a></span>
-								{{-- <div class="course-rate ul-li">
-									<ul>
-										<li><i class="fas fa-star"></i></li>
-										<li><i class="fas fa-star"></i></li>
-										<li><i class="fas fa-star"></i></li>
-										<li><i class="fas fa-star"></i></li>
-										<li><i class="fas fa-star"></i></li>
-									</ul>
-								</div> --}}
-							</div>
-							<div class="course-title mt10 headline pb45 relative-position">
-								<h3><a href="{{ route('course.details', $cou->id) }}">{{$cou->name ?? ""}}</a> <span class="trend-badge text-uppercase bold-font"><i class="fas fa-bolt"></i> TRENDING</span></h3>
-							</div>
-							{{-- <div class="course-viewer ul-li">
-								<ul>
-									<li><a href="#"><i class="fas fa-user"></i> 1.220</a></li>
-									<li><a href="#"><i class="fas fa-comment-dots"></i> 1.015</a></li>
-									<li><a href="#">125k Unrolled</a></li>
-								</ul>
-							</div> --}}
-						</div>
-					</div>
+                            <div class="course-price text-center gradient-bg">
+                                <span>${{ $cou->courseFee->price ?? "0" }}</span>
+                            </div>
+                            <div class="course-details-btn">
+                                <a href="{{ route('course.details', $cou->id) }}">COURSE DETAIL <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="course-item-text">
+                            <div class="course-meta">
+                                <span class="course-author bold-font">
+                                    <div class="instructor-info" style="display: flex; align-items: center; margin-bottom: 5px;">
+                                        @if($cou->instructor->instructor && $cou->instructor->instructor->pic)
+                                            <img src="{{ $cou->instructor->instructor->pic ?? '' }}" alt="{{ $cou->instructor->name }}"
+                                                 style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                                        @endif
+                                        <a href="{{ route('course.details', $cou->id) }}">{{ $cou->instructor->name ?? "" }}</a>
+                                    </div>
+                                    @if($cou->instructor->instructor && $cou->instructor->instructor->expertise)
+                                        <div class="instructor-expertise" style="font-size: 12px; color: #666;">
+                                            {{ $cou->instructor->instructor->expertise }}
+                                        </div>
+                                    @endif
+                                </span>
+                            </div>
+                            <div class="course-title mt10 headline pb45 relative-position">
+                                <h3><a href="{{ route('course.details', $cou->id) }}">{{ $cou->name ?? "" }}</a>
+                                    <span class="trend-badge text-uppercase bold-font"><i class="fas fa-bolt"></i> TRENDING</span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
 					<!-- /item -->
                     @endforeach
 
@@ -1552,7 +1549,7 @@
 							<span class="teacher-name">{{$ins->user->name ?? ""}}</span>
 							<span class="teacher-designation">{{$ins->expertise ?? ""}}</span>
 							<span class="teacher-name">{{$ins->name }}</span>
-							
+
 						</div>
 					</div>
 

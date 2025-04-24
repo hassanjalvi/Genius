@@ -20,7 +20,7 @@
             <hr>
 
             <!-- 🔧 Quick Stats Section -->
-            <div class="row mt-5">
+            <div class="row mt-5 ">
 
                 <div class="col-md-4">
                     <a href="{{ route('student.mycourses.videos',$course->id) }}" style="text-decoration: none;">
@@ -44,7 +44,7 @@
                     </a>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 ">
                     <a href="{{ route('student.mycourses.quizes',$course->id) }}" style="text-decoration: none;">
                         <div class="card text-white bg-warning mb-3 text-center">
                             <div class="card-body">
@@ -54,7 +54,32 @@
                         </div>
                     </a>
                 </div>
+
+                <div class="col-md-4 mt-5">
+                    <a href="{{ route('live.class',$course->id) }}" style="text-decoration: none;">
+                        <div class="card text-white bg-warning mb-3 text-center">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color: white">Total Live Classes</h5>
+                                <h3>{{$total_live_class ?? "0"}}</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="col-md-4 mt-5">
+                    <a href="{{ route('student.chat',$course->id) }}" style="text-decoration: none;">
+                        <div class="card text-white bg-warning mb-3 text-center">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color: white">Total Chats</h5>
+                                <h3>{{$total_live_class ?? "0"}}</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
+
+
 
 
         </div>

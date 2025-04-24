@@ -135,6 +135,13 @@ class CourseController extends Controller
         return view('Instructor.mycourses', compact('courses'));
     }
 
+    public function myCoursesChat()
+    {
+        $courses = Course::where('instructor_id', Auth::id())->get();
+
+        return view('Instructor.courseschat', compact('courses'));
+    }
+
     public function myCoursesStudent()
     {
         $user = User::where('id', Auth::id())->with('enrolmnets.course')->first();

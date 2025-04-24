@@ -19,7 +19,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $courses = Course::with(['courseFee', 'instructor'])->latest()->get();
+        // $courses = Course::with(['courseFee', 'instructor.instructor'])->latest()->get();\
+        $courses = Course::with(['courseFee', 'instructor.instructor'])
+            ->whereHas('courseFee', function ($query) {
+                $query->whereNotNull('price');
+            })
+            ->latest()
+            ->get();
+
         $instructor = Instructor::where('feature', '1')->with('user')->latest()->get();
         return view('Frontend.index', compact('courses', 'instructor'));
     }

@@ -34,11 +34,11 @@
       margin-bottom: 10px;
     }
 
-    .student-msg {
+    .my-message {
       text-align: right;
     }
 
-    .instructor-msg {
+    .other-message {
       text-align: left;
     }
 
@@ -47,13 +47,14 @@
       padding: 8px 14px;
       border-radius: 18px;
       max-width: 70%;
+      word-wrap: break-word;
     }
 
-    .student-msg .msg-content {
+    .my-message .msg-content {
       background-color: #d1e7dd;
     }
 
-    .instructor-msg .msg-content {
+    .other-message .msg-content {
       background-color: #f8d7da;
     }
 
@@ -68,18 +69,29 @@
     }
   </style>
 </head>
-<body style="margin-left: 250px"> 
+<body style="margin-left: 250px">
   <div class="chat-container">
     <div class="card">
       <div class="card-header text-center py-2">
         <strong>LMS Chat - Student & Instructor</strong>
       </div>
       <div class="card-body chat-box" id="chatBox">
-        <!-- Messages will go here -->
+        <!-- Display existing messages -->
+        @foreach($chat as $message)
+          <div class="message {{ $message->sender_id == $currentUserId ? 'my-message' : 'other-message' }}">
+            <div class="msg-content">
+              {{ $message->message }}
+            </div>
+          </div>
+        @endforeach
       </div>
       <div class="card-footer p-3">
         <form id="chatForm" class="d-flex">
-          <input type="text" id="messageInput" class="form-control me-2" placeholder="Type your message..." required>
+          @csrf
+          <input type="hidden" name="course_id" value="{{ $id }}">
+          {{-- <input type="hidden" name="course_id" > --}}
+          <input type="hidden" name="sender_id" value="{{ $currentUserId }}">
+          <input type="text" id="messageInput" name="message" class="form-control me-2" placeholder="Type your message..." required>
           <button class="btn btn-primary" type="submit">Send</button>
         </form>
       </div>
@@ -88,38 +100,48 @@
 
   <!-- Bootstrap & JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    const chatForm = document.getElementById('chatForm');
-    const messageInput = document.getElementById('messageInput');
-    const chatBox = document.getElementById('chatBox');
+    $(document).ready(function() {
+      const chatForm = $('#chatForm');
+      const messageInput = $('#messageInput');
+      const chatBox = $('#chatBox');
 
-    const replies = [
-      "Hello! How can I help you today?",
-      "Please check the course portal.",
-      "Assignments are due on Friday.",
-      "Let me know if you need any clarification.",
-      "I’ve uploaded the notes under 'Resources'."
-    ];
+      function appendMessage(isMe, text) {
+        const msgClass = isMe ? 'my-message' : 'other-message';
+        const msg = `<div class="message ${msgClass}">
+                      <div class="msg-content">${text}</div>
+                    </div>`;
+        chatBox.append(msg);
+        chatBox.scrollTop(chatBox[0].scrollHeight);
+      }
 
-    function appendMessage(sender, text) {
-      const msg = document.createElement('div');
-      msg.className = `message ${sender}-msg`;
-      msg.innerHTML = `<div class="msg-content">${text}</div>`;
-      chatBox.appendChild(msg);
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
+      chatForm.on('submit', function(e) {
+        e.preventDefault();
+        const text = messageInput.val().trim();
+        if (!text) return;
 
-    chatForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const text = messageInput.value.trim();
-      if (!text) return;
-      appendMessage('student', text);
-      messageInput.value = '';
+        // Append the message immediately
+        appendMessage(true, text);
 
-      setTimeout(() => {
-        const reply = replies[Math.floor(Math.random() * replies.length)];
-        appendMessage('instructor', reply);
-      }, 800);
+        // Send the message to the server
+        $.ajax({
+          url: "{{ route('chat.store') }}",
+          method: "POST",
+          data: $(this).serialize(),
+          success: function(response) {
+            messageInput.val('');
+          },
+          error: function(xhr) {
+            console.error(xhr.responseText);
+          }
+        });
+      });
+
+
+
+      // Poll every 3 seconds
+      setInterval(pollForNewMessages, 3000);
     });
   </script>
 </body>

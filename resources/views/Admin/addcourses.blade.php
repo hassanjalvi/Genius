@@ -48,15 +48,7 @@
 
             <label for="assign-instructor">Assign Instructor:</label>
 
-            <select id="assign-instructor" name="instructor_id" required>
-                <option value="">Select Instructor</option>
-                <!-- Dynamically fetch instructors here -->
-                @foreach ($instructor as $ins )
-                <option value="{{$ins->id}}">{{$ins->name}}</option>
-                @endforeach
-
-                <!-- Add more options as per the instructor data -->
-            </select>
+       a
 
             @if ($errors->has('instructor_id'))
             <span class="text-danger">{{ $errors->first('instructor_id') }}</span>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,10 +55,24 @@ class StudentController extends Controller
         // dd($user);
         return view('Student.dashboard', compact('user', 'total_courses'));
     }
-    public function studentChat()
+    public function studentChat($id)
     {
-        return view('Student.chat');
+        $chat = Chat::where('course_id', $id)->get();
+        $currentUserId = auth()->id(); // Get the current authenticated user's ID
+        return view('Student.chat', compact('chat', 'currentUserId', 'id'));
     }
+
+    public function storeChat(Request $request)
+    {
+        $chat = Chat::create([
+            'message' => $request->message,
+            'sender_id' => $request->sender_id,
+            'course_id' => $request->course_id,
+        ]);
+
+        return redirect()->back()->with('success', 'mesage sent successfully');
+    }
+
     public function myProgress()
     {
         return view('Student.myprogrss');

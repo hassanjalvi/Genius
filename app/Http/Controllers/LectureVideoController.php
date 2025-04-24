@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\CourseVideo;
+use App\Models\LiveClass;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -123,11 +124,13 @@ class LectureVideoController extends Controller
     public function myCoursesContentStudent($id)
     {
         $course = Course::where('id', $id)->with('courseVideo', 'assignment', 'courseQuiz')->first();
+        $total_live_class = LiveClass::where('course_id', $id)->count();
+
         $totalVideos = $course->courseVideo ? $course->courseVideo->count() : 0;
         $totalAssignments = $course->assignment ? $course->assignment->count() : 0;
         $totalQuizzes = $course->courseQuiz ? $course->courseQuiz->count() : 0;
 
-        return view('Student.mycoursescontent', compact('course', 'totalVideos', 'totalAssignments', 'totalQuizzes'));
+        return view('Student.mycoursescontent', compact('course', 'totalVideos', 'totalAssignments', 'totalQuizzes', 'total_live_class'));
     }
     public function sawvideo($id)
     {

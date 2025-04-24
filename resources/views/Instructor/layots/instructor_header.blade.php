@@ -21,6 +21,10 @@
     <a href="{{ route('mycourses.quiz.manage') }}">Quizes</a>
     <a href="{{ route('assign.numbers') }}">Assign Assignment Marks</a>
     <a href="{{ route('quiz.numbers') }}">Assign Quiz Marks</a>
+    <a href="{{ route('meetings.store') }}">Add Live Video</a>
+    <a href="{{ url('/instructor/chat/courses') }}">Chat</a>
+
+
 
     <a href="{{ route('mycourses.enrolments.manage') }}">Enrollments</a>
 

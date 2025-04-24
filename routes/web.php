@@ -10,6 +10,7 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ZoomMettingController;
 use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 
@@ -94,6 +95,16 @@ Route::middleware(['auth', 'instructor'])->group(function () {
     Route::get('/mycourses/enrolments/manage', [EnrolmentController::class, 'manageCourseEnrollments'])->name('mycourses.enrolments.manage');
     Route::get('/student/progress/{id}', [StudentController::class, 'studentProgress'])->name('student.progress');
 
+    Route::get('/add/live/class', [ZoomMettingController::class, 'zoomMeeting'])->name('meetings.store');
+    Route::post('/create/live/class', [ZoomMettingController::class, 'createMetting'])->name('meetings.create');
+
+    Route::get('/instructor/chat/{id}', [StudentController::class, 'studentChat'])->name('instructor.chat');
+    Route::get('/instructor/chat/courses', [CourseController::class, 'myCoursesChat'])->name('instructor.chat.courses');
+
+
+
+
+
 
     Route::post('/mycourses/assignments/create', [AssignmentController::class, 'createAssignment'])->name('mycourses.assignment.create');
 
@@ -112,6 +123,9 @@ Route::middleware(['auth', 'instructor'])->group(function () {
     Route::get('/quiz/numbers', [InstructorController::class, 'quizTask'])->name('quiz.numbers');
 
 });
+
+
+
 #studentDashboard
 Route::get('/student/dashboard', [StudentController::class, 'showStudent'])->name('student.dashboard');
 Route::get('/student/mycourses', [CourseController::class, 'myCoursesStudent'])->name('student.mycourses');
@@ -123,10 +137,14 @@ Route::get('/student/mycourses/attempt/quizes/{id?}', [QuizController::class, 'a
 
 Route::post('/student/assignments/upload', [AssignmentController::class, 'studentSolveAssignments'])->name('student.assignment.upload');
 Route::post('/student/quiz/upload', [QuizController::class, 'studentSolveQuiz'])->name('student.submit.mcq');
-Route::get('/student/chat', [StudentController::class, 'studentChat'])->name('student.chat');
+Route::get('/chat/{id}', [StudentController::class, 'studentChat'])->name('student.chat');
+// Route::post('/chat/store', [StudentController::class, 'storeChat'])->name('chat.store');
+
+Route::get('/live-classes/{id}', [ZoomMettingController::class, 'index'])->name('live.class');
+Route::post('/attendance/mark/{id}', [ZoomMettingController::class, 'markAttendance']);
 // Route::get('/student/progress', [StudentController::class, 'myProgress'])->name('student.progress');
 #instructor just to be build logic
-Route::get('/instructor/chat', [InstructorController::class, 'instructorChat'])->name('instructor.chat');
+// Route::get('/instructor/chat', [InstructorController::class, 'instructorChat'])->name('instructor.chat');
 Route::controller(StripePaymentController::class)->group(function () {
     Route::get('stripe', 'stripe');
     Route::post('stripe', 'stripePost')->name('stripe.post');
@@ -139,5 +157,5 @@ Route::get('/view/quiz/{is}', [InstructorController::class, 'viewQuiz'])->name('
 Route::post('/store/assignment/mark', [InstructorController::class, 'storeAssignmentMark'])->name('assignment.store.mark');
 Route::post('/store/quiz/mcq/mark', [InstructorController::class, 'storeQuizMcqMark'])->name('mcq.mark');
 
-
+Route::post('/chat/store', [StudentController::class, 'storeChat'])->name('chat.store');
 
