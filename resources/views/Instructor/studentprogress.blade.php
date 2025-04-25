@@ -120,6 +120,178 @@
             </div>
         </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
+    <section id="manage-videos" style="margin-left: 100px">
+        <div class="container">
+            <h2>Quiz</h2>
+            {{-- <button class="btn btn-success">Add New Video</button> --}}
+            <br><br>
+
+            <div class="videos-list" style="overflow-x: auto;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Student Name</th>
+                            <th>Course Name</th>
+                            <th>Quiz No</th>
+                            <th>Quiz Title</th>
+                            <th>Quiz Type</th>
+
+                            <th>Quiz Total Marks</th>
+                            <th>Quiz Obtain Marks</th>
+
+
+                            <th>Quiz Submission</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        @foreach ($stu_quiz as $stu)
+    @foreach ($stu->enrolmnets as $en)
+        @foreach ($en->course->courseQuiz as $ass)
+            @php
+                // Find the submission of this student for this assignment
+                $submission = $ass->quizSubmission->where('student_id', $stu->id)->first();
+            @endphp
+
+            <tr>
+                <td>{{ $loop->iteration ?? "" }}</td>
+                <td>{{ $stu->name }}</td>
+                <td>{{ $en->course->name ?? '' }}</td>
+                <td>{{ $ass->number ?? "---" }}</td>
+                <td>{{ $ass->title ?? "---" }}</td>
+                <td>{{ $ass->type ?? "---" }}</td>
+
+                <td>{{ $ass->total_mark ?? "" }}</td>
+
+
+
+
+                <td>{{ $submission->marks ?? "pending" }}</td>
+
+                @if ( $ass->type === 'pdf')
+
+
+                @if ($submission)
+                    <td><a href="{{ $submission->file ?? ""  }}">View</a></td>
+                @else
+                    <td>Pending</td>
+                @endif
+
+                @else
+                <td>---</td>
+                @endif
+            </tr>
+        @endforeach
+    @endforeach
+@endforeach
+
+
+                        <!-- Video Row 2 -->
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+    <section id="manage-videos" style="margin-left: 100px">
+        <div class="container">
+            <h2>Attendance</h2>
+            {{-- <button class="btn btn-success">Add New Video</button> --}}
+            <br><br>
+
+            <div class="videos-list" style="overflow-x: auto;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Student Name</th>
+                            <th>Course Name</th>
+                            <th>Class Link</th>
+                            <th>Class Time</th>
+                            <th>Attendance</th>
+
+                            {{-- <th>Assignment Total Marks</th>
+                            <th>Assignment Obtain Marks</th> --}}
+
+
+                            {{-- <th>Assignmnet Submission</th> --}}
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        @foreach ($stu_attendance as $stu)
+    @foreach ($stu->enrolmnets as $en)
+        @foreach ($en->course->liveClass as $ass)
+            @php
+                // Find the submission of this student for this assignment
+                $submission = $ass->attendances->where('student_id', $stu->id)->first();
+            @endphp
+
+            <tr>
+                <td>{{ $loop->iteration ?? "" }}</td>
+                <td>{{ $stu->name }}</td>
+                <td>{{ $en->course->name ?? '' }}</td>
+                <td>{{ $ass->zoom_link ?? "---" }}</td>
+                <td>{{ $ass->meeting_time ?? "---" }}</td>
+                {{-- <td>{{ $ass->type ?? "---" }}</td> --}}
+
+                {{-- <td>{{ $ass->total_mark ?? "" }}</td> --}}
+
+
+
+
+                {{-- <td>{{ $submission->marks ?? "pending" }}</td> --}}
+
+
+
+
+                @if ($submission)
+                    <td>Present</td>
+                @else
+                    <td>Absend</td>
+                @endif
+
+
+            </tr>
+        @endforeach
+    @endforeach
+@endforeach
+
+
+                        <!-- Video Row 2 -->
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 </main>
 
 <script>

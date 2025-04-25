@@ -45,8 +45,14 @@ class StudentController extends Controller
     public function studentProgress($id)
     {
         $stu_assignment = User::where('id', $id)->with('enrolmnets.course.assignment.assignmentSubmission')->get();
+        $stu_quiz = User::where('id', $id)->with('enrolmnets.course.courseQuiz.quizSubmission')->get();
+        $stu_attendance = User::where('id', $id)->with('enrolmnets.course.liveClass.attendances')->get();
+
+        // dd($stu_attendance);
+
+
         // dd($stu_assignment);
-        return view('Instructor.studentprogress', compact('stu_assignment'));
+        return view('Instructor.studentprogress', compact('stu_assignment', 'stu_quiz', 'stu_attendance'));
     }
     public function showStudent()
     {

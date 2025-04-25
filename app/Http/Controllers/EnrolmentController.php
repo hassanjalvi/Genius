@@ -53,41 +53,17 @@ class EnrolmentController extends Controller
     public function manageCourseEnrollments()
     {
         // $enroll = Course::where('instructor_id', Auth()->id())->with(['enrollment.user', 'enrollmentCourse'])->get();
-        // dd($enroll);
-        $enroll = Course::where('instructor_id', Auth::id())
+        $grades = ['A', 'B', 'C', 'D'];
+
+        $enroll = Course::where('instructor_id', Auth()->id())
             ->with(['enrollment.user', 'enrollmentCourse'])
             ->get()
-            ->map(function ($course) {
-                $course->enrollment->each(function ($enrollment) use ($course) {
-                    // Get all graded assignments with their assignments
-                    $assignments = StudentAssignmentSubmissions::with('assignment')
-                        ->where('student_id', $enrollment->student_id)
-                        ->where('course_id', $course->id)
-                        ->whereNotNull('marks')
-                        ->get()
-                        ->filter(function ($item) {
-                        return $item->assignment !== null; // Filter out submissions with deleted assignments
-                    });
-
-                    // Calculate totals safely
-                    $totalMarksObtained = $assignments->sum('marks');
-                    $totalPossibleMarks = $assignments->sum(function ($item) {
-                        return $item->assignment->total_mark ?? 0;
-                    });
-
-                    // Calculate percentage (handle division by zero)
-                    $percentage = $totalPossibleMarks > 0 ? ($totalMarksObtained / $totalPossibleMarks) * 100 : 0;
-
-                    // Add grade information to the enrollment
-                    $enrollment->grade_info = [
-                        'total_marks_obtained' => $totalMarksObtained,
-                        'total_possible_marks' => $totalPossibleMarks,
-                        'percentage' => round($percentage, 2),
-                        'grade' => $this->determineGrade($percentage),
-                        'assignment_count' => $assignments->count()
-                    ];
+            ->map(function ($course) use ($grades) {
+                // assign random grade to each enrollment
+                $course->enrollment->map(function ($enroll) use ($grades) {
+                    $enroll->random_grade = $grades[array_rand($grades)];
+                    return $enroll;
                 });
-
                 return $course;
             });
 

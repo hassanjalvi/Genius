@@ -130,7 +130,10 @@ class LectureVideoController extends Controller
         $totalAssignments = $course->assignment ? $course->assignment->count() : 0;
         $totalQuizzes = $course->courseQuiz ? $course->courseQuiz->count() : 0;
 
-        return view('Student.mycoursescontent', compact('course', 'totalVideos', 'totalAssignments', 'totalQuizzes', 'total_live_class'));
+        $grades = ['A', 'B', 'C', 'D'];
+        $grade = $grades[array_rand($grades)];
+
+        return view('Student.mycoursescontent', compact('course', 'totalVideos', 'totalAssignments', 'totalQuizzes', 'total_live_class', 'grade'));
     }
     public function sawvideo($id)
     {

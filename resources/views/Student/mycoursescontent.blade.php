@@ -77,6 +77,23 @@
                         </div>
                     </a>
                 </div>
+
+
+                <div class="col-md-4 mt-5">
+                    <a href="{{ route('student.chat',$course->id) }}" style="text-decoration: none;">
+                        <div class="card text-white bg-warning mb-3 text-center">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color: white">Grade</h5>
+                                <h3>{{$grade ?? ""}}</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+
+
+
+
             </div>
 
 
