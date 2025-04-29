@@ -14,6 +14,40 @@
 
             <div class="instructors-list">
                 <table class="table table-striped">
+                    @if(session('success'))
+                    <div id="toast-success" class="toast-message">
+                        {{ session('success') }}
+                    </div>
+
+                    <style>
+                    .toast-message {
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background-color: #4CAF50;
+                        color: white;
+                        padding: 15px 25px;
+                        border-radius: 8px;
+                        box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+                        z-index: 9999;
+                        font-weight: bold;
+                        animation: fadeout 1s ease-in-out 9s forwards;
+                    }
+
+                    @keyframes fadeout {
+                        to { opacity: 0; transform: translateY(-20px); visibility: hidden; }
+                    }
+                    </style>
+
+                    <script>
+                        setTimeout(function() {
+                            let toast = document.getElementById('toast-success');
+                            if (toast) {
+                                toast.remove();
+                            }
+                        }, 10000); // 10 seconds
+                    </script>
+                @endif
                     <thead>
                         <tr>
                             <th>#</th>
