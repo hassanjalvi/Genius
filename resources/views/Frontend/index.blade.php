@@ -204,17 +204,10 @@
 								<div class="nav-menu ul-li">
 									<ul>
 										<li class="menu-item-has-children ul-li-block">
-											<a href="#">Home</a>
-											<ul class="sub-menu">
-												<li><a href="index-1.html">Home 1</a></li>
-												<li><a href="index-2.html">Home 2</a></li>
-												<li><a href="index-3.html">Home 3</a></li>
-												<li><a href="index-4.html">Home 4</a></li>
-											</ul>
+											<a href="{{route('Home')}}">Home</a>
+											
 										</li>
-										<li><a href="about.html">About Us</a></li>
-										<li><a href="shop.html">shop</a></li>
-										<li><a href="contact.html">Contact Us</a></li>
+										
                                         @if (Auth::check() && Auth::user()->role === 'user')
                                        <li><a href="{{ route('student.dashboard') }}">Student Dashboard</a></li>
                                         @endif
@@ -225,19 +218,7 @@
                                        <li><a href="{{ route('instructor.dashboard') }}">Instructor Dashboard</a></li>
                                         @endif
 
-										<li class="menu-item-has-children ul-li-block">
-											<a href="#!">Pages</a>
-											<ul class="sub-menu">
-												<li><a href="teacher.html">Teacher</a></li>
-												<li><a href="teacher-details.html">Teacher Details</a></li>
-												<li><a href="blog.html">Blog</a></li>
-												<li><a href="blog-single.html">Blog Single</a></li>
-												<li><a href="course.html">Course</a></li>
-												<li><a href="course-details.html">Course Details</a></li>
-												<li><a href="faq.html">FAQ</a></li>
-												<li><a href="check-out.html">Check Out</a></li>
-											</ul>
-										</li>
+										
 									</ul>
 								</div>
 							</nav>
@@ -246,28 +227,9 @@
 								<div class="logo"><a href="index-1.html"><img src="assets/img/logo/logo.png" alt="Logo"></a></div>
 								<nav>
 									<ul>
-										<li><a href="index-1.html">Home</a>
+										<li><a href="{{route('Home')}}">Home</a>
 										</li>
-										<li><a href="about.html">About</a></li>
-										<li><a href="blog.html">Blog</a>
-											<ul>
-												<li><a href="blog.html">Blog</a></li>
-												<li><a href="blog-single.html">Blog sinlge</a></li>
-											</ul>
-										</li>
-										<li><a href="shop.html">Shop</a>
-										</li>
-										<li><a href="contact.html">Contact</a></li>
-										<li><a href="#">Pages</a>
-											<ul>
-												<li><a href="course.html">Course</a></li>
-												<li><a href="course-details.html">course sinlge</a></li>
-												<li><a href="teacher.html">teacher</a></li>
-												<li><a href="teacher-details.html">teacher details</a></li>
-												<li><a href="faq.html">FAQ</a></li>
-												<li><a href="check-out.html">Check Out</a></li>
-											</ul>
-										</li>
+										
 									</ul>
 								</nav>
 
