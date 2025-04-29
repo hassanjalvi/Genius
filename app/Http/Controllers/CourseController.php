@@ -78,7 +78,7 @@ class CourseController extends Controller
     }
     public function updatecourse(Request $request, $id)
     {
-        $course = Course::where('id', $id)->first();
+        $course = Course::where('id', $id)->with('courseFee')->first();
 
         $course->update([
             'name' => $request->course_name ?? $course->name,
@@ -87,6 +87,20 @@ class CourseController extends Controller
             'status' => $request->status ?? $course->status,
             'instructor_id' => $request->coutructor_id ?? $course->instructor_id,
         ]);
+
+        if ($course->courseFee) {
+
+            $course->courseFee->update([
+                'course_duration' => $request->course_duration ?? $course->courseFee->course_duration,
+                'price' => $request->course_fee ?? $course->courseFee->price,
+                'discount' => $request->course_discount ?? $course->courseFee->discount,
+                'payment_plan' => $request->payment_plan ?? $course->courseFee->payment_plan,
+            ]);
+        } else {
+            return redirect()->back()->with('success', 'Please add setupfee from setup fee section');
+
+        }
+
 
 
 
