@@ -216,6 +216,7 @@ class QuizController extends Controller
                 'number' => $request->quiz_number,
                 'title' => $request->mcq_title,
                 'type' => $request->quiz_type,
+                'total_mark' => $request->total_mark_mcq,
             ]);
 
             foreach ($request->mcqs as $mcq) {

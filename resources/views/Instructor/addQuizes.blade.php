@@ -19,19 +19,16 @@
             align-items: center;
             padding: 40px 20px;
         }
-
         .admin-form {
             width: 100%;
             max-width: 700px;
             margin-bottom: 30px;
         }
-
         .manage-instructors-button {
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
-
         .manage-instructors-button .btn {
             background-color: #0056b3;
             color: #fff;
@@ -41,22 +38,18 @@
             font-size: 16px;
             text-decoration: none;
         }
-
         .manage-instructors-button .btn:hover {
             background-color: #003f7f;
         }
-
         .mcq-item {
             background-color: #f8f9fa;
             margin-bottom: 20px;
             padding: 15px;
             border-radius: 5px;
         }
-
         .text-danger {
             font-size: 0.875em;
         }
-
         .required-field::after {
             content: " *";
             color: red;
@@ -116,9 +109,9 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="pdf_quiz_file" class="required-field">Total Marks</label>
-                    <input type="number" name="total_mark" id="pdf_quiz_file" class="form-control"
-                           accept=".pdf,.doc,.docx">
+                    <label for="total_mark" class="required-field">Total Marks</label>
+                    <input type="number" name="total_mark" id="total_mark" class="form-control"
+                           value="{{ old('total_mark') }}" min="1">
                     @error('total_mark') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
             </div>
@@ -135,14 +128,21 @@
                 <div id="mcq-number-section" class="form-group mb-3">
                     <label for="mcq_count" class="required-field">How many questions do you want to add?</label>
                     <input type="number" name="mcq_count" id="mcq_count" class="form-control"
-                           placeholder="Enter number of questions" min="1" value="{{ old('mcq_count') }}">
+                           placeholder="Enter number of questions" min="1" value="{{ old('mcq_count', 1) }}">
                     <button type="button" class="btn btn-secondary mt-2" onclick="generateMcqFields()">Generate Questions</button>
                     @error('mcq_count') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
+                <!-- Hidden input for MCQ total marks -->
+                <input type="hidden" name="total_mark_mcq" id="total_mark_mcq" value="{{ old('total_mark_mcq', 0) }}">
+
                 <div id="mcq-container" class="mt-4">
-                    @if(old('mcqs') && is_array(old('mcqs')))
-                        @foreach(old('mcqs') as $i => $mcq)
+                    @php
+                        $oldMcqs = old('mcqs', []);
+                    @endphp
+
+                    @if(count($oldMcqs) > 0)
+                        @foreach($oldMcqs as $i => $mcq)
                             <div class="mcq-item">
                                 <input type="hidden" name="mcqs[{{$i}}][type]" value="mcq">
                                 <h5>Question {{ $i + 1 }}</h5>
@@ -222,7 +222,6 @@
         <section class="manage-instructors-button">
             <a href="{{route('mycourses.quiz.manage')}}" class="btn">Manage Quizzes</a>
         </section>
-
     </section>
 
     <script>
@@ -231,9 +230,10 @@
             const quizType = document.getElementById('quiz_type').value;
             toggleQuizFields();
 
-            // If there are old MCQ inputs, we need to show the MCQ section
-            if (@json(old('mcqs') && is_array(old('mcqs')))) {
-                document.getElementById('mcq_quiz_section').style.display = 'block';
+            // If there are old MCQ inputs, set the total marks
+            const oldMcqs = @json(old('mcqs', []));
+            if (oldMcqs.length > 0 && quizType === 'mcq') {
+                document.getElementById('total_mark_mcq').value = oldMcqs.length;
             }
         });
 
@@ -249,22 +249,29 @@
             // Show only the selected one
             if (quizType === 'pdf') {
                 pdfSection.style.display = 'block';
+                // Make PDF fields required
+                document.getElementById('pdf_quiz_title').setAttribute('required', 'required');
+                document.getElementById('pdf_quiz_file').setAttribute('required', 'required');
+                document.getElementById('total_mark').setAttribute('required', 'required');
                 // Remove required from MCQ fields
                 document.getElementById('mcq_title').removeAttribute('required');
                 document.getElementById('mcq_count').removeAttribute('required');
             } else if (quizType === 'mcq') {
                 mcqSection.style.display = 'block';
+                // Make MCQ fields required
+                document.getElementById('mcq_title').setAttribute('required', 'required');
+                document.getElementById('mcq_count').setAttribute('required', 'required');
                 // Remove required from PDF fields
                 document.getElementById('pdf_quiz_title').removeAttribute('required');
                 document.getElementById('pdf_quiz_file').removeAttribute('required');
                 document.getElementById('total_mark').removeAttribute('required');
-
             }
         }
 
         function generateMcqFields() {
             const mcqCount = document.getElementById('mcq_count').value;
             const container = document.getElementById('mcq-container');
+            const totalMarkInput = document.getElementById('total_mark_mcq');
 
             if (!mcqCount || mcqCount < 1) {
                 alert('Please enter a valid number of questions');
@@ -272,6 +279,9 @@
             }
 
             container.innerHTML = '';
+
+            // Set total marks equal to the number of questions (1 mark per question)
+            totalMarkInput.value = mcqCount;
 
             for (let i = 0; i < mcqCount; i++) {
                 const mcqItem = document.createElement('div');
@@ -343,8 +353,7 @@
                 // Validate PDF fields
                 const pdfTitle = document.getElementById('pdf_quiz_title');
                 const pdfFile = document.getElementById('pdf_quiz_file');
-                const total_mark = document.getElementById('total_mark');
-
+                const totalMark = document.getElementById('total_mark');
 
                 if (!pdfTitle.value) {
                     e.preventDefault();
@@ -352,10 +361,11 @@
                     pdfTitle.focus();
                     return;
                 }
-                if (!total_mark.value) {
+
+                if (!totalMark.value || totalMark.value < 1) {
                     e.preventDefault();
-                    alert('Please enter PDF quiz title');
-                    total_mark.focus();
+                    alert('Please enter valid total marks (minimum 1)');
+                    totalMark.focus();
                     return;
                 }
 
@@ -420,6 +430,9 @@
                         return;
                     }
                 }
+
+                // Automatically set total marks to number of questions
+                document.getElementById('total_mark_mcq').value = mcqItems.length;
             }
         });
     </script>

@@ -128,6 +128,8 @@ setTimeout(() => {
                         <th>#</th>
                         <th>File</th>
                         <th>Title</th>
+                        <th>type</th>
+
                         <th>Course</th>
                         <th>Student Name</th>
                         <th>Total Marks</th>
@@ -144,6 +146,8 @@ setTimeout(() => {
                             <td>{{ $data['id'] ?? ''}}</td>
                             <td><a href="{{route('submiited.quiz.pdf',$submission->id) }}">View</a></td>
                             <td>{{ $ass->title ?? '' }}</td>
+                            <td>{{ $ass->type ?? '' }}</td>
+
                             <td>{{ $data->name ?? '' }}</td>
                             <td>{{ $submission->student->name ?? "" }}</td>
                             <td>{{  $ass->total_mark ?? "Marks pending" }}</td>
