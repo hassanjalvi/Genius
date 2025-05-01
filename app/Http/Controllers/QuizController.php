@@ -29,7 +29,6 @@ class QuizController extends Controller
     public function studentQuizes($id)
     {
         // $quiz = Quiz::where('course_id', $id)->with('course')->with('quizSubmission')->get();
-
         $quiz = Quiz::where('course_id', $id)
             ->with('course')
             ->with([
@@ -38,6 +37,8 @@ class QuizController extends Controller
                 }
             ])
             ->get();
+
+
 
         return view('Student.quizes', compact('quiz'));
     }
@@ -281,11 +282,11 @@ class QuizController extends Controller
         ]);
 
 
-        return redirect()->back()->with('success', 'Assignment added successfully');
+        return redirect()->back()->with('success', 'Quiz added successfully');
 
 
     }
 
 
-   
+
 }

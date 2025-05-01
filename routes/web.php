@@ -92,6 +92,7 @@ Route::middleware(['auth', 'instructor'])->group(function () {
     Route::get('/mycourses/assignments/manage', [AssignmentController::class, 'manageAssignment'])->name('mycourses.assignment.manage');
     Route::get('/mycourses/quizes/add', [QuizController::class, 'addQuizes'])->name('mycourses.quizes.add');
     Route::get('/mycourses/quizes/manage', [QuizController::class, 'manageQuizes'])->name('mycourses.quiz.manage');
+    Route::get('/calculate-grade/{student_id}/{course_id}', [EnrolmentController::class, 'calculateGrade']);
     Route::get('/mycourses/enrolments/manage', [EnrolmentController::class, 'manageCourseEnrollments'])->name('mycourses.enrolments.manage');
     Route::get('/student/progress/{id}', [StudentController::class, 'studentProgress'])->name('student.progress');
 
@@ -125,6 +126,9 @@ Route::middleware(['auth', 'instructor'])->group(function () {
     Route::delete('/course/quiz/delete/{id}', [QuizController::class, 'deleteQuiz'])->name('quiz.delete');
     Route::get('/assign/numbers', [InstructorController::class, 'assignTask'])->name('assign.numbers');
     Route::get('/quiz/numbers', [InstructorController::class, 'quizTask'])->name('quiz.numbers');
+
+    Route::post('/quiz/marks/upload', [InstructorController::class, 'storeQuizMark'])->name('quiz.store.mark');
+
 
 });
 

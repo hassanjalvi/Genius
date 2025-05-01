@@ -60,6 +60,8 @@
                             <th>Title</th>
                             <th>Course</th>
                             <th>Action</th>
+
+
                         </tr>
                     </thead>
                     <tbody>
@@ -73,10 +75,18 @@
                             <td>{{$q->type ?? ""}}</td>
                             <td>{{$q->title ?? ""}}</td>
                             <td>{{$q->course->name ?? ""}}</td>
+
+
+
                             <td style="display: flex; align-items: center; gap: 10px;">
+                                @if ($q->type==='mcq')
+                                <p  class="btn btn-sm btn-info">-----------</p>
+                                @endif
                                 @if ($q->type==='pdf')
                                 <a href="{{ $q->file ?? "" }}" download class="btn btn-sm btn-info">Download</a>
+
                                @php
+
     $submission = $q->quizSubmission->first(); // Get the first (or only) submission
 @endphp
 
@@ -102,12 +112,28 @@
                                 </script>
 
                                 @endif
+
                                 @if ($q->type==='mcq')
+
+
+
+
+                                {{-- @if() --}}
+                                @if (is_null($submission) || is_null($submission->file))
+
                                 <a href="{{route('student.mycourses.attempt.quizes',$q->id)}}" class="btn btn-sm btn-success">Attempt Quiz</a>
+
+                                @else
+    <p>Quiz completed</p>
+@endif
+
+
 
                                 @endif
 
                             </td>
+
+
                         </tr>
                         @endforeach
 

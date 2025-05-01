@@ -208,7 +208,7 @@ class InstructorController extends Controller
         // $submission->total_marks = $request->total_marks;
         // $submission->save();
 
-        return redirect()->back()->with('success', 'Marks uploaded successfully!');
+        return redirect()->route('student.mycourses')->with('success', 'Marks uploaded successfully!');
     }
 
 
