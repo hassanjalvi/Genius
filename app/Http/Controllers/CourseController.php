@@ -62,7 +62,7 @@ class CourseController extends Controller
         ]);
 
 
-        return redirect()->route('Home')->with('success', 'Course added successfully. Please set up the fee for this course.');
+        return redirect()->route('setup.fees')->with('success', 'Course added successfully. Please set up the fee for this course.');
 
 
     }
