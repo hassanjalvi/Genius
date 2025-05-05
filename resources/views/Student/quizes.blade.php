@@ -60,6 +60,8 @@
                             <th>Title</th>
                             <th>Course</th>
                             <th>Action</th>
+                            <th>mark</th>
+
 
 
                         </tr>
@@ -81,6 +83,10 @@
                             <td style="display: flex; align-items: center; gap: 10px;">
                                 @if ($q->type==='mcq')
                                 <p  class="btn btn-sm btn-info">-----------</p>
+                                @php
+
+$submission = $q->quizSubmission->first();
+                                @endphp
                                 @endif
                                 @if ($q->type==='pdf')
                                 <a href="{{ $q->file ?? "" }}" download class="btn btn-sm btn-info">Download</a>
@@ -104,6 +110,8 @@
     <p>Quiz completed</p>
 @endif
 
+
+
                                 <script>
                                     // Submit form when file is selected
                                     document.getElementById('assignmentFile').addEventListener('change', function() {
@@ -119,7 +127,7 @@
 
 
                                 {{-- @if() --}}
-                                @if (is_null($submission) || is_null($submission->file))
+                                @if (is_null($submission))
 
                                 <a href="{{route('student.mycourses.attempt.quizes',$q->id)}}" class="btn btn-sm btn-success">Attempt Quiz</a>
 
@@ -133,7 +141,18 @@
 
                             </td>
 
+                            <td>
 
+                              <p>  {{$submission->marks ?? "pending"}}</p>
+
+                            </td>
+
+                            {{-- <td>
+                                @php
+                                    dump($submission); // Add this to see the full submission object
+                                @endphp
+                                <p>{{ $submission->marks ?? "pending" }}</p>
+                            </td> --}}
                         </tr>
                         @endforeach
 
